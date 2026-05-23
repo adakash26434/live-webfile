@@ -29,8 +29,10 @@ try {
 
 /* Production safe — errors display गर्दैन, log मा मात्र लेख्छ */
 @ini_set('display_errors', '0');
+@ini_set('display_startup_errors', '0');
 @ini_set('log_errors', '1');
-error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT);
+@ini_set('log_errors_max_len', '1024');
+error_reporting(E_ALL);
 
 /* Friendly fatal handler — white screen कहिल्यै नदेखियोस् */
 register_shutdown_function(function () {

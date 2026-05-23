@@ -18,6 +18,12 @@
 if (defined('ERROR_HANDLER_LOADED')) return;
 define('ERROR_HANDLER_LOADED', true);
 
+// Ensure runtime error display is always disabled in production-safe handler
+@ini_set('display_errors', 0);
+@ini_set('display_startup_errors', 0);
+@ini_set('log_errors', 1);
+@ini_set('log_errors_max_len', 1024);
+
 /* ── Custom exception handler ── */
 set_exception_handler(function (Throwable $e) {
     $msg = sprintf(

@@ -26,9 +26,11 @@ if (defined('ENVIRONMENT')) {
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
     } else {
-        error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+        error_reporting(E_ALL);
         ini_set('display_errors', 0);
+        ini_set('display_startup_errors', 0);
         ini_set('log_errors', 1);
+        ini_set('log_errors_max_len', 1024);
     }
 }
 
@@ -190,11 +192,20 @@ if (!defined('SITE_ROOT')) {
 // Start session if not already started
 if (session_status() === PHP_SESSION_NONE) {
     // Set secure session options
+    $_isSecure = (!empty($_SERVER['HTTPS']) && strtolower((string)$_SERVER['HTTPS']) !== 'off' && (string)$_SERVER['HTTPS'] !== '0')
+        || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower((string)$_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https')
+        || (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && strtolower((string)$_SERVER['HTTP_X_FORWARDED_SSL']) === 'on');
+
+    @ini_set('session.use_trans_sid', '0');
+    @ini_set('session.cookie_secure', $_isSecure ? '1' : '0');
+    @ini_set('session.cookie_samesite', 'Lax');
+
     $sessionOptions = [
         'use_strict_mode' => 1,
         'use_only_cookies' => 1,
         'cookie_httponly' => 1,
-        'cookie_secure' => (!empty($_SERVER['HTTPS'])),
+        'cookie_secure' => $_isSecure,
+        'cookie_samesite' => 'Lax',
         'sid_length' => 48,
         'sid_bits_per_character' => 6,
     ];

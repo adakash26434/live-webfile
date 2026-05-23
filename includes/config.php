@@ -127,9 +127,11 @@ if (!defined('CRED_MASTER_KEY')) {
  * यो Production को लागि सही सेटिङ हो।
  * =====================================================
  */
-error_reporting(0);              /* Production मा सबै errors hide गर्ने - security को लागि */
+error_reporting(E_ALL);              /* Production मा सबै errors log गर्ने; screen मा नदेखाउने */
+ini_set('display_startup_errors', 0);
 ini_set('display_errors', 0);     /* Screen मा error देखाउने? 0 = नदेखाउने (production) */
 ini_set('log_errors', 1);         /* Log file मा errors save गर्ने? 1 = हो */
+ini_set('log_errors_max_len', 1024); /* Prevent excessively large log entries */
 
 /* Error log file को location — public_html/logs/php_errors.log मा save हुन्छ */
 $logDir = __DIR__ . '/../logs';
@@ -1095,16 +1097,25 @@ if (session_status() === PHP_SESSION_NONE) {
     /* GC lifetime — server-side session expire */
     @ini_set('session.gc_maxlifetime', (string)SESSION_LIFETIME);
     @ini_set('session.use_strict_mode', '1');     /* arbitrary session id stop */
-    @ini_set('session.cookie_httponly', '1');
     @ini_set('session.use_only_cookies', '1');
+    @ini_set('session.use_trans_sid', '0');
+    @ini_set('session.cookie_httponly', '1');
 
-    // Set session cookie parameters for security
+    $_isSecure = false;
+    if (!empty($_SERVER['HTTPS']) && strtolower((string)$_SERVER['HTTPS']) !== 'off' && (string)$_SERVER['HTTPS'] !== '0') {
+        $_isSecure = true;
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower((string)$_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https') {
+        $_isSecure = true;
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && strtolower((string)$_SERVER['HTTP_X_FORWARDED_SSL']) === 'on') {
+        $_isSecure = true;
+    }
+
     session_set_cookie_params([
         'lifetime' => SESSION_LIFETIME,
         'path' => '/',
-        'secure' => isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on',
+        'secure' => $_isSecure,
         'httponly' => true,
-        'samesite' => 'Lax'
+        'samesite' => 'Lax',
     ]);
     session_name(SESSION_NAME);
     session_start();
