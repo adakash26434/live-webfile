@@ -960,12 +960,13 @@ if (!function_exists('asset')) {
  * Production मा automatically disable हुन्छ।
  */
 if (!function_exists('dd')) {
-    function dd(mixed ...$vars): never {
-        // Production मा debug disable
+    function dd(mixed ...$vars): void {
+        // Only allow dump-and-die in explicit development debug mode
         $isDebug = !empty($_GET['debug']) && defined('APP_ENV') && constant('APP_ENV') === 'development';
         if (!$isDebug) {
-            error_log('dd() called in production — remove it! ' . debug_backtrace()[0]['file'] . ':' . debug_backtrace()[0]['line']);
-            exit;
+            error_log('dd() called in production — remove it! ' . (debug_backtrace()[0]['file'] ?? '?') . ':' . (debug_backtrace()[0]['line'] ?? '?'));
+            // Do NOT terminate execution in production; just log and return
+            return;
         }
         echo '<pre style="background:#1e293b;color:#94cf95;padding:16px;border-radius:8px;font-size:13px;margin:10px;overflow:auto;">';
         foreach ($vars as $var) {
@@ -973,6 +974,7 @@ if (!function_exists('dd')) {
             echo "\n";
         }
         echo '</pre>';
+        // Terminate only in debug mode
         exit;
     }
 }
