@@ -160,8 +160,8 @@ if ($search !== '') {
 try {
     $cntS = $db->prepare("SELECT COUNT(*) FROM account_applications WHERE $where"); $cntS->execute($params); $totalCount = (int)$cntS->fetchColumn();
     $totalPages = max(1, ceil($totalCount / $limit));
-    $stmt = $db->prepare("SELECT * FROM account_applications WHERE $where ORDER BY created_at DESC LIMIT $limit OFFSET $offset");
-    $stmt->execute($params); $applications = $stmt->fetchAll();
+    $stmt = $db->prepare("SELECT * FROM account_applications WHERE $where ORDER BY created_at DESC LIMIT ? OFFSET ?");
+    $stmt->execute(array_merge($params, [$limit, $offset])); $applications = $stmt->fetchAll();
 } catch (Exception $e) { $applications = []; $totalCount = 0; $totalPages = 1; }
 
 /* ─── Single view ─── */

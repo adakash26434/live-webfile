@@ -163,7 +163,8 @@ $offset = ($page - 1) * $limit;
 try {
     $lcnt = $db->prepare("SELECT COUNT(*) FROM loan_applications WHERE $where"); $lcnt->execute($lparams); $total = $lcnt->fetchColumn();
     $totalPages = ceil($total / $limit);
-    $lstmt = $db->prepare("SELECT * FROM loan_applications WHERE $where ORDER BY created_at DESC LIMIT $limit OFFSET $offset"); $lstmt->execute($lparams); $applications = $lstmt->fetchAll();
+    $lstmt = $db->prepare("SELECT * FROM loan_applications WHERE $where ORDER BY created_at DESC LIMIT ? OFFSET ?");
+    $lstmt->execute(array_merge($lparams, [$limit, $offset])); $applications = $lstmt->fetchAll();
     $totalAmount = $db->query("SELECT SUM(loan_amount) FROM loan_applications WHERE status='pending'")->fetchColumn();
 } catch (Exception $e) { $applications = []; $total = 0; $totalPages = 0; $totalAmount = 0; }
 

@@ -152,8 +152,8 @@ $offset = ($page - 1) * $limit;
 try {
     $cnt = $db->prepare("SELECT COUNT(*) FROM appointments WHERE $where"); $cnt->execute($aptParams); $total = $cnt->fetchColumn();
     $totalPages = ceil($total / $limit);
-    $stmt = $db->prepare("SELECT * FROM appointments WHERE $where ORDER BY preferred_date DESC, created_at DESC LIMIT $limit OFFSET $offset");
-    $stmt->execute($aptParams); $appointments = $stmt->fetchAll();
+    $stmt = $db->prepare("SELECT * FROM appointments WHERE $where ORDER BY preferred_date DESC, created_at DESC LIMIT ? OFFSET ?");
+    $stmt->execute(array_merge($aptParams, [$limit, $offset])); $appointments = $stmt->fetchAll();
 } catch (Exception $e) { $appointments = []; $total = 0; $totalPages = 0; }
 
 /* ─── Counts ─── */

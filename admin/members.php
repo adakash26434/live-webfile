@@ -153,8 +153,8 @@ $total = $db->prepare("SELECT COUNT(*) FROM members WHERE $where");
 $total->execute($params);
 $totalCount = (int)$total->fetchColumn();
 
-$members = $db->prepare("SELECT * FROM members WHERE $where ORDER BY created_at DESC LIMIT $limit OFFSET $offset");
-$members->execute($params);
+$members = $db->prepare("SELECT * FROM members WHERE $where ORDER BY created_at DESC LIMIT ? OFFSET ?");
+$members->execute(array_merge($params, [$limit, $offset]));
 $members = $members->fetchAll(PDO::FETCH_ASSOC);
 
 $memPreserveQ = array_filter([

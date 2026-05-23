@@ -406,8 +406,8 @@ $offset = ($page - 1) * $limit;
 try {
     $cntStmt2 = $db->prepare("SELECT COUNT(*) FROM kyc_applications WHERE $where"); $cntStmt2->execute($params2); $total = $cntStmt2->fetchColumn();
     $totalPages    = ceil($total / $limit);
-    $stmt2 = $db->prepare("SELECT * FROM kyc_applications WHERE $where ORDER BY created_at DESC LIMIT $limit OFFSET $offset");
-    $stmt2->execute($params2); $applications = $stmt2->fetchAll();
+    $stmt2 = $db->prepare("SELECT * FROM kyc_applications WHERE $where ORDER BY created_at DESC LIMIT ? OFFSET ?");
+    $stmt2->execute(array_merge($params2, [$limit, $offset])); $applications = $stmt2->fetchAll();
 } catch (Exception $e) { $applications = []; $total = 0; $totalPages = 0; }
 
 try {
