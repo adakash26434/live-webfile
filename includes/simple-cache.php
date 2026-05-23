@@ -18,7 +18,20 @@
  * @param callable $callback - Function to generate data if not cached
  * @return mixed - Cached or generated data
  */
-function getCachedData($key, $ttl = 3600, $callback) {
+function getCachedData($key, $ttl_or_callback = 3600, $callback = null) {
+    // Normalize parameters to support both calling orders
+    if (is_callable($ttl_or_callback) && $callback === null) {
+        $callback = $ttl_or_callback;
+        $ttl = 3600;
+    } else {
+        $ttl = (int)$ttl_or_callback;
+    }
+
+    if (!is_callable($callback)) {
+        error_log("getCachedData called without a valid callback for key: $key");
+        return null;
+    }
+
     $cacheDir = __DIR__ . '/../cache';
     if (!is_dir($cacheDir)) {
         @mkdir($cacheDir, 0755, true);
