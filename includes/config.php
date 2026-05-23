@@ -272,7 +272,9 @@ function clean_text($input, int $maxLen = 4096): string {
 // Escape output for safe HTML display - short helper function
 // Use this for displaying any user-generated or dynamic content
 function e($string) {
-    return htmlspecialchars($string ?? '', ENT_QUOTES, 'UTF-8');
+    $text = trim((string)($string ?? ''));
+    $text = str_replace("\u{FFFD}", '', $text);
+    return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
 }
 
 /**

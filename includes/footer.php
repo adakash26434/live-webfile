@@ -192,14 +192,27 @@ try {
                     </a>
                 </div>
 
-                <div class="visitor-counter">
-                    <div class="visitor-item" title="<?php echo isEnglish() ? 'Total Visitors' : 'कुल भ्रमणकर्ता'; ?>">
-                        <i class="fas fa-users"></i>
-                        <span><?php echo number_format($totalVisitors); ?></span>
-                    </div>
-                    <div class="visitor-item today" title="<?php echo isEnglish() ? "Today's Visitors" : 'आजका भ्रमणकर्ता'; ?>">
+                <div class="footer-metrics" id="footerMetrics">
+                    <button type="button" class="footer-metrics-toggle" id="footerMetricsToggle" title="<?php echo isEnglish() ? 'Visitor stats' : 'भ्रमण तथ्यांक'; ?>">
                         <i class="fas fa-user-clock"></i>
-                        <span><?php echo number_format($todayVisitors); ?></span>
+                    </button>
+                    <div class="footer-metrics-popup" id="footerMetricsPopup" aria-hidden="true">
+                        <div class="footer-metrics-heading">
+                            <span><?php echo isEnglish() ? 'Visitor Stats' : 'भ्रमण तथ्यांक'; ?></span>
+                            <button type="button" class="footer-metrics-close" id="footerMetricsClose" aria-label="<?php echo isEnglish() ? 'Close' : 'बन्द गर्नुहोस्'; ?>">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="visitor-counter">
+                            <div class="visitor-item" title="<?php echo isEnglish() ? 'Total Visitors' : 'कुल भ्रमणकर्ता'; ?>">
+                                <i class="fas fa-users"></i>
+                                <span><?php echo number_format($totalVisitors); ?></span>
+                            </div>
+                            <div class="visitor-item today" title="<?php echo isEnglish() ? "Today's Visitors" : 'आजका भ्रमणकर्ता'; ?>">
+                                <i class="fas fa-user-clock"></i>
+                                <span><?php echo number_format($todayVisitors); ?></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -379,6 +392,23 @@ try {
         var usefulLinksClose = document.getElementById('usefulLinksClose');
         var usefulLinksFloat = document.getElementById('usefulLinksFloat');
 
+        var footerMetricsToggle = document.getElementById('footerMetricsToggle');
+        var footerMetricsPopup = document.getElementById('footerMetricsPopup');
+        var footerMetricsClose = document.getElementById('footerMetricsClose');
+
+        function openFooterMetrics() {
+            if (footerMetricsPopup) {
+                footerMetricsPopup.classList.add('active');
+                footerMetricsPopup.setAttribute('aria-hidden', 'false');
+            }
+        }
+        function closeFooterMetrics() {
+            if (footerMetricsPopup) {
+                footerMetricsPopup.classList.remove('active');
+                footerMetricsPopup.setAttribute('aria-hidden', 'true');
+            }
+        }
+
         function openUsefulLinks() {
             if (usefulLinksBox) usefulLinksBox.classList.add('active');
         }
@@ -395,6 +425,23 @@ try {
                 if (usefulLinksBox) usefulLinksBox.classList.toggle('active');
             });
         }
+        if (footerMetricsToggle) {
+            footerMetricsToggle.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (footerMetricsPopup) {
+                    footerMetricsPopup.classList.toggle('active');
+                    footerMetricsPopup.setAttribute('aria-hidden', footerMetricsPopup.classList.contains('active') ? 'false' : 'true');
+                }
+            });
+        }
+        if (footerMetricsClose) {
+            footerMetricsClose.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                closeFooterMetrics();
+            });
+        }
         if (usefulLinksClose) {
             usefulLinksClose.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -403,14 +450,22 @@ try {
             });
         }
         document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') closeUsefulLinks();
+            if (e.key === 'Escape') {
+                closeUsefulLinks();
+                closeFooterMetrics();
+            }
         });
         document.addEventListener('click', function (e) {
-            if (!usefulLinksBox || !usefulLinksBox.classList.contains('active')) return;
-            var qh = document.getElementById('qhLauncher');
-            if (qh && qh.contains(e.target)) return;
-            if (usefulLinksFloat && !usefulLinksFloat.contains(e.target)) {
-                closeUsefulLinks();
+            if (usefulLinksBox && usefulLinksBox.classList.contains('active')) {
+                var qh = document.getElementById('qhLauncher');
+                if (!(qh && qh.contains(e.target)) && usefulLinksFloat && !usefulLinksFloat.contains(e.target)) {
+                    closeUsefulLinks();
+                }
+            }
+            if (footerMetricsPopup && footerMetricsPopup.classList.contains('active')) {
+                if (footerMetricsToggle && !footerMetricsToggle.contains(e.target) && !footerMetricsPopup.contains(e.target)) {
+                    closeFooterMetrics();
+                }
             }
         });
     })();
@@ -610,7 +665,7 @@ try {
                 dateFormat : 'YYYY-MM-DD',
                 language   : 'nepali'
             });
-            /* Calendar icon button छ भने click गर्दा datepicker ख��ल्छ */
+            /* Calendar icon button छ भने click गर्दा datepicker खुल्छ */
             $inp.closest('.input-group, .nepali-datepicker-wrapper')
                 .find('.input-group-text, .ndp-trigger')
                 .off('click.ndp').on('click.ndp', function() { $inp.trigger('focus'); });
