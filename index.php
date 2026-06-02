@@ -1146,5 +1146,107 @@ $hasPhoto = !empty($memberSpotlight['photo']) && file_exists(ROOT_PATH . $member
         </div>
     </div>
 </section>
+<?php
+    // Check for popup notices - fetch multiple for carousel
+    $popupNotices = [];
+    try {
+        $db = getDB();
+        $popupStmt = $db->query("SELECT * FROM notices WHERE is_popup = 1 AND is_active = 1 ORDER BY id DESC LIMIT 5");
+        if ($popupStmt) $popupNotices = $popupStmt->fetchAll();
+    } catch (Exception $e) {
+        $popupNotices = [];
+    }
+
+    // Only output popup HTML if notices exist
+    if (!empty($popupNotices)):
+    $noticeIds = implode(',', array_column($popupNotices, 'id'));
+    ?>
+    <!-- Popup Notice Modal - Enhanced V3 with Carousel -->
+    <div class="notice-popup-enhanced" id="noticePopup" data-notice-ids="<?php echo $noticeIds; ?>">
+        <div class="popup-overlay"></div>
+        <div class="popup-dialog popup-v3">
+            <div class="popup-top-accent"></div>
+            <div class="popup-actions-top">
+                <div class="popup-doc-actions" id="popupDocActions">
+                    <!-- Dynamic PDF button will be shown here -->
+                </div>
+                <button class="popup-close-btn" id="popupClose" title="<?php echo isEnglish() ? 'Close' : 'बन्द गर्नुहोस्'; ?>">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Carousel Container -->
+            <div class="popup-carousel" id="popupCarousel">
+                <?php foreach ($popupNotices as $index => $notice):
+                    $attachPath = '';
+                    if (!empty($notice['attachment'])) {
+                        $attachPath = $notice['attachment'];
+                        if (strpos($attachPath, 'uploads/') !== 0 && strpos($attachPath, '/') !== 0) {
+                            $attachPath = 'uploads/notices/' . $attachPath;
+                        }
+                    }
+                    /* photo-only popup: use popup_image if set, else attachment if it's an image */
+                    $isPhotoOnly = !empty($notice['popup_photo_only']);
+                    $photoOnlySrc = '';
+                    if ($isPhotoOnly) {
+                        if (!empty($notice['popup_image'])) {
+                            $photoOnlySrc = $notice['popup_image'];
+                        } elseif (!empty($attachPath) && preg_match('/\.(jpg|jpeg|png|webp|gif)$/i', $attachPath)) {
+                            $photoOnlySrc = $attachPath;
+                        }
+                    }
+                ?>
+                <div class="popup-slide <?php echo $index === 0 ? 'active' : ''; ?>" data-index="<?php echo $index; ?>" data-attachment="<?php echo $attachPath; ?>" data-photo-only="<?php echo $isPhotoOnly ? '1' : '0'; ?>">
+                    <?php if ($isPhotoOnly && $photoOnlySrc): ?>
+                    <!-- Photo-only popup mode -->
+                    <div class="popup-photo-only-wrap" style="display:flex;align-items:center;justify-content:center;padding:12px;min-height:160px;">
+                        <img src="<?php echo htmlspecialchars(SITE_URL . ltrim($photoOnlySrc, '/'), ENT_QUOTES, 'UTF-8'); ?>"
+                             alt="<?php echo htmlspecialchars(isEnglish() ? ($notice['title'] ?: '') : ($notice['title_np'] ?: ''), ENT_QUOTES, 'UTF-8'); ?>"
+                             style="max-width:100%;max-height:440px;border-radius:8px;object-fit:contain;box-shadow:0 4px 16px rgba(0,0,0,0.12);">
+                    </div>
+                    <?php else: ?>
+                    <div class="popup-header-text">
+                        <span class="popup-badge animated"><?php echo isEnglish() ? 'Important Notice' : 'महत्त्वपूर्ण सूचना'; ?></span>
+                    </div>
+                    <div class="popup-content-body">
+                        <h4 class="popup-title"><?php echo htmlspecialchars(isEnglish() ? ($notice['title'] ?: ($notice['title_np'] ?? '')) : (($notice['title_np'] ?? '') ?: $notice['title']), ENT_QUOTES, 'UTF-8'); ?></h4>
+                        <div class="popup-text">
+                            <?php echo nl2br(htmlspecialchars(isEnglish() ? ($notice['content'] ?: ($notice['content_np'] ?? '')) : (($notice['content_np'] ?? '') ?: $notice['content']), ENT_QUOTES, 'UTF-8')); ?>
+                        </div>
+                        <?php if (!empty($notice['notice_date'])): ?>
+                        <div class="popup-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <?php echo formatDate($notice['notice_date'], 'Y-m-d'); ?>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                    <?php endif; ?>
+                </div>
+                <?php endforeach; ?>
+            </div>
+
+            <?php if (count($popupNotices) > 1): ?>
+            <!-- Navigation Controls -->
+            <div class="popup-nav">
+                <button class="popup-nav-btn popup-prev" id="popupPrev" title="<?php echo isEnglish() ? 'Previous' : 'अघिल्लो'; ?>">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="popup-dots" id="popupDots">
+                    <?php foreach ($popupNotices as $index => $notice): ?>
+                    <span class="popup-dot <?php echo $index === 0 ? 'active' : ''; ?>" data-index="<?php echo $index; ?>"></span>
+                    <?php endforeach; ?>
+                </div>
+                <button class="popup-nav-btn popup-next" id="popupNext" title="<?php echo isEnglish() ? 'Next' : 'अर्को'; ?>">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <!-- Progress Bar for Auto-rotate -->
+            <div class="popup-progress">
+                <div class="popup-progress-bar" id="popupProgressBar"></div>
+            </div>
+            <?php endif; ?>
+        </div>
+    </div>
+    <?php endif; ?>
 
 <?php require_once 'includes/footer.php'; ?>

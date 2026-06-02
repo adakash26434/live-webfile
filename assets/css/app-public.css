@@ -8505,7 +8505,7 @@ input[readonly].nepali-datepicker:hover,
 
 .ip-card-header {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-    color: var(--text-on-primary, #fff);
+    color: var(--text-primary, #fff);
     padding: 14px 20px;
     display: flex;
     align-items: center;
@@ -18260,7 +18260,7 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
 }
 .ip-card-header {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-    color: var(--text-on-primary,#fff);
+    color: var(--text-primary,#fff);
     padding: 12px 18px;
     display: flex; align-items: center; justify-content: space-between;
     flex-wrap: wrap; gap: 8px;

@@ -257,39 +257,6 @@ function ipShortAmt(float $v): string {
     </div>
     <?php endif; ?>
 
-    <!-- Document Preview Row — below data -->
-    <?php if (!empty($p['attachment_path'])): ?>
-    <?php
-        $_ipDocUrl2 = htmlspecialchars(SITE_URL . ltrim($p['attachment_path'], '/'), ENT_QUOTES, 'UTF-8');
-        $_ipDocExt2 = strtolower(pathinfo($p['attachment_path'], PATHINFO_EXTENSION));
-        $_ipDocIsImg2 = in_array($_ipDocExt2, ['jpg','jpeg','png','gif','webp']);
-    ?>
-    <div class="ip-doc-preview-row">
-        <div class="ip-doc-preview-icon-btn-wrap">
-            <button type="button" class="ip-doc-preview-icon-btn"
-                    onclick="ipOpenDoc('<?php echo $_ipDocUrl2; ?>','<?php echo $_ipDocExt2; ?>')"
-                    title="<?php echo isEnglish() ? 'Preview Document' : 'कागजात पूर्वावलोकन'; ?>">
-                <span class="ip-doc-preview-icon-box">
-                    <?php if ($_ipDocIsImg2): ?>
-                    <i class="fas fa-image"></i>
-                    <?php else: ?>
-                    <i class="fas fa-file-pdf"></i>
-                    <?php endif; ?>
-                </span>
-                <span class="ip-doc-preview-icon-text">
-                    <?php echo isEnglish() ? 'Annual Report' : 'वार्षिक प्रतिवेदन'; ?>
-                    <small><?php echo isEnglish() ? 'Click to preview' : 'क्लिक गरेर हेर्नुहोस्'; ?></small>
-                </span>
-                <i class="fas fa-circle-play ip-doc-preview-play"></i>
-            </button>
-            <a href="<?php echo $_ipDocUrl2; ?>" target="_blank" download
-               class="ip-doc-download-btn"
-               title="<?php echo isEnglish() ? 'Download' : 'डाउनलोड'; ?>">
-                <i class="fas fa-download"></i>
-            </a>
-        </div>
-    </div>
-    <?php endif; ?>
 
 </div><!-- .ip-profile-card -->
 <?php endforeach; ?>
