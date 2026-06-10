@@ -14836,9 +14836,8 @@ textarea.form-control {
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(var(--primary-rgb,26,95,42), .15);
 }
-.hero-inner-modern,
-.hero-slide-modern { height: 500px; }
-.hero-slide-modern { position: relative; overflow: hidden; }
+.hero-inner-modern { height: 500px; }
+.hero-slide-modern { height: 500px; position: relative; overflow: hidden; }
 
 .hero-bg-modern {
     background-size: cover;

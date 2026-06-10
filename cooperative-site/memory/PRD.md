@@ -114,6 +114,13 @@ User later asked to start, selected a specific issue category, and prioritized f
     - **CSS improvements**: Removed `will-change:transform` + `contain:layout paint` from nav (was adding unnecessary complexity); fixed `body.header-v2.mobile-nav-open` scroll-lock to not override JS scroll-position restore (removed `inset:0 !important`, kept only `position:fixed` + `right/bottom/left:0`).
     - **Regression test updated**: `test_mobile_drawer_stacking_fix_present` now validates teleportation code instead of old wrapper z-index hack. 33 passed, 3 skipped.
 
+- 2026-06-13 (session 2): **CSS DEDUP, FORMS MIGRATION, COMPONENT FIXES**
+    - **CSS**: Merged adjacent `.hero-slide-modern` duplicate rules into single rule in `app-public.css` (safe dedup).
+    - **form-field.php fixed**: Replaced `goto _ff_cleanup` with clean `if/elseif/else` structure — now safe for multiple includes in the same PHP scope without fatal label-duplication errors.
+    - **designations.php migrated**: Admin "पद मास्टर" form (7 fields: 2 hidden, 2 text, 1 select, 1 number, 1 checkbox) now uses `form-field.php` shared component — all hidden field boilerplate replaced with component includes.
+    - **modal.php documented**: Added note that `<form class="modal-content">` pattern (used by hrm-employee-directory, manage-admins, members) is NOT compatible with `modal.php`; those remain as inline modals. `modal.php` is for new modals with `<div class="modal-content">`.
+    - **Regression**: 33 passed, 3 skipped ✓.
+
 ## Current Known Environment State
 - Database credentials are not configured in this workspace, so public/member pages may show the setup screen and admin bootstrap logs non-fatal DB-not-configured messages. This is expected until real DB config is present.
 - This fork is a legacy/custom PHP project. Supervisor React/FastAPI services are not applicable here and may show FATAL because `/app/frontend` and `/app/backend` do not exist.

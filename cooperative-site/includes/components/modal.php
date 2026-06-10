@@ -22,6 +22,10 @@
  *   Then add trigger button:
  *   <button data-bs-toggle="modal" data-bs-target="#deleteItemModal">…</button>
  *
+ * NOTE: यो component <div class="modal-content"> generate गर्छ।
+ *   यदि <form class="modal-content"> pattern चाहिन्छ भने (जस्तो: hrm-employee-directory.php),
+ *   inline modal राख्नु बेसी उचित छ — modal.php ले form-wrapper support गर्दैन।
+ *
  * Constraint: PHP backend logic नछुने।
  * ════════════════════════════════════════════════════════════
  */

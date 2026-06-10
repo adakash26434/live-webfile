@@ -134,30 +134,41 @@ echo adminPageHeader(
             <div class="card-body">
                 <form method="post" class="row g-2">
                     <?php echo csrfField(); ?>
-                    <input type="hidden" name="action" value="save">
-                    <input type="hidden" name="id" value="<?php echo $editRow ? (int)$editRow['id'] : 0; ?>">
-                    <div class="col-12"><label class="form-label small">पदको नाम (नेपाली) *</label>
-                        <input class="form-control" name="title_np" required value="<?php echo htmlspecialchars($editRow['title_np'] ?? ''); ?>" placeholder="अध्यक्ष, सचिव, प्रबन्धक ...">
-                    </div>
-                    <div class="col-12"><label class="form-label small">Title (English)</label>
-                        <input class="form-control" name="title_en" value="<?php echo htmlspecialchars($editRow['title_en'] ?? ''); ?>" placeholder="Chairperson, Secretary ...">
-                    </div>
-                    <div class="col-7"><label class="form-label small">वर्ग *</label>
-                        <select class="form-select" name="category">
-                            <?php foreach ($cats as $k => $lbl): ?>
-                                <option value="<?php echo $k; ?>" <?php echo (($editRow['category'] ?? 'committee') === $k) ? 'selected' : ''; ?>><?php echo htmlspecialchars($lbl); ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="col-5"><label class="form-label small">क्रम</label>
-                        <input type="number" class="form-control" name="display_order" value="<?php echo (int)($editRow['display_order'] ?? 0); ?>">
-                    </div>
-                    <div class="col-12">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" name="is_active" id="dact" value="1" <?php echo (!$editRow || !empty($editRow['is_active'])) ? 'checked' : ''; ?>>
-                            <label class="form-check-label" for="dact">सक्रिय</label>
-                        </div>
-                    </div>
+                    <?php
+                    $fieldType = 'hidden'; $fieldName = 'action'; $fieldValue = 'save';
+                    include __DIR__ . '/../includes/components/form-field.php';
+                    $fieldType = 'hidden'; $fieldName = 'id';
+                    $fieldValue = $editRow ? (int)$editRow['id'] : 0;
+                    include __DIR__ . '/../includes/components/form-field.php';
+
+                    $fieldLabel = 'पदको नाम (नेपाली)'; $fieldName = 'title_np';
+                    $fieldValue = $editRow['title_np'] ?? ''; $fieldRequired = true;
+                    $fieldPlaceholder = 'अध्यक्ष, सचिव, प्रबन्धक ...'; $fieldColMd = 12;
+                    include __DIR__ . '/../includes/components/form-field.php';
+
+                    $fieldLabel = 'Title (English)'; $fieldName = 'title_en';
+                    $fieldValue = $editRow['title_en'] ?? '';
+                    $fieldPlaceholder = 'Chairperson, Secretary ...'; $fieldColMd = 12;
+                    include __DIR__ . '/../includes/components/form-field.php';
+
+                    $fieldLabel = 'वर्ग'; $fieldName = 'category'; $fieldType = 'select';
+                    $fieldValue = $editRow['category'] ?? 'committee'; $fieldRequired = true;
+                    $fieldColMd = 7;
+                    $fieldOptions = [];
+                    foreach ($cats as $_k => $_lbl) { $fieldOptions[] = ['value'=>$_k,'label'=>$_lbl]; }
+                    include __DIR__ . '/../includes/components/form-field.php';
+
+                    $fieldLabel = 'क्रम'; $fieldName = 'display_order';
+                    $fieldType = 'number'; $fieldValue = (int)($editRow['display_order'] ?? 0);
+                    $fieldColMd = 5;
+                    include __DIR__ . '/../includes/components/form-field.php';
+
+                    $fieldLabel = 'सक्रिय'; $fieldName = 'is_active'; $fieldType = 'checkbox';
+                    $fieldId = 'dact';
+                    $fieldValue = (!$editRow || !empty($editRow['is_active'])) ? 1 : 0;
+                    $fieldColMd = 12;
+                    include __DIR__ . '/../includes/components/form-field.php';
+                    ?>
                     <div class="col-12 d-flex gap-2 mt-2">
                         <button class="btn btn-primary"><i class="fas fa-save me-1"></i>बचत</button>
                         <a class="btn btn-outline-secondary" href="designations.php?panel=form">नयाँ</a>

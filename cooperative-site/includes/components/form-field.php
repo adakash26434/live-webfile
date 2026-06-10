@@ -51,11 +51,7 @@ $_reqAttr    = $fieldRequired ? ' required' : '';
 // Hidden fields: no wrapper
 if ($fieldType === 'hidden') {
     echo '<input type="hidden" name="' . htmlspecialchars($fieldName, ENT_QUOTES) . '" id="' . htmlspecialchars($fieldId, ENT_QUOTES) . '" value="' . htmlspecialchars((string)$fieldValue, ENT_QUOTES) . '">';
-    goto _ff_cleanup;
-}
-
-// Checkbox: special layout
-if ($fieldType === 'checkbox'):
+} elseif ($fieldType === 'checkbox') {
 ?>
 <div class="<?php echo $_colClass; ?> mb-3">
   <div class="form-check">
@@ -79,8 +75,7 @@ if ($fieldType === 'checkbox'):
   </div>
 </div>
 <?php
-goto _ff_cleanup;
-endif;
+} else {
 ?>
 <div class="<?php echo $_colClass; ?> mb-3">
   <label class="form-label" for="<?php echo htmlspecialchars($fieldId, ENT_QUOTES); ?>">
@@ -132,7 +127,7 @@ endif;
   <?php endif; ?>
 </div>
 <?php
-_ff_cleanup:
+} // end if/elseif/else
 unset($fieldLabel, $fieldName, $fieldId, $fieldType, $fieldValue, $fieldRequired,
       $fieldPlaceholder, $fieldHelp, $fieldError, $fieldAttrs, $fieldOptions,
       $fieldColMd, $fieldRows, $_colClass, $_reqMark, $_errClass, $_reqAttr);
