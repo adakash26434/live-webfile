@@ -216,7 +216,7 @@ $currentHeroDesc = $isManagementView
 }
 .coop-select-field {
     padding-left: 34px;
-    border: 1.5px solid color-mix(in srgb, var(--primary-color, #1a5f2a) 30%, #e5e7eb);
+    border: 1.5px solid color-mix(in srgb, var(--primary-color, #1a5f2a) 30%, var(--border-color));
     border-radius: 10px;
     font-size: .93rem;
     color: var(--text-primary, #1a2e1f);

@@ -133,7 +133,7 @@ $extraHead = '<style>
 .appt-status--pending{background:color-mix(in srgb,var(--secondary-color) 14%,white);color:var(--secondary-dark);}
 .appt-status--confirmed{background:color-mix(in srgb,var(--primary-color) 14%,white);color:var(--primary-dark);}
 .appt-status--completed{background:color-mix(in srgb,var(--primary-color) 10%,white);color:var(--primary-dark);}
-.appt-status--cancelled{background:#f3f4f6;color:#6b7280;}
+.appt-status--cancelled{background:var(--bg-light);color:var(--text-muted);}
 </style>';
 require __DIR__ . '/includes/chrome.php';
 ?>

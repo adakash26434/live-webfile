@@ -386,7 +386,7 @@ if ($viewGrv):
                            class="btn btn-sm btn-outline-primary" target="_blank" download>
                             <i class="fas fa-download me-1"></i>Download
                         </a>
-                        <form method="POST" class="d-inline" onsubmit="return confirm('<?php echo $__t('फाइल हटाउने?', 'Remove this file?'); ?>')">
+                        <form method="POST" class="d-inline" data-confirm="<?php echo $__t('फाइल हटाउने?', 'Remove this file?'); ?>">
                             <?php echo csrfField(); ?>
                             <input type="hidden" name="remove_attachment" value="1">
                             <input type="hidden" name="id" value="<?php echo $viewGrv['id']; ?>">
@@ -497,7 +497,7 @@ if ($viewGrv):
 
                         <!-- Delete button — separate form -->
                         <hr class="my-3">
-                        <form method="POST" onsubmit="return confirm('<?php echo $__t('के तपाईं यो गुनासो स्थायी रूपले मेटाउन निश्चित हुनुहुन्छ?', 'Are you sure you want to permanently delete this grievance?'); ?>')">
+                        <form method="POST" data-confirm="<?php echo $__t('के तपाईं यो गुनासो स्थायी रूपले मेटाउन निश्चित हुनुहुन्छ?', 'Are you sure you want to permanently delete this grievance?'); ?>">
                             <?php echo csrfField(); ?>
                             <input type="hidden" name="delete" value="1">
                             <input type="hidden" name="id" value="<?php echo $viewGrv['id']; ?>">
@@ -627,7 +627,7 @@ if ($viewGrv):
                     <div class="adm-action-icons">
                         <a href="grievances.php?view=<?php echo $grv['id']; ?>" class="adm-icon-btn adm-icon-btn--view" title="<?php echo $__t('विस्तृत / अपडेट', 'Details / Update'); ?>" aria-label="View"><i class="fas fa-eye"></i></a>
                         <?php if ($grv['status'] === 'pending' || $grv['status'] === 'in_progress'): ?>
-                        <form method="POST" class="qaction-form" onsubmit="return confirm('<?php echo $__t('यो गुनासो समाधान भएको मान्नुहुन्छ?', 'Mark this grievance as resolved?'); ?>')">
+                        <form method="POST" class="qaction-form" data-confirm="<?php echo $__t('यो गुनासो समाधान भएको मान्नुहुन्छ?', 'Mark this grievance as resolved?'); ?>">
                             <?php echo csrfField(); ?>
                             <input type="hidden" name="quick_resolve" value="1">
                             <input type="hidden" name="quick_id" value="<?php echo $grv['id']; ?>">

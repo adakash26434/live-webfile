@@ -229,7 +229,7 @@ if ($_flash) echo adminAlert($_flash['type'] === 'success' ? 'success' : 'danger
                                     data-show-nav="<?php echo $showNav; ?>">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <form method="POST" class="svc-inline-form" onsubmit="return confirm('यो समिति प्रकार मेटाउने?')">
+                            <form method="POST" class="svc-inline-form" data-confirm="यो समिति प्रकार मेटाउने?">
     <?php echo csrfField(); ?>
                                 <input type="hidden" name="action" value="delete_type">
                                 <input type="hidden" name="delete_id" value="<?php echo $t['id']; ?>">
@@ -403,7 +403,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     data-active="<?php echo $tn['is_active']; ?>">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <form method="POST" class="svc-inline-form" onsubmit="return confirm('यो कार्यकाल मेटाउने?')">
+                            <form method="POST" class="svc-inline-form" data-confirm="यो कार्यकाल मेटाउने?">
     <?php echo csrfField(); ?>
                                 <input type="hidden" name="action" value="delete_tenure">
                                 <input type="hidden" name="delete_id" value="<?php echo $tn['id']; ?>">
@@ -588,7 +588,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     title="सम्पादन">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <form method="POST" class="svc-inline-form" onsubmit="return confirm('यो सदस्य मेटाउने?')">
+                            <form method="POST" class="svc-inline-form" data-confirm="यो सदस्य मेटाउने?">
     <?php echo csrfField(); ?>
                                 <input type="hidden" name="action" value="delete_member">
                                 <input type="hidden" name="delete_id" value="<?php echo $m['id']; ?>">

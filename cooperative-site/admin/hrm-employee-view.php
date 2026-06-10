@@ -291,7 +291,7 @@ $history    = $db->prepare("SELECT id, employee_id, event_type, event_date_bs, e
               <td class="text-end">रू <?= number_format((float)$c['basic_salary'], 2) ?></td>
               <td><?php if ($c['file_path']): ?><a class="btn btn-sm btn-outline-primary" target="_blank" href="../<?= e($c['file_path']) ?>"><i class="fas fa-file-pdf"></i></a><?php endif; ?></td>
               <td class="text-end">
-                <form method="post" class="stf-inline-form" onsubmit="return confirm('हटाउने?');">
+                <form method="post" class="stf-inline-form" data-confirm="हटाउने?">
                   <?= csrfField() ?><input type="hidden" name="action" value="delete_child">
                   <input type="hidden" name="tbl" value="hrm_employee_contracts">
                   <input type="hidden" name="child_id" value="<?= (int)$c['id'] ?>">
@@ -348,7 +348,7 @@ $history    = $db->prepare("SELECT id, employee_id, event_type, event_date_bs, e
               </td>
               <td><?php if ($d['file_path']): ?><a class="btn btn-sm btn-outline-primary" target="_blank" href="../<?= e($d['file_path']) ?>"><i class="fas fa-file"></i></a><?php endif; ?></td>
               <td class="text-end">
-                <form method="post" class="stf-inline-form" onsubmit="return confirm('हटाउने?');">
+                <form method="post" class="stf-inline-form" data-confirm="हटाउने?">
                   <?= csrfField() ?><input type="hidden" name="action" value="delete_child">
                   <input type="hidden" name="tbl" value="hrm_employee_documents"><input type="hidden" name="child_id" value="<?= (int)$d['id'] ?>">
                   <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
@@ -388,7 +388,7 @@ $history    = $db->prepare("SELECT id, employee_id, event_type, event_date_bs, e
               <td><?= e($ed['passed_year']) ?></td>
               <td><?= e($ed['division_grade']) ?></td>
               <td class="text-end">
-                <form method="post" class="stf-inline-form" onsubmit="return confirm('हटाउने?');">
+                <form method="post" class="stf-inline-form" data-confirm="हटाउने?">
                   <?= csrfField() ?><input type="hidden" name="action" value="delete_child">
                   <input type="hidden" name="tbl" value="hrm_employee_education"><input type="hidden" name="child_id" value="<?= (int)$ed['id'] ?>">
                   <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
@@ -425,7 +425,7 @@ $history    = $db->prepare("SELECT id, employee_id, event_type, event_date_bs, e
               <td><?= e($ex['from_date_ad']) ?></td>
               <td><?= e($ex['to_date_ad']) ?></td>
               <td class="text-end">
-                <form method="post" class="stf-inline-form" onsubmit="return confirm('हटाउने?');">
+                <form method="post" class="stf-inline-form" data-confirm="हटाउने?">
                   <?= csrfField() ?><input type="hidden" name="action" value="delete_child">
                   <input type="hidden" name="tbl" value="hrm_employee_experience"><input type="hidden" name="child_id" value="<?= (int)$ex['id'] ?>">
                   <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
@@ -466,7 +466,7 @@ $history    = $db->prepare("SELECT id, employee_id, event_type, event_date_bs, e
               <td><?= e($fm['occupation']) ?></td>
               <td><?= $fm['is_nominee'] ? '<span class="badge bg-success">'.((float)$fm['nominee_share']).'%</span>' : '—' ?></td>
               <td class="text-end">
-                <form method="post" class="stf-inline-form" onsubmit="return confirm('हटाउने?');">
+                <form method="post" class="stf-inline-form" data-confirm="हटाउने?">
                   <?= csrfField() ?><input type="hidden" name="action" value="delete_child">
                   <input type="hidden" name="tbl" value="hrm_employee_family"><input type="hidden" name="child_id" value="<?= (int)$fm['id'] ?>">
                   <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
@@ -547,7 +547,7 @@ $history    = $db->prepare("SELECT id, employee_id, event_type, event_date_bs, e
                 <?php if ($h['reference_no']): ?> · पत्र नं: <code><?= e($h['reference_no']) ?></code><?php endif; ?>
                 <?php if ($h['file_path']): ?> · <a target="_blank" href="../<?= e($h['file_path']) ?>"><i class="fas fa-paperclip"></i> फाइल</a><?php endif; ?>
               </div>
-              <form method="post" class="stf-inline-form mt-1" onsubmit="return confirm('हटाउने?');">
+              <form method="post" class="stf-inline-form mt-1" data-confirm="हटाउने?">
                 <?= csrfField() ?><input type="hidden" name="action" value="delete_child">
                 <input type="hidden" name="tbl" value="hrm_employee_history"><input type="hidden" name="child_id" value="<?= (int)$h['id'] ?>">
                 <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>

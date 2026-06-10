@@ -18,14 +18,14 @@ $_mpT = static function (string $np, string $en) use ($_mpIsEn): string {
 <style>
   .mp-bottom-nav {
     position: fixed; bottom: 0; left: 0; right: 0;
-    background: #fff; border-top: 1px solid #e5e7eb;
+    background: #fff; border-top: 1px solid var(--border-color);
     display: flex; justify-content: space-around;
     padding: 8px 0 calc(8px + env(safe-area-inset-bottom, 0px));
     box-shadow: 0 -2px 8px rgba(0,0,0,.06);
     z-index: 40;
   }
   .mp-bottom-nav a {
-    flex: 1; text-decoration: none; color: #6b7280;
+    flex: 1; text-decoration: none; color: var(--text-muted);
     display: flex; flex-direction: column; align-items: center; gap: 2px;
     font-size: 11px; font-weight: 600;
     transition: color .15s;

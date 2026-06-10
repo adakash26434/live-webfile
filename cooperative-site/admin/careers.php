@@ -169,7 +169,7 @@ function careers_admin_render_rows(array $list): void
                                             title="<?php echo $__t('सम्पादन', 'Edit'); ?>">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <form method="POST" style="display:inline" onsubmit="return confirm('<?php echo addslashes($__t('के तपाईं यो रोजगारी मेटाउन निश्चित हुनुहुन्छ?', 'Are you sure you want to delete this career item?')); ?>')">
+                                    <form method="POST" style="display:inline" data-confirm="<?php echo addslashes($__t('के तपाईं यो रोजगारी मेटाउन निश्चित हुनुहुन्छ?', 'Are you sure you want to delete this career item?')); ?>">
     <?php echo csrfField(); ?>
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $c['id']; ?>">

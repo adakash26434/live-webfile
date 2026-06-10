@@ -255,7 +255,7 @@ require_once 'includes/admin-ui.php';
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <form method="POST" action="" class="d-inline"
-                                              onsubmit="return confirm('यो link हटाउनुहोस्?');">
+                                              data-confirm="यो link हटाउनुहोस्?">
                                             <input type="hidden" name="action" value="delete_link">
                                             <input type="hidden" name="id" value="<?php echo $link['id']; ?>">
                                             <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">

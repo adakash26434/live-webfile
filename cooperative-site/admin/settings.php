@@ -886,7 +886,7 @@ if (!in_array($panel, ['general', 'branding'], true)) {
 
                 <!-- Presets -->
                 <div class="mb-3">
-                    <label class="form-label fw-semibold small text-uppercase" style="letter-spacing:.05em;color:#6b7280">
+                    <label class="form-label fw-semibold small text-uppercase" style="letter-spacing:.05em;color:var(--text-muted)">
                         <i class="fas fa-swatchbook me-1"></i><?php echo $__t('प्रिसेट', 'Presets'); ?>
                     </label>
                     <div class="d-flex flex-wrap gap-2" id="stgPresets">
@@ -974,7 +974,7 @@ if (!in_array($panel, ['general', 'branding'], true)) {
             <!-- RIGHT: Live Preview Panel -->
             <div class="stg-clr-preview flex-fill p-3 p-lg-4" style="background:#f1f5f9">
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <span class="fw-semibold small" style="color:#374151">
+                    <span class="fw-semibold small" style="color:var(--text-dark)">
                         <i class="fas fa-eye me-1"></i><?php echo $__t('Live Preview', 'Live Preview'); ?>
                     </span>
                     <div class="d-flex gap-1">
@@ -1041,7 +1041,7 @@ if (!in_array($panel, ['general', 'branding'], true)) {
                                     <i class="fas <?php echo $card['icon']; ?>"></i>
                                 </div>
                                 <div style="font-size:12px;font-weight:800;color:#1a1a2e"><?php echo $card['val']; ?></div>
-                                <div style="font-size:10px;color:#6b7280"><?php echo $card['title']; ?></div>
+                                <div style="font-size:10px;color:var(--text-muted)"><?php echo $card['title']; ?></div>
                             </div>
                             <?php endforeach; ?>
                         </div>
@@ -1064,7 +1064,7 @@ if (!in_array($panel, ['general', 'branding'], true)) {
                 </div>
 
                 <!-- Color harmony info -->
-                <div class="mt-3 p-2 rounded" style="background:#fff;border:1px solid #e5e7eb;font-size:.78rem;color:#6b7280">
+                <div class="mt-3 p-2 rounded" style="background:#fff;border:1px solid var(--border-color);font-size:.78rem;color:var(--text-muted)">
                     <i class="fas fa-info-circle me-1 text-primary"></i>
                     <?php echo $__t(
                         'Save गरेपछि website को सबै page मा नयाँ रंग लागू हुनेछ।',
@@ -1341,7 +1341,7 @@ $all('.stg-device-btn').forEach(function(btn) {
 .stg-hex-input:focus { border-color: var(--primary-color, #1a5f2a); box-shadow: 0 0 0 2px rgba(26,95,42,.12); }
 
 /* ── Device buttons ── */
-.stg-device-btn { background: #f3f4f6; color: #6b7280; border: 1.5px solid #e5e7eb; }
+.stg-device-btn { background: var(--bg-light); color: var(--text-muted); border: 1.5px solid var(--border-color); }
 .stg-device-btn.active { background: var(--primary-color, #1a5f2a); color: #fff; border-color: var(--primary-color, #1a5f2a); }
 
 /* ── Preset btn focus ring ── */

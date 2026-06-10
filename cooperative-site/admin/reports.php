@@ -347,7 +347,7 @@ $_flash = getFlash(); if ($_flash) echo adminAlert($_flash['type'], $_flash['mes
                                             <a href="?edit=<?php echo $report['id']; ?>" class="btn btn-sm btn-primary" title="<?php echo $__t('सम्पादन','Edit'); ?>">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <form method="POST" class="svc-inline-form" onsubmit="return confirm('<?php echo $__t('के तपाईं निश्चित हुनुहुन्छ?', 'Are you sure?'); ?>')">
+                                            <form method="POST" class="svc-inline-form" data-confirm="<?php echo $__t('के तपाईं निश्चित हुनुहुन्छ?', 'Are you sure?'); ?>">
                                                 <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
     <input type="hidden" name="action" value="delete">
                                                 <input type="hidden" name="id" value="<?php echo $report['id']; ?>">

@@ -427,7 +427,7 @@ if ($action === 'add' || $action === 'edit') {
                                     <i class="fas fa-edit"></i>
                             </a>
                             <form method="POST" class="svc-inline-form"
-                                  onsubmit="return confirm('के तपाईं यो प्रश्न मेटाउन निश्चित हुनुहुन्छ?');">
+                                  data-confirm="के तपाईं यो प्रश्न मेटाउन निश्चित हुनुहुन्छ?">
                                 <?php echo csrfField(); ?>
                                 <input type="hidden" name="action" value="delete">
                                 <input type="hidden" name="id" value="<?php echo (int)$item['id']; ?>">

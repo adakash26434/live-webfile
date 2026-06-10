@@ -224,7 +224,7 @@ $flash = getFlash();
                                         data-popup_image="<?php echo htmlspecialchars($item['popup_image'] ?? '', ENT_QUOTES); ?>">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <form method="POST" class="svc-inline-form" onsubmit="return confirm('<?php echo $__t('यो सूचना मेटाउने हो?', 'Delete this notice?'); ?>')">
+                                    <form method="POST" class="svc-inline-form" data-confirm="<?php echo $__t('यो सूचना मेटाउने हो?', 'Delete this notice?'); ?>">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo (int)$item['id']; ?>">
                                         <?php echo csrfField(); ?>

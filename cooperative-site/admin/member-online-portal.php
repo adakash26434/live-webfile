@@ -456,7 +456,7 @@ if ($vmPhotoSrc !== '' && strpos($vmPhotoSrc, 'http') !== 0) {
                     <input type="hidden" name="action" value="unlock_card">
                     <input type="hidden" name="member_id" value="<?php echo (int)$viewMember['id']; ?>">
                     <input type="hidden" name="member_sadasyata" value="<?php echo htmlspecialchars($viewMember['sadasyata_number'] ?? ''); ?>">
-                    <button type="submit" class="btn btn-sm btn-danger w-100" onclick="return confirm('<?php echo $__t('यो कार्ड unlock गरी active गर्ने?', 'Unlock and activate this card?'); ?>')">
+                    <button type="submit" class="btn btn-sm btn-danger w-100" onclick="event.preventDefault();window.coopConfirm('<?php echo $__t('यो कार्ड unlock गरी active गर्ने?', 'Unlock and activate this card?'); ?>',function(){this.closest('form')||this.click();}.bind(this));return false;">
                         <i class="fas fa-unlock me-1"></i><?php echo $__t('कार्ड अनलक / सक्रिय गर्नुहोस्','Card Unlock / Activate'); ?>
                     </button>
                 </form>
@@ -471,7 +471,7 @@ if ($vmPhotoSrc !== '' && strpos($vmPhotoSrc, 'http') !== 0) {
                     <?php echo csrfField(); ?>
                     <input type="hidden" name="action" value="approve">
                     <input type="hidden" name="member_id" value="<?php echo $viewMember['id']; ?>">
-                    <button class="btn btn-success btn-sm w-100" onclick="return confirm('<?php echo $__t('स्वीकृत गर्ने?', 'Approve this member?'); ?>')">
+                    <button class="btn btn-success btn-sm w-100" onclick="event.preventDefault();window.coopConfirm('<?php echo $__t('स्वीकृत गर्ने?', 'Approve this member?'); ?>',function(){this.closest('form')||this.click();}.bind(this));return false;">
                         <i class="fas fa-check me-1"></i><?php echo $__t('स्वीकृत गर्नुहोस्','Approve'); ?>
                     </button>
                 </form>
@@ -486,7 +486,7 @@ if ($vmPhotoSrc !== '' && strpos($vmPhotoSrc, 'http') !== 0) {
                     <input type="hidden" name="action" value="toggle_active">
                     <input type="hidden" name="member_id" value="<?php echo $viewMember['id']; ?>">
                     <button class="btn btn-outline-<?php echo $viewMember['is_active'] ? 'warning' : 'success'; ?> btn-sm w-100"
-                            onclick="return confirm('<?php echo $__t('अवस्था बदल्ने?', 'Change status?'); ?>')">
+                            onclick="event.preventDefault();window.coopConfirm('<?php echo $__t('अवस्था बदल्ने?', 'Change status?'); ?>',function(){this.closest('form')||this.click();}.bind(this));return false;">
                         <i class="fas fa-<?php echo $viewMember['is_active'] ? 'ban' : 'check'; ?> me-1"></i>
                         <?php echo $viewMember['is_active'] ? $__t('निष्क्रिय गर्नुहोस्','Deactivate') : $__t('सक्रिय गर्नुहोस्','Activate'); ?>
                     </button>
@@ -496,7 +496,7 @@ if ($vmPhotoSrc !== '' && strpos($vmPhotoSrc, 'http') !== 0) {
                     <?php echo csrfField(); ?>
                     <input type="hidden" name="action" value="generate_id_card">
                     <input type="hidden" name="member_id" value="<?php echo $viewMember['id']; ?>">
-                    <button class="btn btn-outline-primary btn-sm w-100" onclick="return confirm('<?php echo $__t('🪪 ID Card Generate गर्ने?', 'Generate ID card?'); ?>')">
+                    <button class="btn btn-outline-primary btn-sm w-100" onclick="event.preventDefault();window.coopConfirm('<?php echo $__t('🪪 ID Card Generate गर्ने?', 'Generate ID card?'); ?>',function(){this.closest('form')||this.click();}.bind(this));return false;">
                         <i class="fas fa-id-card me-1"></i><?php echo $__t('ID कार्ड Generate गर्नुहोस्','Generate ID Card'); ?>
                     </button>
                 </form>
@@ -701,7 +701,7 @@ if ($vmPhotoSrc !== '' && strpos($vmPhotoSrc, 'http') !== 0) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><?php echo $__t('रद्द','Cancel'); ?></button>
-                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('<?php echo $__t('पक्कै अस्वीकृत गर्ने?', 'Are you sure to reject?'); ?>')">
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault();window.coopConfirm('<?php echo $__t('पक्कै अस्वीकृत गर्ने?', 'Are you sure to reject?'); ?>',function(){this.closest('form')||this.click();}.bind(this));return false;">
                         <i class="fas fa-times me-1"></i><?php echo $__t('अस्वीकृत गर्नुहोस्','Reject'); ?>
                     </button>
                 </div>
@@ -755,7 +755,7 @@ if ($vmPhotoSrc !== '' && strpos($vmPhotoSrc, 'http') !== 0) {
                             <?php echo csrfField(); ?>
                             <input type="hidden" name="action" value="reject_reset">
                             <input type="hidden" name="request_id" value="<?php echo $rr['id']; ?>">
-                            <button class="btn btn-outline-danger btn-sm" onclick="return confirm('<?php echo $__t('Reset अस्वीकृत गर्ने?', 'Reject reset request?'); ?>')">
+                            <button class="btn btn-outline-danger btn-sm" onclick="event.preventDefault();window.coopConfirm('<?php echo $__t('Reset अस्वीकृत गर्ने?', 'Reject reset request?'); ?>',function(){this.closest('form')||this.click();}.bind(this));return false;">
                                 <i class="fas fa-times"></i>
                             </button>
                         </form>
@@ -892,7 +892,7 @@ if ($vmPhotoSrc !== '' && strpos($vmPhotoSrc, 'http') !== 0) {
                             <?php echo csrfField(); ?>
                             <input type="hidden" name="action" value="approve">
                             <input type="hidden" name="member_id" value="<?php echo $m['id']; ?>">
-                            <button class="btn btn-sm btn-success" title="स्वीकृत गर्नुहोस्" onclick="return confirm('स्वीकृत गर्ने?')"><i class="fas fa-check"></i></button>
+                            <button class="btn btn-sm btn-success" title="स्वीकृत गर्नुहोस्" onclick="event.preventDefault();window.coopConfirm('स्वीकृत गर्ने?',function(){this.closest('form')||this.click();}.bind(this));return false;"><i class="fas fa-check"></i></button>
                         </form>
                         <?php endif; ?>
                     </td>

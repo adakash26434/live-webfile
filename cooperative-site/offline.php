@@ -11,7 +11,7 @@ body{
   font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
   background:linear-gradient(145deg,#f0f7f1 0%,#e8f5e9 100%);
   min-height:100vh;display:flex;align-items:center;
-  justify-content:center;padding:20px;color:#1f2937;
+  justify-content:center;padding:20px;color:var(--text-dark);
 }
 .card{
   background:#fff;border-radius:24px;padding:44px 36px 36px;
@@ -26,15 +26,15 @@ body{
   margin:0 auto 22px;box-shadow:0 0 0 6px #f0f7f1;
 }
 h1{font-size:1.35rem;font-weight:800;color:#1a2e1d;margin-bottom:8px;letter-spacing:-.01em}
-.en-title{font-size:.8rem;color:#6b7280;margin-bottom:18px;letter-spacing:.02em;text-transform:uppercase;font-weight:600}
+.en-title{font-size:.8rem;color:var(--text-muted);margin-bottom:18px;letter-spacing:.02em;text-transform:uppercase;font-weight:600}
 .subtitle{font-size:.9rem;color:#4b5563;margin-bottom:24px;line-height:1.75}
 .tips{
   list-style:none;text-align:left;padding:14px 18px;
-  background:#f9fafb;border-radius:12px;border:1px solid #e5e7eb;
+  background:var(--bg-light);border-radius:12px;border:1px solid var(--border-color);
   margin-bottom:26px;
 }
 .tips li{
-  font-size:.83rem;color:#374151;padding:3px 0;line-height:1.7;
+  font-size:.83rem;color:var(--text-dark);padding:3px 0;line-height:1.7;
   display:flex;align-items:flex-start;gap:8px;
 }
 .tips li::before{content:'•';color:#1a5f2a;font-weight:800;flex-shrink:0;margin-top:1px}
@@ -53,9 +53,9 @@ h1{font-size:1.35rem;font-weight:800;color:#1a2e1d;margin-bottom:8px;letter-spac
   font-size:.76rem;font-weight:600;letter-spacing:.02em;
   display:none;
 }
-.status-bar.online{background:#d1fae5;color:#065f46;display:block}
+.status-bar.online{background:var(--color-success-bg);color:#065f46;display:block}
 .status-bar.retrying{background:#fef3c7;color:#92400e;display:block}
-.footer-text{margin-top:22px;font-size:.72rem;color:#9ca3af}
+.footer-text{margin-top:22px;font-size:.72rem;color:var(--text-light)}
 </style>
 </head>
 <body>

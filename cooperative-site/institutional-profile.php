@@ -270,7 +270,7 @@ function ipNepaliNumber(int $number): string {
             img.alt = '<?php echo isEnglish() ? 'Document Preview' : 'कागजात पूर्वावलोकन'; ?>';
             img.style.cssText = 'max-width:100%;max-height:75vh;border-radius:8px;display:block;padding:16px;';
             img.onload  = function () { loader.style.display = 'none'; body.style.justifyContent = 'center'; };
-            img.onerror = function () { loader.innerHTML = '<i class="fas fa-triangle-exclamation fa-2x" style="color:#dc2626;margin-bottom:12px;display:block;"></i><div><?php echo isEnglish() ? 'Could not load image.' : 'छवि लोड भएन।'; ?></div>'; };
+            img.onerror = function () { loader.innerHTML = '<i class="fas fa-triangle-exclamation fa-2x" style="color:var(--color-danger);margin-bottom:12px;display:block;"></i><div><?php echo isEnglish() ? 'Could not load image.' : 'छवि लोड भएन।'; ?></div>'; };
             body.appendChild(img);
         } else {
             var iframe = document.createElement('iframe');

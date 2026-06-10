@@ -245,16 +245,16 @@ $csrfField = '<input type="hidden" name="csrf_token" value="' . htmlspecialchars
 
 $extraHead = <<<HTML
 <style>
-.prog-card { background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:14px 16px;margin-bottom:12px;transition:box-shadow .2s; }
+.prog-card { background:#fff;border:1px solid var(--border-color);border-radius:12px;padding:14px 16px;margin-bottom:12px;transition:box-shadow .2s; }
 .prog-card:hover { box-shadow:0 4px 12px rgba(0,0,0,.08); }
 .prog-date-badge { background:var(--primary-color,#1a8754);color:#fff;border-radius:8px;padding:6px 10px;text-align:center;min-width:50px;flex-shrink:0; }
 .prog-date-badge .day { font-size:1.4rem;font-weight:800;line-height:1; }
 .prog-date-badge .mon { font-size:.65rem;text-transform:uppercase;letter-spacing:.05em; }
-.att-badge { display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:20px;font-size:.75rem;font-weight:700;background:#f0fdf4;color:#16a34a;border:1px solid #bbf7d0; }
-.empty-msg { text-align:center;padding:28px;color:#9ca3af;font-size:.88rem; }
+.att-badge { display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:20px;font-size:.75rem;font-weight:700;background:var(--color-success-bg);color:var(--color-success);border:1px solid var(--color-success-border); }
+.empty-msg { text-align:center;padding:28px;color:var(--text-light);font-size:.88rem; }
 .empty-msg i { display:block;font-size:2.2rem;margin-bottom:8px; }
-.tabs-row { display:flex;gap:2px;border-bottom:2px solid #f3f4f6;margin-bottom:18px; }
-.tab-btn { padding:9px 16px;font-size:.85rem;font-weight:600;background:none;border:none;cursor:pointer;color:#6b7280;border-bottom:3px solid transparent;margin-bottom:-2px;font-family:inherit;transition:all .2s; }
+.tabs-row { display:flex;gap:2px;border-bottom:2px solid var(--bg-light);margin-bottom:18px; }
+.tab-btn { padding:9px 16px;font-size:.85rem;font-weight:600;background:none;border:none;cursor:pointer;color:var(--text-muted);border-bottom:3px solid transparent;margin-bottom:-2px;font-family:inherit;transition:all .2s; }
 .tab-btn.active { color:var(--primary-color,#1a8754);border-bottom-color:var(--primary-color,#1a8754); }
 .tab-pane { display:none; }
 .tab-pane.active { display:block; }
@@ -322,7 +322,7 @@ $extraHead = <<<HTML
 }
 
 .program-flow-description {
-  color: var(--text-muted, #6b7280);
+  color: var(--text-muted, var(--text-muted));
   font-size: 0.9rem;
   line-height: 1.5;
   margin-bottom: 1.5rem;
@@ -416,12 +416,12 @@ HTML;
   </p>
 
   <?php if ($checkInMsg): ?>
-  <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:12px 14px;color:#166534;font-size:.88rem;margin-bottom:14px;display:flex;gap:8px;">
+  <div style="background:var(--color-success-bg);border:1px solid var(--color-success-border);border-radius:10px;padding:12px 14px;color:#166534;font-size:.88rem;margin-bottom:14px;display:flex;gap:8px;">
     <i class="fas fa-circle-check" style="flex-shrink:0;margin-top:2px;"></i><?= $checkInMsg ?>
   </div>
   <?php endif; ?>
   <?php if ($checkInErr): ?>
-  <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:12px 14px;color:#dc2626;font-size:.88rem;margin-bottom:14px;display:flex;gap:8px;">
+  <div style="background:var(--color-danger-bg);border:1px solid var(--color-danger-border);border-radius:10px;padding:12px 14px;color:var(--color-danger);font-size:.88rem;margin-bottom:14px;display:flex;gap:8px;">
     <i class="fas fa-circle-xmark" style="flex-shrink:0;margin-top:2px;"></i><?= htmlspecialchars($checkInErr) ?>
   </div>
   <?php endif; ?>
@@ -457,7 +457,7 @@ HTML;
     </div>
   </div>
   <?php elseif ($qrToken !== ''): ?>
-  <div style="background:#fffbeb;border:1px solid #fcd34d;border-radius:10px;padding:12px 14px;color:#92400e;font-size:.85rem;margin-bottom:14px;">
+  <div style="background:var(--color-warning-bg);border:1px solid #fcd34d;border-radius:10px;padding:12px 14px;color:#92400e;font-size:.85rem;margin-bottom:14px;">
     <i class="fas fa-triangle-exclamation me-2"></i><?php echo $_t('यो QR मान्य छैन वा कार्यक्रम निष्क्रिय छ।', 'This QR is invalid or the program is inactive.'); ?>
   </div>
   <?php endif; ?>
@@ -517,15 +517,15 @@ HTML;
 </div>
 
 <!-- Member QR + stats bar -->
-  <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:14px 16px;margin-bottom:18px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
+  <div style="background:#fff;border:1px solid var(--border-color);border-radius:12px;padding:14px 16px;margin-bottom:18px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
     <div style="text-align:center;">
-      <img src="<?= htmlspecialchars($memberQr) ?>" alt="QR" width="70" height="70" style="border-radius:6px;border:1px solid #e5e7eb;">
-      <div style="font-size:.65rem;color:#9ca3af;margin-top:3px;">मेरो QR</div>
+      <img src="<?= htmlspecialchars($memberQr) ?>" alt="QR" width="70" height="70" style="border-radius:6px;border:1px solid var(--border-color);">
+      <div style="font-size:.65rem;color:var(--text-light);margin-top:3px;">मेरो QR</div>
     </div>
     <div style="flex:1;min-width:0;">
-      <div style="font-size:.88rem;font-weight:700;color:#1f2937;"><?= htmlspecialchars($memName) ?></div>
+      <div style="font-size:.88rem;font-weight:700;color:var(--text-dark);"><?= htmlspecialchars($memName) ?></div>
       <?php if ($memCard): ?>
-      <div style="font-size:.78rem;color:#6b7280;font-family:monospace;"><?= htmlspecialchars($memCard) ?></div>
+      <div style="font-size:.78rem;color:var(--text-muted);font-family:monospace;"><?= htmlspecialchars($memCard) ?></div>
       <?php endif; ?>
       <div style="display:flex;gap:12px;margin-top:8px;flex-wrap:wrap;">
       <script>
@@ -538,15 +538,15 @@ HTML;
       </script>
         <div style="text-align:center;">
           <div style="font-size:1.3rem;font-weight:800;color:var(--primary-color,#1a8754);"><?= count($myAttendance) ?></div>
-          <div style="font-size:.7rem;color:#9ca3af;">उपस्थित कार्यक्रम</div>
+          <div style="font-size:.7rem;color:var(--text-light);">उपस्थित कार्यक्रम</div>
         </div>
         <div style="text-align:center;">
           <div style="font-size:1.3rem;font-weight:800;color:var(--secondary-color,#c0392b);"><?= count($myPreregs) ?></div>
-          <div style="font-size:.7rem;color:#9ca3af;">Pre-reg</div>
+          <div style="font-size:.7rem;color:var(--text-light);">Pre-reg</div>
         </div>
         <div style="text-align:center;">
-          <div style="font-size:1.3rem;font-weight:800;color:#d97706;"><?= count($upcoming) ?></div>
-          <div style="font-size:.7rem;color:#9ca3af;">आगामी</div>
+          <div style="font-size:1.3rem;font-weight:800;color:var(--color-warning);"><?= count($upcoming) ?></div>
+          <div style="font-size:.7rem;color:var(--text-light);">आगामी</div>
         </div>
       </div>
     </div>
@@ -586,22 +586,22 @@ HTML;
           <div class="mon"><?= $evMon ?></div>
         </div>
         <div style="flex:1;min-width:0;">
-          <div style="font-size:.95rem;font-weight:700;color:#1f2937;margin-bottom:3px;">
+          <div style="font-size:.95rem;font-weight:700;color:var(--text-dark);margin-bottom:3px;">
             <?= htmlspecialchars($prog['title']) ?>
-            <?php if ($isToday): ?><span style="background:#dc2626;color:#fff;font-size:.65rem;padding:2px 7px;border-radius:10px;margin-left:6px;">आज</span><?php endif; ?>
+            <?php if ($isToday): ?><span style="background:var(--color-danger);color:#fff;font-size:.65rem;padding:2px 7px;border-radius:10px;margin-left:6px;">आज</span><?php endif; ?>
           </div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;font-size:.78rem;color:#6b7280;margin-bottom:8px;">
+          <div style="display:flex;gap:10px;flex-wrap:wrap;font-size:.78rem;color:var(--text-muted);margin-bottom:8px;">
             <?php if ($prog['event_time']): ?><span><i class="fas fa-clock" style="margin-right:3px;"></i><?= htmlspecialchars($prog['event_time']) ?></span><?php endif; ?>
             <?php if ($prog['location']): ?><span><i class="fas fa-location-dot" style="margin-right:3px;"></i><?= htmlspecialchars($prog['location']) ?></span><?php endif; ?>
           </div>
           <?php if ($prog['description']): ?>
-          <div style="font-size:.8rem;color:#6b7280;margin-bottom:8px;"><?= htmlspecialchars(mb_substr($prog['description'],0,120)) ?></div>
+          <div style="font-size:.8rem;color:var(--text-muted);margin-bottom:8px;"><?= htmlspecialchars(mb_substr($prog['description'],0,120)) ?></div>
           <?php endif; ?>
 
           <?php if ($isAttended): ?>
           <div class="att-badge"><i class="fas fa-circle-check"></i> उपस्थित भइसकेको</div>
           <?php elseif ($isPast): ?>
-          <div style="font-size:.78rem;color:#9ca3af;"><i class="fas fa-calendar-xmark" style="margin-right:4px;"></i>कार्यक्रम सकियो</div>
+          <div style="font-size:.78rem;color:var(--text-light);"><i class="fas fa-calendar-xmark" style="margin-right:4px;"></i>कार्यक्रम सकियो</div>
           <?php else: ?>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
             <?php if ($isToday): ?>
@@ -641,8 +641,8 @@ HTML;
         <i class="fas fa-check"></i>
       </div>
       <div style="flex:1;min-width:0;">
-        <div style="font-size:.9rem;font-weight:700;color:#1f2937;"><?= htmlspecialchars($att['program_title']) ?></div>
-        <div style="font-size:.75rem;color:#6b7280;margin-top:2px;">
+        <div style="font-size:.9rem;font-weight:700;color:var(--text-dark);"><?= htmlspecialchars($att['program_title']) ?></div>
+        <div style="font-size:.75rem;color:var(--text-muted);margin-top:2px;">
           <i class="fas fa-calendar" style="margin-right:4px;"></i><?= date('Y-m-d', strtotime($att['attended_at'])) ?>
           <?php if ($att['location']): ?><span style="margin-left:8px;"><i class="fas fa-location-dot" style="margin-right:3px;"></i><?= htmlspecialchars($att['location']) ?></span><?php endif; ?>
         </div>
@@ -662,13 +662,13 @@ HTML;
         <i class="fas fa-bookmark"></i>
       </div>
       <div style="flex:1;min-width:0;">
-        <div style="font-size:.9rem;font-weight:700;color:#1f2937;"><?= htmlspecialchars($pr['program_title']) ?></div>
-        <div style="font-size:.75rem;color:#6b7280;margin-top:2px;">
+        <div style="font-size:.9rem;font-weight:700;color:var(--text-dark);"><?= htmlspecialchars($pr['program_title']) ?></div>
+        <div style="font-size:.75rem;color:var(--text-muted);margin-top:2px;">
           <?php if ($pr['event_date']): ?><i class="fas fa-calendar" style="margin-right:4px;"></i><?= $pr['event_date'] ?><?php endif; ?>
           <?php if ($pr['location']): ?><span style="margin-left:8px;"><i class="fas fa-location-dot" style="margin-right:3px;"></i><?= htmlspecialchars($pr['location']) ?></span><?php endif; ?>
         </div>
       </div>
-      <span style="font-size:.75rem;font-weight:700;color:var(--secondary-color,#c0392b);background:#fef2f2;padding:4px 10px;border-radius:20px;">Pre-reg</span>
+      <span style="font-size:.75rem;font-weight:700;color:var(--secondary-color,#c0392b);background:var(--color-danger-bg);padding:4px 10px;border-radius:20px;">Pre-reg</span>
     </div>
     <?php endforeach; ?>
   </div>

@@ -268,7 +268,7 @@ body{background:linear-gradient(135deg,var(--bg-muted,#e8f5e9),var(--bg-soft,#f0
 
     <?php elseif ($step === 'done'): ?>
     <div class="text-center py-3">
-      <div style="font-size:3rem;color:#16a34a;"><i class="fas fa-check-circle"></i></div>
+      <div style="font-size:3rem;color:var(--color-success);"><i class="fas fa-check-circle"></i></div>
       <h5 class="mt-2"><?php echo $_t('अनुरोध सफलतापूर्वक पठाइयो!', 'Request sent successfully!'); ?></h5>
       <p class="text-muted small">Admin ले तपाईंको अनुरोध समीक्षा गर्नेछन्। नयाँ पासवर्द कार्यालयबाट प्राप्त गर्न सकिन्छ।</p>
       <a href="login.php" class="btn btn-g mt-2"><i class="fas fa-sign-in-alt me-1"></i><?php echo $_t('Login मा फर्कनुहोस्', 'Back to Login'); ?></a>

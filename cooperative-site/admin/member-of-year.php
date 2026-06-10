@@ -194,7 +194,7 @@ $flash = getFlash();
                             <tr class="<?php echo $isCurrentYear ? 'table-warning' : ''; ?>">
                                 <td class="ps-3">
                                     <?php if ($hasPhoto): ?>
-                                    <img src="<?php echo SITE_URL . htmlspecialchars($r['photo']); ?>" style="width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #f59e0b;">
+                                    <img src="<?php echo SITE_URL . htmlspecialchars($r['photo']); ?>" style="width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--color-warning);">
                                     <?php else: ?>
                                     <div style="width:48px;height:48px;border-radius:50%;background:#fef3c7;display:flex;align-items:center;justify-content:center;"><i class="fas fa-user text-warning"></i></div>
                                     <?php endif; ?>
@@ -228,7 +228,7 @@ $flash = getFlash();
                                             title="सम्पादन">
                                         <i class="fas fa-pen"></i> सम्पादन
                                     </button>
-                                    <form method="POST" style="display:inline" onsubmit="return confirm('यो record हटाउने? Photo पनि delete हुन्छ।')">
+                                    <form method="POST" style="display:inline" data-confirm="यो record हटाउने? Photo पनि delete हुन्छ।">
                                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $r['id']; ?>">
@@ -264,7 +264,7 @@ $flash = getFlash();
                             <tr class="<?php echo $isCurrentYear ? 'table-warning' : ''; ?>">
                                 <td class="ps-3">
                                     <?php if ($hasPhoto): ?>
-                                    <img src="<?php echo SITE_URL . htmlspecialchars($r['photo']); ?>" style="width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #f59e0b;">
+                                    <img src="<?php echo SITE_URL . htmlspecialchars($r['photo']); ?>" style="width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--color-warning);">
                                     <?php else: ?>
                                     <div style="width:48px;height:48px;border-radius:50%;background:#fef3c7;display:flex;align-items:center;justify-content:center;"><i class="fas fa-user text-warning"></i></div>
                                     <?php endif; ?>
@@ -298,7 +298,7 @@ $flash = getFlash();
                                             title="सम्पादन">
                                         <i class="fas fa-pen"></i> सम्पादन
                                     </button>
-                                    <form method="POST" style="display:inline" onsubmit="return confirm('यो record हटाउने? Photo पनि delete हुन्छ।')">
+                                    <form method="POST" style="display:inline" data-confirm="यो record हटाउने? Photo पनि delete हुन्छ।">
                                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $r['id']; ?>">
@@ -462,7 +462,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('motf_photo_note').textContent = r.photo ? ' — नयाँ फोटो नचुने भने पुरानै रहन्छ' : '';
             var prev = document.getElementById('motf_photo_prev');
             prev.innerHTML = r.photo
-                ? '<img src="<?php echo SITE_URL; ?>' + r.photo + '" style="width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid #f59e0b;">'
+                ? '<img src="<?php echo SITE_URL; ?>' + r.photo + '" style="width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--color-warning);">'
                 : '';
             document.getElementById('motf_submit').innerHTML = '<i class="fas fa-save me-2"></i>अपडेट गर्नुहोस्';
             document.getElementById('motFormTitle').innerHTML = '<i class="fas fa-pen me-2"></i>Spotlight Record सम्पादन';

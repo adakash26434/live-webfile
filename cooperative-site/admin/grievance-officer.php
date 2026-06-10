@@ -184,7 +184,7 @@ if ($error) echo adminAlert('error', $error);
                 </div>
                 <?php if ($currentOfficer): ?>
                 <div class="card-footer bg-white border-top">
-                    <form method="POST" onsubmit="return confirm('गुनासो अधिकारी हटाउने?')">
+                    <form method="POST" data-confirm="गुनासो अधिकारी हटाउने?">
                         <?php echo csrfField(); ?>
                         <input type="hidden" name="member_id" value="0">
                         <button type="submit" name="set_officer" value="1" class="btn btn-sm btn-outline-danger">

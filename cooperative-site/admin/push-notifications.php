@@ -204,10 +204,10 @@ $typeColors = [
     <div class="card" style="border-radius:16px;">
         <div class="card-body" style="display:flex;gap:14px;align-items:center;padding:18px 20px;">
             <div style="width:48px;height:48px;border-radius:12px;background:#fef3c7;display:flex;align-items:center;justify-content:center;">
-                <i class="fas fa-paper-plane" style="color:#d97706;font-size:1.3rem;"></i>
+                <i class="fas fa-paper-plane" style="color:var(--color-warning);font-size:1.3rem;"></i>
             </div>
             <div>
-                <div style="font-size:1.6rem;font-weight:800;color:#d97706;"><?php echo count($recentLogs); ?></div>
+                <div style="font-size:1.6rem;font-weight:800;color:var(--color-warning);"><?php echo count($recentLogs); ?></div>
                 <div class="text-muted" style="font-size:.8rem;font-weight:600;">हालैका Sends (50)</div>
             </div>
         </div>
@@ -289,7 +289,7 @@ $typeColors = [
             <?php echo csrfField(); ?>
             <button type="submit" class="btn btn-outline-secondary w-100"
                     style="border-radius:10px;font-size:.82rem;"
-                    onclick="return confirm('90 दिन पुराना subscriptions हटाउने?')">
+                    onclick="event.preventDefault();window.coopConfirm('90 दिन पुराना subscriptions हटाउने?',function(){this.closest('form')||this.click();}.bind(this));return false;">
                 <i class="fas fa-trash me-1"></i> Expired Subscriptions सफा गर्नुहोस्
             </button>
         </form>
@@ -310,17 +310,17 @@ $typeColors = [
         <?php else: ?>
         <table style="width:100%;border-collapse:collapse;font-size:.8rem;">
             <thead>
-                <tr style="background:#f9fafb;border-bottom:1px solid #e5e7eb;">
+                <tr style="background:var(--bg-light);border-bottom:1px solid var(--border-color);">
                     <th class="text-muted fw-semibold" style="padding:8px 12px;">सदस्य</th>
                     <th class="text-muted fw-semibold" style="padding:8px 12px;">Notification</th>
                     <th class="text-muted fw-semibold" style="padding:8px 6px;text-align:center;">Status</th>
-                    <th style="padding:8px 12px;text-align:right;color:#6b7280;font-weight:600;">समय</th>
+                    <th style="padding:8px 12px;text-align:right;color:var(--text-muted);font-weight:600;">समय</th>
                 </tr>
             </thead>
             <tbody>
             <?php foreach ($recentLogs as $log): ?>
             <?php $ok = in_array((int)$log['http_code'], [200,201,202]); ?>
-            <tr style="border-bottom:1px solid #f3f4f6;">
+            <tr style="border-bottom:1px solid var(--bg-light);">
                 <td style="padding:8px 12px;">
                     <?php echo $log['member_name'] ? htmlspecialchars($log['member_name']) : '#'.$log['member_id']; ?>
                 </td>
@@ -329,16 +329,16 @@ $typeColors = [
                 </td>
                 <td style="padding:8px 6px;text-align:center;">
                     <?php if ($ok): ?>
-                    <span style="background:#d1fae5;color:#065f46;border-radius:6px;padding:2px 8px;font-weight:700;font-size:.72rem;">
+                    <span style="background:var(--color-success-bg);color:#065f46;border-radius:6px;padding:2px 8px;font-weight:700;font-size:.72rem;">
                         <?php echo $log['http_code']; ?> OK
                     </span>
                     <?php else: ?>
-                    <span style="background:#fee2e2;color:#b91c1c;border-radius:6px;padding:2px 8px;font-weight:700;font-size:.72rem;">
+                    <span style="background:var(--color-danger-bg);color:#b91c1c;border-radius:6px;padding:2px 8px;font-weight:700;font-size:.72rem;">
                         <?php echo $log['http_code'] ?: '?'; ?>
                     </span>
                     <?php endif; ?>
                 </td>
-                <td style="padding:8px 12px;text-align:right;color:#9ca3af;white-space:nowrap;">
+                <td style="padding:8px 12px;text-align:right;color:var(--text-light);white-space:nowrap;">
                     <?php echo date('M d, H:i', strtotime($log['sent_at'])); ?>
                 </td>
             </tr>

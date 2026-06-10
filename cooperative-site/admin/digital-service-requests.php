@@ -244,7 +244,7 @@ try {
                             <button type="submit" class="btn dsr-update-btn w-100"><i class="fas fa-save"></i> <?php echo $__t('अपडेट गर्नुहोस्', 'Update'); ?></button>
                         </form>
                         <hr>
-                        <form method="POST" onsubmit="return confirm('<?php echo $__t('के तपाईं निश्चित हुनुहुन्छ?', 'Are you sure?'); ?>');">
+                        <form method="POST" data-confirm="<?php echo $__t('के तपाईं निश्चित हुनुहुन्छ?', 'Are you sure?'); ?>" >
                             <?php echo csrfField(); ?>
                             <input type="hidden" name="delete_request" value="1">
                             <input type="hidden" name="request_id" value="<?php echo (int)$request['id']; ?>">

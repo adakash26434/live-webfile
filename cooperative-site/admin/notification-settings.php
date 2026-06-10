@@ -181,7 +181,7 @@ require_once 'includes/admin-ui.php';
                 <small class="text-muted ms-2">(Last 50)</small>
             </h5>
             <form method="POST" action="" class="d-inline"
-                  onsubmit="return confirm('30 दिनभन्दा पुराना logs हटाउनुहोस्?');">
+                  data-confirm="30 दिनभन्दा पुराना logs हटाउनुहोस्?">
                 <input type="hidden" name="action" value="clear_log">
                 <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                 <button type="submit" class="btn btn-sm btn-outline-danger">

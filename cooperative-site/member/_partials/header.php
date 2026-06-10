@@ -56,8 +56,8 @@ $memInitial = mb_substr($memName, 0, 1);
 <?php if (function_exists('coopThemeHeadAssets')) { coopThemeHeadAssets('shell'); } ?>
 <style>
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: 'Mukta','Noto Sans Devanagari',sans-serif; background: #f7f9f8; color: #1f2937; }
-  :root { --hp-border:#e6e9ef; --hp-muted:#6b7280; --hp-text:#1f2937; --hp-soft:#f5f7fb; }
+  body { margin: 0; font-family: 'Mukta','Noto Sans Devanagari',sans-serif; background: #f7f9f8; color: var(--text-dark); }
+  :root { --hp-border:#e6e9ef; --hp-muted:var(--text-muted); --hp-text:var(--text-dark); --hp-soft:#f5f7fb; }
   .mp-header{
     background:#fff; color:var(--hp-text);
     padding:10px 18px; display:flex; align-items:center; gap:14px;

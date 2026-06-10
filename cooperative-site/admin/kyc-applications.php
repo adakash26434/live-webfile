@@ -948,7 +948,7 @@ if ($viewApp):
 
                         <hr class="my-3">
                         <form method="POST"
-                              onsubmit="return confirm('के तपाईं यो KYC आवेदन स्थायी रूपले मेटाउन निश्चित हुनुहुन्छ?')">
+                              data-confirm="के तपाईं यो KYC आवेदन स्थायी रूपले मेटाउन निश्चित हुनुहुन्छ?">
                             <?php echo csrfField(); ?>
                             <input type="hidden" name="delete" value="1">
                             <input type="hidden" name="delete_id" value="<?php echo $viewApp['id']; ?>">
@@ -1109,21 +1109,21 @@ if ($viewApp):
                     <div class="adm-action-icons">
                         <a href="kyc-applications.php?view=<?php echo $app['id']; ?>" class="adm-icon-btn adm-icon-btn--view" title="विवरण" aria-label="View"><i class="fas fa-eye"></i></a>
                         <?php if ($app['status'] === 'pending'): ?>
-                        <form method="POST" class="qaction-form" onsubmit="return confirm('KYC स्वीकृत गर्नुहुन्छ?')">
+                        <form method="POST" class="qaction-form" data-confirm="KYC स्वीकृत गर्नुहुन्छ?">
                             <?php echo csrfField(); ?>
                             <input type="hidden" name="quick_status" value="1">
                             <input type="hidden" name="quick_id" value="<?php echo $app['id']; ?>">
                             <input type="hidden" name="quick_status_val" value="approved">
                             <button type="submit" class="btn-qapprove"><i class="fas fa-check me-1"></i>स्वीकृत</button>
                         </form>
-                        <form method="POST" class="qaction-form" onsubmit="return confirm('KYC अस्वीकृत गर्नुहुन्छ?')">
+                        <form method="POST" class="qaction-form" data-confirm="KYC अस्वीकृत गर्नुहुन्छ?">
                             <?php echo csrfField(); ?>
                             <input type="hidden" name="quick_status" value="1">
                             <input type="hidden" name="quick_id" value="<?php echo $app['id']; ?>">
                             <input type="hidden" name="quick_status_val" value="rejected">
                             <button type="submit" class="btn-qreject"><i class="fas fa-times me-1"></i>अस्वीकृत</button>
                         </form>
-                        <form method="POST" class="qaction-form" onsubmit="return confirm('KYC अपूर्ण (document थप चाहियो) राख्नुहुन्छ?')">
+                        <form method="POST" class="qaction-form" data-confirm="KYC अपूर्ण (document थप चाहियो) राख्नुहुन्छ?">
                             <?php echo csrfField(); ?>
                             <input type="hidden" name="quick_status" value="1">
                             <input type="hidden" name="quick_id" value="<?php echo $app['id']; ?>">

@@ -132,7 +132,7 @@ if ($action === 'view' && isset($_GET['id'])) {
                    class="btn btn-primary">
                     <i class="fas fa-reply me-1"></i>जवाफ दिनुहोस्
                 </a>
-                <form method="POST" class="d-inline" onsubmit="return confirm('के तपाईं यो सन्देश स्थायी रूपमा मेट्न चाहनुहुन्छ?')">
+                <form method="POST" class="d-inline" data-confirm="के तपाईं यो सन्देश स्थायी रूपमा मेट्न चाहनुहुन्छ?">
                     <?php echo csrfField(); ?>
                     <input type="hidden" name="delete_id" value="<?php echo (int)$message['id']; ?>">
                     <button type="submit" class="btn btn-danger"><i class="fas fa-trash me-1"></i>मेट्नुहोस्</button>
@@ -285,7 +285,7 @@ if ($action === 'view' && isset($_GET['id'])) {
                                        class="adm-icon-btn adm-icon-btn--view" title="हेर्नुहोस्" aria-label="View">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    <form method="POST" class="adm-icon-form" onsubmit="return confirm('सन्देश मेट्ने?')">
+                                    <form method="POST" class="adm-icon-form" data-confirm="सन्देश मेट्ने?">
                                         <?php echo csrfField(); ?>
                                         <input type="hidden" name="delete_id" value="<?php echo (int)$msg['id']; ?>">
                                         <button type="submit" class="adm-icon-btn adm-icon-btn--delete" title="मेट्नुहोस्" aria-label="Delete"><i class="fas fa-trash-can"></i></button>

@@ -13,7 +13,7 @@
   flex:1 1 0; min-width:0;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
   gap:4px; padding:6px 2px;
-  text-decoration:none; color:#6b7280;
+  text-decoration:none; color:var(--text-muted);
   font-size:.68rem; font-weight:600; text-align:center; line-height:1.1;
   border-radius:10px; transition:background .15s, color .15s;
 }

@@ -238,16 +238,16 @@ $guessUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 
     --green-dk:    #114020;
     --green-lt:    #e8f5e9;
     --green-glow:  #2e8b4a;
-    --red:         #dc2626;
-    --amber:       #d97706;
+    --red:         var(--color-danger);
+    --amber:       var(--color-warning);
     --blue:        #1565c0;
-    --gray-50:     #f9fafb;
-    --gray-100:    #f3f4f6;
-    --gray-200:    #e5e7eb;
-    --gray-400:    #9ca3af;
+    --gray-50:     var(--bg-light);
+    --gray-100:    var(--bg-light);
+    --gray-200:    var(--border-color);
+    --gray-400:    var(--text-light);
     --gray-600:    #4b5563;
-    --gray-700:    #374151;
-    --gray-900:    #111827;
+    --gray-700:    var(--text-dark);
+    --gray-900:    var(--text-dark);
     --radius:      12px;
     --shadow:      0 4px 24px rgba(0,0,0,.10);
     --shadow-lg:   0 8px 40px rgba(0,0,0,.14);
@@ -407,7 +407,7 @@ body {
 .btn-test:hover { background: var(--gray-200); }
 .db-status { margin-top: 10px; padding: 9px 13px; border-radius: 8px; font-size: .84rem; display: none; }
 .db-status.ok  { background: var(--green-lt); color: var(--green-dk); border: 1px solid #c8e6c9; }
-.db-status.err { background: #fef2f2; color: var(--red); border: 1px solid #fecaca; }
+.db-status.err { background: var(--color-danger-bg); color: var(--red); border: 1px solid var(--color-danger-border); }
 
 /* ─── Check table ─── */
 .check-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
@@ -422,7 +422,7 @@ body {
 .badge-err { display: inline-flex; align-items: center; gap: 5px; color: var(--red);   font-weight: 600; }
 .badge-warn{ display: inline-flex; align-items: center; gap: 5px; color: var(--amber); font-weight: 600; }
 .check-warning {
-    background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px;
+    background: var(--color-warning-bg); border: 1px solid var(--color-warning-border); border-radius: 10px;
     padding: 12px 16px; margin-top: 14px; font-size: .84rem; color: #92400e;
     display: flex; gap: 10px; align-items: flex-start;
 }
@@ -439,7 +439,7 @@ body {
 .install-step.pending { opacity: .45; }
 .install-step.running { background: #eff6ff; border-color: #bfdbfe; }
 .install-step.done    { background: var(--green-lt); border-color: #c8e6c9; }
-.install-step.error   { background: #fef2f2; border-color: #fecaca; color: var(--red); }
+.install-step.error   { background: var(--color-danger-bg); border-color: var(--color-danger-border); color: var(--red); }
 .install-step .step-icon {
     width: 30px; height: 30px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
@@ -514,7 +514,7 @@ body {
 
 /* ─── Error panel ─── */
 .error-box {
-    background: #fef2f2; border: 1px solid #fecaca; border-radius: 10px;
+    background: var(--color-danger-bg); border: 1px solid var(--color-danger-border); border-radius: 10px;
     padding: 14px 16px; margin-top: 16px; font-size: .85rem; color: var(--red);
     display: none;
 }
@@ -834,7 +834,7 @@ body {
                             <i class="fas fa-globe"></i> Website हेर्नुहोस्
                         </a>
                     </div>
-                    <div style="margin-top:20px;padding:12px 16px;background:#fffbeb;border:1px solid #fde68a;border-radius:10px;font-size:.82rem;color:#92400e;text-align:left;">
+                    <div style="margin-top:20px;padding:12px 16px;background:var(--color-warning-bg);border:1px solid var(--color-warning-border);border-radius:10px;font-size:.82rem;color:#92400e;text-align:left;">
                         <i class="fas fa-triangle-exclamation" style="margin-right:6px;"></i>
                         <strong>सुरक्षाको लागि:</strong> install.php file cPanel File Manager बाट delete गर्नुहोस्
                         वा rename गर्नुहोस् (जस्तै: install.php.bak)।

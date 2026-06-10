@@ -371,7 +371,7 @@ function attachmentName($path) {
                         </a>
                         <!-- Document हटाउने -->
                         <form method="POST" style="display:inline;"
-                              onsubmit="return confirm('यो document हटाउने?');">
+                              data-confirm="यो document हटाउने?">
                             <input type="hidden" name="action" value="remove_attachment">
                             <input type="hidden" name="id"     value="<?php echo $viewFeedback['id']; ?>">
                             <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
@@ -506,7 +506,7 @@ function attachmentName($path) {
                     <!-- Delete section -->
                     <div class="mt-3 text-end">
                         <form method="POST" style="display:inline;"
-                              onsubmit="return confirm('यो feedback पूरै मेटाउने? (यो कार्य फिर्ता हुँदैन।)');">
+                              data-confirm="यो feedback पूरै मेटाउने? (यो कार्य फिर्ता हुँदैन।)">
                             <input type="hidden" name="action" value="delete">
                             <input type="hidden" name="id"     value="<?php echo $viewFeedback['id']; ?>">
                             <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
@@ -653,7 +653,7 @@ function attachmentName($path) {
                                         <i class="fas fa-eye"></i>
                                     </a>
                                     <form method="POST" class="adm-icon-form"
-                                          onsubmit="return confirm('यो feedback मेटाउने?');">
+                                          data-confirm="यो feedback मेटाउने?">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id"     value="<?php echo $fb['id']; ?>">
                                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">

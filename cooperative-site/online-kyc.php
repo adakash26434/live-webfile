@@ -1465,7 +1465,7 @@ try {
                         </div>
 
                         <!-- Digital ID Card Request -->
-                        <div class="form-section" style="background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:10px;padding:18px 20px;margin-bottom:16px;">
+                        <div class="form-section" style="background:var(--color-success-bg);border:1.5px solid var(--color-success-border);border-radius:10px;padding:18px 20px;margin-bottom:16px;">
                             <h5 class="visually-hidden"><i class="fas fa-id-card me-1"></i><?php echo isEnglish() ? 'Digital ID Card' : 'डिजिटल ID कार्ड'; ?></h5>
                             <div class="d-flex align-items-flex-start gap-3">
                                 <div style="background:linear-gradient(135deg,var(--primary-color),var(--primary-light));border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">

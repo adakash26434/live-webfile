@@ -193,11 +193,11 @@ try {
 .bell-wrap{position:relative;}
 .bell-dropdown{display:none;position:absolute;top:calc(100% + 8px);right:0;width:340px;max-height:460px;overflow-y:auto;background:white;border-radius:12px;box-shadow:0 10px 30px rgba(var(--primary-rgb,26,95,42),.18);z-index:1000;color:var(--text-color,#1f2937);}
 .bell-dropdown.open{display:block;}
-.bell-dd-head{padding:12px 14px;border-bottom:1px solid color-mix(in srgb, var(--primary-color) 14%, #e5e7eb);display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,var(--primary-color),var(--primary-light));color:var(--text-on-primary,white);border-radius:12px 12px 0 0;}
+.bell-dd-head{padding:12px 14px;border-bottom:1px solid color-mix(in srgb, var(--primary-color) 14%, var(--border-color));display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,var(--primary-color),var(--primary-light));color:var(--text-on-primary,white);border-radius:12px 12px 0 0;}
 .bell-dd-head .title{font-weight:700;font-size:.9rem;}
 .bell-dd-head .badge{background:var(--secondary-color);color:var(--text-on-secondary,var(--text-on-primary,white));font-size:.7rem;padding:2px 7px;border-radius:10px;font-weight:700;}
 .bell-dd-empty{padding:30px 16px;text-align:center;color:var(--text-light,#6b7280);font-size:.85rem;}
-.bell-dd-item{display:flex;gap:10px;padding:10px 14px;border-bottom:1px solid color-mix(in srgb, var(--primary-color) 10%, #f3f4f6);cursor:pointer;transition:background .15s;}
+.bell-dd-item{display:flex;gap:10px;padding:10px 14px;border-bottom:1px solid color-mix(in srgb, var(--primary-color) 10%, var(--bg-light));cursor:pointer;transition:background .15s;}
 .bell-dd-item:hover{background:color-mix(in srgb, var(--primary-color) 8%, white);}
 .bell-dd-item.unread{background:color-mix(in srgb, var(--primary-color) 12%, white);}
 .bell-dd-icon{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.85rem;}
@@ -205,7 +205,7 @@ try {
 .bell-dd-title{font-weight:600;font-size:.82rem;color:var(--text-color,#111827);}
 .bell-dd-msg{font-size:.74rem;color:var(--text-light,#6b7280);margin-top:2px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
 .bell-dd-time{font-size:.68rem;color:var(--text-muted,#9ca3af);margin-top:3px;}
-.bell-dd-foot{padding:10px 14px;text-align:center;border-top:1px solid color-mix(in srgb, var(--primary-color) 14%, #e5e7eb);background:color-mix(in srgb, var(--primary-color) 8%, white);border-radius:0 0 12px 12px;}
+.bell-dd-foot{padding:10px 14px;text-align:center;border-top:1px solid color-mix(in srgb, var(--primary-color) 14%, var(--border-color));background:color-mix(in srgb, var(--primary-color) 8%, white);border-radius:0 0 12px 12px;}
 .bell-dd-foot a{color:var(--primary-color);font-weight:600;font-size:.82rem;text-decoration:none;}
 .mem-bell-btn{position:relative;background:none;border:0;cursor:pointer;color:inherit;padding:8px;border-radius:8px;transition:background .15s;}
 .mem-bell-btn:hover{background:rgba(255,255,255,.15);}
@@ -278,7 +278,7 @@ try {
                 title="<?php echo $_t('Push Notification सक्षम गर्नुहोस्', 'Enable Push Notifications'); ?>"
                 style="display:none;"
                 onclick="coopSubscribePush()">
-            <i class="fas fa-bell-slash" id="pushBellIcon" style="color:#f59e0b;"></i>
+            <i class="fas fa-bell-slash" id="pushBellIcon" style="color:var(--color-warning);"></i>
         </button>
 
         <!-- Bell -->

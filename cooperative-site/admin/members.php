@@ -294,7 +294,7 @@ try {
                     <input type="hidden" name="toggle_active" value="1">
                     <input type="hidden" name="member_id" value="<?php echo $viewMember['id']; ?>">
                     <button type="submit" class="btn btn-sm w-100 <?php echo $viewMember['is_active'] ? 'btn-outline-danger' : 'btn-outline-success'; ?>"
-                            onclick="return confirm('Member status बदल्ने?')">
+                            onclick="event.preventDefault();window.coopConfirm('Member status बदल्ने?',function(){this.closest('form')||this.click();}.bind(this));return false;">
                         <i class="fas fa-<?php echo $viewMember['is_active'] ? 'ban' : 'check'; ?> me-1"></i>
                         <?php echo $viewMember['is_active'] ? 'निष्क्रिय गर्नुहोस्' : 'सक्रिय गर्नुहोस्'; ?>
                     </button>
@@ -621,7 +621,7 @@ try {
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">रद्द</button>
-                <button type="submit" class="btn btn-success" onclick="return confirm('के तपाईं पक्का सबै चयनित सदस्यलाई यो notification पठाउन चाहनुहुन्छ?')">
+                <button type="submit" class="btn btn-success" onclick="event.preventDefault();window.coopConfirm('के तपाईं पक्का सबै चयनित सदस्यलाई यो notification पठाउन चाहनुहुन्छ?',function(){this.closest('form')||this.click();}.bind(this));return false;">
                     <i class="fas fa-paper-plane me-1"></i>सबैलाई पठाउनुहोस्
                 </button>
             </div>

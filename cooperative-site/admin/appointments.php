@@ -387,7 +387,7 @@ if ($viewApt):
 
                         <hr class="my-3">
                         <form method="POST"
-                              onsubmit="return confirm('के तपाईं यो भेटघाट स्थायी रूपले मेटाउन निश्चित हुनुहुन्छ?')">
+                              data-confirm="के तपाईं यो भेटघाट स्थायी रूपले मेटाउन निश्चित हुनुहुन्छ?">
                             <?php echo csrfField(); ?>
                             <input type="hidden" name="delete" value="1">
                             <input type="hidden" name="delete_id" value="<?php echo $viewApt['id']; ?>">
@@ -534,7 +534,7 @@ if ($viewApt):
                             <input type="hidden" name="quick_status_val" value="confirmed">
                             <button type="submit" class="btn-qapprove" title="पुष्टि गर्नुहोस्"><i class="fas fa-check me-1"></i>पुष्टि</button>
                         </form>
-                        <form method="POST" class="d-inline" onsubmit="return confirm('रद्द गर्नुहुन्छ?')">
+                        <form method="POST" class="d-inline" data-confirm="रद्द गर्नुहुन्छ?">
                             <?php echo csrfField(); ?>
                             <input type="hidden" name="quick_status" value="1">
                             <input type="hidden" name="quick_id" value="<?php echo $apt['id']; ?>">

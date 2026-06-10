@@ -371,7 +371,7 @@ if (!$claim) {
                         <hr>
 
                         <!-- Delete Option -->
-                        <form method="POST" onsubmit="return confirm('के तपाईं निश्चित हुनुहुन्छ?');">
+                        <form method="POST" data-confirm="के तपाईं निश्चित हुनुहुन्छ?">
                             <?php echo csrfField(); ?>
                             <input type="hidden" name="delete_claim" value="1">
                             <input type="hidden" name="claim_id" value="<?php echo $claim['id']; ?>">
@@ -460,7 +460,7 @@ echo adminPageHeader('कल्याण दाबी व्यवस्था�
         <div class="sm-lbl">स्वीकृत</div>
     </a>
     <a href="?status=paid" class="stat-mini <?php echo $filterStatus==='paid'?'active-filter':''; ?>">
-        <div class="sm-icon" style="background:#fef2f2;"><i class="fas fa-rupee-sign" style="color:var(--secondary-color,#c0392b);"></i></div>
+        <div class="sm-icon" style="background:var(--color-danger-bg);"><i class="fas fa-rupee-sign" style="color:var(--secondary-color,#c0392b);"></i></div>
         <div class="sm-val"><?php echo $statusCounts['paid'] ?? 0; ?></div>
         <div class="sm-lbl">भुक्तान</div>
     </a>
@@ -568,7 +568,7 @@ echo adminPageHeader('कल्याण दाबी व्यवस्था�
                             <a href="welfare-claims.php?action=view&id=<?php echo $claim['id']; ?>" class="adm-icon-btn adm-icon-btn--view" title="हेर्नुहोस्" aria-label="View">
                                 <i class="fas fa-eye"></i>
                             </a>
-                            <form method="POST" class="adm-icon-form" onsubmit="return confirm('हटाउने?');">
+                            <form method="POST" class="adm-icon-form" data-confirm="हटाउने?">
                                 <?php echo csrfField(); ?>
                                 <input type="hidden" name="delete_claim" value="1">
                                 <input type="hidden" name="claim_id" value="<?php echo $claim['id']; ?>">

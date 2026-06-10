@@ -149,7 +149,7 @@ $flash = getFlash();
                                             data-active="<?php echo $item['is_active']; ?>">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <form method="POST" class="ir-inline-form" onsubmit="return confirm('यो ब्याजदर मेटाउने हो?')">
+                                    <form method="POST" class="ir-inline-form" data-confirm="यो ब्याजदर मेटाउने हो?">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo (int)$item['id']; ?>">
                                         <input type="hidden" name="category" value="saving">
@@ -216,7 +216,7 @@ $flash = getFlash();
                                             data-active="<?php echo $item['is_active']; ?>">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <form method="POST" class="ir-inline-form" onsubmit="return confirm('यो ब्याजदर मेटाउने हो?')">
+                                    <form method="POST" class="ir-inline-form" data-confirm="यो ब्याजदर मेटाउने हो?">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo (int)$item['id']; ?>">
                                         <input type="hidden" name="category" value="loan">

@@ -167,7 +167,7 @@ require_once 'includes/admin-ui.php';
                              style="max-height:200px;object-fit:cover;">
                         <div class="mt-2">
                             <form method="POST" action="" class="d-inline"
-                                  onsubmit="return confirm('History photo हटाउनुहोस्?');">
+                                  data-confirm="History photo हटाउनुहोस्?">
                                 <input type="hidden" name="action" value="remove_history_photo">
                                 <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                                 <button type="submit" class="btn btn-sm btn-outline-danger">

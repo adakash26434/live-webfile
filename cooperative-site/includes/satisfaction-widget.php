@@ -114,7 +114,7 @@ if (!$satisfactionEnabled || empty($satisfactionLinks)) {
     --sw-accent-2: color-mix(in srgb, var(--sw-accent-1) 78%, #5b0b34);
     --sw-accent-soft: color-mix(in srgb, var(--sw-accent-1) 20%, #ffffff);
     --sw-accent-border: color-mix(in srgb, var(--sw-accent-1) 34%, #ffffff);
-    --sw-accent-dark: color-mix(in srgb, var(--sw-accent-1) 68%, #111827);
+    --sw-accent-dark: color-mix(in srgb, var(--sw-accent-1) 68%, var(--text-dark));
 }
 
 /* Main wrapper — fixed position, दाया side */

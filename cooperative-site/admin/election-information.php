@@ -468,7 +468,7 @@ echo adminPageHeader(
                     </div>
                 </form>
                 <?php if ($editRow): ?>
-                    <form method="post" class="mt-2" onsubmit="return confirm('यो चक्र र सबै चरण मेटाउने?');">
+                    <form method="post" class="mt-2" data-confirm="यो चक्र र सबै चरण मेटाउने?">
                         <?php echo csrfField(); ?>
                         <input type="hidden" name="action" value="delete_cycle">
                         <input type="hidden" name="cycle_id" value="<?php echo (int)$editRow['id']; ?>">
@@ -544,7 +544,7 @@ echo adminPageHeader(
                         ?></td>
                         <td class="text-nowrap">
                             <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#em-<?php echo (int)$mr['id']; ?>">सम्पादन</button>
-                            <form method="post" class="d-inline" onsubmit="return confirm('मेटाउने?');"><?php echo csrfField(); ?>
+                            <form method="post" class="d-inline" data-confirm="मेटाउने?"><?php echo csrfField(); ?>
                                 <input type="hidden" name="action" value="delete_milestone">
                                 <input type="hidden" name="cycle_id" value="<?php echo $milestonesFor; ?>">
                                 <input type="hidden" name="milestone_id" value="<?php echo (int)$mr['id']; ?>">

@@ -220,7 +220,7 @@ $rows = $db->query(
                             onclick='editCred(<?= json_encode($r, JSON_HEX_APOS|JSON_HEX_QUOT) ?>)'>
                         <i class="fas fa-edit"></i>
                     </button>
-                    <form method="post" class="d-inline" onsubmit="return confirm('हटाउने?');">
+                    <form method="post" class="d-inline" data-confirm="हटाउने?">
                         <?= csrfField() ?>
                         <input type="hidden" name="action" value="delete">
                         <input type="hidden" name="id" value="<?= (int)$r['id'] ?>">

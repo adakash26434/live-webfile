@@ -80,7 +80,7 @@ include __DIR__ . '/../_partials/header.php';
       <div>
         <label class="admin-label">Member ID</label>
         <input type="text" class="admin-input" value="<?php echo htmlspecialchars($member['member_id'] ?? $member['sadasyata_number'] ?? '—'); ?>" disabled>
-        <small style="color:#9ca3af;">Member ID परिवर्तन हुँदैन।</small>
+        <small style="color:var(--text-light);">Member ID परिवर्तन हुँदैन।</small>
       </div>
       <div>
         <label class="admin-label">स्थिति</label>

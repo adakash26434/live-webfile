@@ -670,7 +670,7 @@ $_f = getFlash(); if ($_f) echo adminAlert($_f['type'], $_f['message']);
                                 </div>
                                 <!-- Delete -->
                                 <form method="POST" class="d-inline"
-                                      onsubmit="return confirm('के तपाईं पक्का हुनुहुन्छ? यो लिलामी र सम्बन्धित बोलपत्रहरू हट्नेछन्।')">
+                                      data-confirm="के तपाईं पक्का हुनुहुन्छ? यो लिलामी र सम्बन्धित बोलपत्रहरू हट्नेछन्।">
                                     <?php echo csrfField(); ?>
                                     <input type="hidden" name="delete_auction" value="1">
                                     <input type="hidden" name="auction_id" value="<?php echo $auc['id']; ?>">

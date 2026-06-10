@@ -249,7 +249,7 @@ body{background:linear-gradient(135deg,var(--bg-muted,#e8f5e9),var(--bg-soft,#f0
     <!-- Admin Fallback: SMS/Email नभएमा वा OTP नआएमा -->
     <div class="text-center mt-3 pt-3 border-top">
       <p class="text-muted small mb-2"><?php echo $_t('OTP प्राप्त भएन वा SMS/Email सेवा छैन?', 'Did not receive OTP or SMS/Email service unavailable?'); ?></p>
-      <form method="POST" novalidate class="needs-validation" onsubmit="return confirm('<?php echo $_t('Admin लाई पासवर्ड Reset अनुरोध पठाउने? (कार्यालयबाट सम्पर्क हुनेछ)', 'Send password reset request to admin? (Office will contact you)'); ?>');" style="display:inline;">
+      <form method="POST" novalidate class="needs-validation" data-confirm="<?php echo $_t('Admin लाई पासवर्ड Reset अनुरोध पठाउने? (कार्यालयबाट सम्पर्क हुनेछ)', 'Send password reset request to admin? (Office will contact you)'); ?>" style="display:inline;">
       <?php echo csrfField(); ?>
         <input type="hidden" name="action" value="admin_fallback">
         <input type="hidden" name="identifier" value="<?php echo htmlspecialchars($_POST['identifier'] ?? ''); ?>">
@@ -262,7 +262,7 @@ body{background:linear-gradient(135deg,var(--bg-muted,#e8f5e9),var(--bg-soft,#f0
 
     <?php elseif ($step === 'done'): ?>
     <div class="text-center py-3">
-      <div style="font-size:3rem;color:#16a34a;"><i class="fas fa-check-circle"></i></div>
+      <div style="font-size:3rem;color:var(--color-success);"><i class="fas fa-check-circle"></i></div>
       <h5 class="mt-2"><?php echo $_t('अनुरोध सफलतापूर्वक पठाइयो!', 'Request sent successfully!'); ?></h5>
       <p class="text-muted small">Admin ले तपाईंको अनुरोध समीक्षा गर्नेछन्। नयाँ पासवर्द कार्यालयबाट प्राप्त गर्न सकिन्छ।</p>
       <a href="login.php" class="btn btn-g mt-2"><i class="fas fa-sign-in-alt me-1"></i><?php echo $_t('Login मा फर्कनुहोस्', 'Back to Login'); ?></a>

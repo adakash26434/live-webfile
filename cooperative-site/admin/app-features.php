@@ -143,7 +143,7 @@ $flash = getFlash();
                                             title="सम्पादन">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <form method="POST" class="appfeat-inline-form" onsubmit="return confirm('<?php echo $__t('के तपाईं यो सुविधा हटाउन निश्चित हुनुहुन्छ?', 'Are you sure you want to delete this feature?'); ?>')">
+                                    <form method="POST" class="appfeat-inline-form" data-confirm="<?php echo $__t('के तपाईं यो सुविधा हटाउन निश्चित हुनुहुन्छ?', 'Are you sure you want to delete this feature?'); ?>">
     <?php echo csrfField(); ?>
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $f['id']; ?>">

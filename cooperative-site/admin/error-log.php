@@ -41,7 +41,7 @@ if (file_exists($logFile)) {
         <form method="post">
             <input type="hidden" name="action" value="clear">
             <button type="submit" class="btn btn-danger btn-sm"
-                    onclick="return confirm('Log clear गर्ने?')">
+                    onclick="event.preventDefault();window.coopConfirm('Log clear गर्ने?',function(){this.closest('form')||this.click();}.bind(this));return false;">
                 <i class="fas fa-trash me-1"></i>Log Clear गर्नुस्
             </button>
         </form>

@@ -203,7 +203,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <a class="btn btn-sm btn-outline-success" target="_blank" title="Digital ID Card" href="hrm-employee-id-card.php?id=<?= (int)$r['id'] ?>"><i class="fas fa-id-card"></i></a>
                         <button class="btn btn-sm btn-outline-secondary" onclick='editEmp(<?= json_encode($r, JSON_HEX_APOS|JSON_HEX_QUOT) ?>)'><i class="fas fa-pen"></i></button>
                         <?php if (is_superadmin()): ?>
-                        <form method="post" class="stf-inline-form" onsubmit="return confirm('पक्का delete गर्ने?');">
+                        <form method="post" class="stf-inline-form" data-confirm="पक्का delete गर्ने?">
                             <?= csrfField() ?>
                             <input type="hidden" name="action" value="delete">
                             <input type="hidden" name="id" value="<?= (int)$r['id'] ?>">

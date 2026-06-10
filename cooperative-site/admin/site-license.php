@@ -161,7 +161,7 @@ echo adminPageHeader('साइट म्याद (लाइसेन्स)', 
                                 <?php endif; ?>
                                 <li>पठाएको: <?php echo htmlspecialchars((string)$pendingRow['created_at'], ENT_QUOTES, 'UTF-8'); ?></li>
                             </ul>
-                            <form method="post" class="d-inline" onsubmit="return confirm('पेन्डिङ सूचना रद्द गर्ने?');">
+                            <form method="post" class="d-inline" data-confirm="पेन्डिङ सूचना रद्द गर्ने?">
                                 <input type="hidden" name="action" value="cancel_renewal_pending">
                                 <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8'); ?>">
                                 <button type="submit" class="btn btn-sm btn-outline-secondary">गल्ती भयो — रद्द गर्नुहोस्</button>

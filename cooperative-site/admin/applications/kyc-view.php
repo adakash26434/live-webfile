@@ -100,14 +100,14 @@ $lbl = ['pending'=>'पेन्डिङ','approved'=>'स्वीकृत','
         <?php if ($s !== 'approved'): ?>
         <button type="submit" name="action" value="approved"
                 class="admin-btn admin-btn-primary"
-                onclick="return confirm('KYC स्वीकृत गर्नुहुन्छ?')">
+                onclick="event.preventDefault();window.coopConfirm('KYC स्वीकृत गर्नुहुन्छ?',function(){this.closest('form')||this.click();}.bind(this));return false;">
           <i class="fas fa-check-circle"></i> स्वीकृत गर्नुहोस्
         </button>
         <?php endif; ?>
         <?php if ($s !== 'rejected'): ?>
         <button type="submit" name="action" value="rejected"
-                class="admin-btn" style="background:#dc2626;color:#fff;border-color:#dc2626;"
-                onclick="return confirm('KYC अस्वीकृत गर्नुहुन्छ?')">
+                class="admin-btn" style="background:var(--color-danger);color:#fff;border-color:var(--color-danger);"
+                onclick="event.preventDefault();window.coopConfirm('KYC अस्वीकृत गर्नुहुन्छ?',function(){this.closest('form')||this.click();}.bind(this));return false;">
           <i class="fas fa-times-circle"></i> अस्वीकृत गर्नुहोस्
         </button>
         <?php endif; ?>
@@ -123,9 +123,9 @@ $lbl = ['pending'=>'पेन्डिङ','approved'=>'स्वीकृत','
   <?php else: ?>
   <div class="admin-card">
     <div style="text-align:center;padding:24px 12px;">
-      <i class="fas fa-user-check" style="font-size:2.5rem;color:#16a34a;margin-bottom:12px;display:block;"></i>
+      <i class="fas fa-user-check" style="font-size:2.5rem;color:var(--color-success);margin-bottom:12px;display:block;"></i>
       <p style="font-weight:600;color:#15803d;margin:0;">सदस्य बनाइसकिएको छ</p>
-      <p style="color:#6b7280;font-size:13px;margin:8px 0 0;"><?php echo htmlspecialchars($app['member_id_generated']); ?></p>
+      <p style="color:var(--text-muted);font-size:13px;margin:8px 0 0;"><?php echo htmlspecialchars($app['member_id_generated']); ?></p>
     </div>
   </div>
   <?php endif; ?>
@@ -147,13 +147,13 @@ if ($docs):
     foreach ($docs as $col => $path):
     ?>
     <div style="text-align:center;">
-      <div style="font-size:12px;font-weight:600;color:#374151;margin-bottom:6px;"><?php echo $labels[$col] ?? $col; ?></div>
+      <div style="font-size:12px;font-weight:600;color:var(--text-dark);margin-bottom:6px;"><?php echo $labels[$col] ?? $col; ?></div>
       <a href="../../<?php echo htmlspecialchars($path); ?>" target="_blank">
         <img src="../../<?php echo htmlspecialchars($path); ?>"
-             style="max-width:180px;max-height:140px;border-radius:8px;border:1px solid #e5e7eb;object-fit:contain;"
+             style="max-width:180px;max-height:140px;border-radius:8px;border:1px solid var(--border-color);object-fit:contain;"
              onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
              alt="<?php echo $labels[$col] ?? $col; ?>">
-        <div style="display:none;padding:12px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;font-size:12px;color:#6b7280;">
+        <div style="display:none;padding:12px;background:var(--bg-light);border:1px solid var(--border-color);border-radius:8px;font-size:12px;color:var(--text-muted);">
           <i class="fas fa-file me-1"></i> फाइल हेर्नुहोस्
         </div>
       </a>

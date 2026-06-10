@@ -5,17 +5,17 @@
         .mob-bottomnav {
             position: fixed; bottom: 0; left: 0; right: 0;
             display: flex; align-items: stretch;
-            background: #fff; border-top: 2px solid #e5e7eb;
+            background: #fff; border-top: 2px solid var(--border-color);
             z-index: 8999; height: 58px;
             box-shadow: 0 -4px 14px rgba(0,0,0,.10);
         }
         .mob-bottomnav a.mob-bn-item {
             flex: 1; display: flex; flex-direction: column;
             align-items: center; justify-content: center;
-            color: #6b7280; text-decoration: none;
+            color: var(--text-muted); text-decoration: none;
             font-size: 10px; gap: 3px; padding: 6px 4px;
             transition: color .15s, background .15s;
-            border-right: 1px solid #f3f4f6;
+            border-right: 1px solid var(--bg-light);
         }
         .mob-bottomnav a.mob-bn-item:last-child { border-right: none; }
         .mob-bottomnav a.mob-bn-item i { font-size: 18px; line-height: 1; }

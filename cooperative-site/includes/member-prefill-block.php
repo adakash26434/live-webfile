@@ -90,7 +90,7 @@ $_pfAddr    = trim((string)(is_array($_krow) && !empty($_krow['permanent_address
 .coop-prefill-banner i { font-size: 1rem; margin-top: 1px; flex-shrink: 0; }
 .coop-prefill-block {
     background: #fff;
-    border: 1px solid color-mix(in srgb, var(--primary-color, #1a5f2a) 18%, #e5e7eb);
+    border: 1px solid color-mix(in srgb, var(--primary-color, #1a5f2a) 18%, var(--border-color));
     border-radius: 12px; margin-bottom: 20px;
     overflow: hidden;
     box-shadow: 0 1px 4px rgba(0,0,0,.05);
@@ -98,7 +98,7 @@ $_pfAddr    = trim((string)(is_array($_krow) && !empty($_krow['permanent_address
 .coop-prefill-head {
     display: flex; align-items: center; gap: 8px;
     background: color-mix(in srgb, var(--primary-color, #1a5f2a) 8%, #f5faf5);
-    border-bottom: 1px solid color-mix(in srgb, var(--primary-color, #1a5f2a) 14%, #e5e7eb);
+    border-bottom: 1px solid color-mix(in srgb, var(--primary-color, #1a5f2a) 14%, var(--border-color));
     padding: 9px 14px;
     font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
     color: var(--primary-color, #1a5f2a);
@@ -111,14 +111,14 @@ $_pfAddr    = trim((string)(is_array($_krow) && !empty($_krow['permanent_address
 .coop-prefill-item {
     display: flex; flex-direction: column; gap: 2px;
     padding: 10px 14px;
-    border-right: 1px solid color-mix(in srgb, var(--primary-color, #1a5f2a) 10%, #e5e7eb);
-    border-bottom: 1px solid color-mix(in srgb, var(--primary-color, #1a5f2a) 10%, #e5e7eb);
+    border-right: 1px solid color-mix(in srgb, var(--primary-color, #1a5f2a) 10%, var(--border-color));
+    border-bottom: 1px solid color-mix(in srgb, var(--primary-color, #1a5f2a) 10%, var(--border-color));
 }
 .coop-prefill-item:last-child { border-right: none; }
 .coop-prefill-item--full { grid-column: 1 / -1; }
 .coop-prefill-label {
     font-size: .68rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: .04em; color: var(--text-muted, #6b7280);
+    letter-spacing: .04em; color: var(--text-muted, var(--text-muted));
 }
 .coop-prefill-value {
     font-size: .88rem; font-weight: 600;

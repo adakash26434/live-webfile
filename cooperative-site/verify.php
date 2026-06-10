@@ -268,8 +268,8 @@ if ($result && !empty($result['ok'])) {
 .vp-logo-wrap img { max-height: 64px; max-width: 180px; width: auto; height: auto; object-fit: contain; border-radius: 8px; display: block; margin: 0 auto .6rem; }
 .vp-logo-icon { width: 62px; height: 62px; border-radius: 50%; margin: 0 auto .65rem; background: var(--primary-color, #1a5f2a); color: var(--text-on-primary, #fff); font-size: 1.45rem; display: grid; place-items: center; box-shadow: 0 4px 18px rgba(var(--primary-rgb, 26,95,42), .28); }
 .vp-site-name { font-weight: 700; font-size: 1.02rem; color: var(--primary-color, #1a5f2a); }
-.vp-site-sub  { font-size: .78rem; color: var(--text-muted, #6b7280); margin-top: 2px; }
-.vp-main-card { background: #fff; border-radius: 16px; box-shadow: 0 2px 18px rgba(0,0,0,.09); overflow: hidden; border: 1px solid var(--border-color, #e5e7eb); }
+.vp-site-sub  { font-size: .78rem; color: var(--text-muted, var(--text-muted)); margin-top: 2px; }
+.vp-main-card { background: #fff; border-radius: 16px; box-shadow: 0 2px 18px rgba(0,0,0,.09); overflow: hidden; border: 1px solid var(--border-color, var(--border-color)); }
 .vp-card-head { background: var(--primary-color, #1a5f2a); padding: 18px 22px; display: flex; align-items: center; gap: 14px; }
 .vp-card-head-icon { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.2); display: grid; place-items: center; font-size: 1.25rem; color: #fff; flex-shrink: 0; }
 .vp-card-head-text .vp-card-head-title { color: #fff; font-weight: 700; font-size: 1.05rem; }
@@ -277,7 +277,7 @@ if ($result && !empty($result['ok'])) {
 .vp-card-body  { padding: 22px 24px; }
 .vp-field      { margin-bottom: 16px; }
 .vp-label      { display: block; font-weight: 600; color: var(--text-primary, #1a2e1f); margin-bottom: 6px; font-size: .92rem; }
-.vp-label .req { color: var(--color-danger, #dc2626); }
+.vp-label .req { color: var(--color-danger, var(--color-danger)); }
 .vp-input {
     width: 100%; padding: 11px 14px; border: 1.5px solid var(--border-color, #d1d5db);
     border-radius: 10px; font-size: .95rem; font-family: inherit; box-sizing: border-box;
@@ -292,8 +292,8 @@ if ($result && !empty($result['ok'])) {
     transition: background .18s, transform .12s;
 }
 .vp-btn:hover { background: var(--primary-dark, #145021); transform: translateY(-1px); }
-.vp-alert-error { background: #fef2f2; border: 1px solid #fca5a5; border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; color: #dc2626; display: flex; align-items: center; gap: 10px; font-size: .9rem; }
-.vp-secure { text-align: center; margin-top: 16px; font-size: .8rem; color: var(--text-light, #9ca3af); }
+.vp-alert-error { background: var(--color-danger-bg); border: 1px solid #fca5a5; border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; color: var(--color-danger); display: flex; align-items: center; gap: 10px; font-size: .9rem; }
+.vp-secure { text-align: center; margin-top: 16px; font-size: .8rem; color: var(--text-light, var(--text-light)); }
 </style>
 </head>
 <body class="auth-portal-page verify-auth-page">
@@ -364,7 +364,7 @@ if (!$__err && !empty($result['error'])) $__err = $result['error'];
 
         <!-- Auto-unlocked message (hidden until countdown done) -->
         <div id="vp-unlocked-msg" style="display:none;margin-top:18px;">
-            <div style="background:#f0fdf4;border:2px solid #86efac;border-radius:10px;padding:14px 18px;color:#16a34a;font-weight:600;margin-bottom:14px;">
+            <div style="background:var(--color-success-bg);border:2px solid #86efac;border-radius:10px;padding:14px 18px;color:var(--color-success);font-weight:600;margin-bottom:14px;">
                 <i class="fas fa-lock-open me-2"></i><?= $_t('समय सकियो। अब पुनः प्रयास गर्न सक्नुहुन्छ।', 'Time is up. You can try again now.') ?>
             </div>
             <a href="verify.php" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:linear-gradient(135deg,var(--primary-color,#1a5f2a),#0e9b53);color:#fff;text-decoration:none;border-radius:8px;font-weight:700;font-size:.95rem;">
@@ -441,21 +441,21 @@ if (!$__err && !empty($result['error'])) $__err = $result['error'];
         foreach ($__fields as [$lbl, $val]):
             if (trim((string)$val) === '') continue;
         ?>
-        <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #f3f4f6;font-size:.93rem;">
-            <span style="color:#6b7280;min-width:130px;flex-shrink:0;"><?= htmlspecialchars($lbl) ?></span>
-            <span style="font-weight:600;color:#111827;"><?= htmlspecialchars((string)$val) ?></span>
+        <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bg-light);font-size:.93rem;">
+            <span style="color:var(--text-muted);min-width:130px;flex-shrink:0;"><?= htmlspecialchars($lbl) ?></span>
+            <span style="font-weight:600;color:var(--text-dark);"><?= htmlspecialchars((string)$val) ?></span>
         </div>
         <?php endforeach; ?>
     </div>
 </div>
 
 <?php if (!empty($logSaved)): ?>
-<div style="background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:12px 16px;margin-bottom:16px;color:#16a34a;font-size:.9rem;">
+<div style="background:var(--color-success-bg);border:1px solid #86efac;border-radius:10px;padding:12px 16px;margin-bottom:16px;color:var(--color-success);font-size:.9rem;">
     <i class="fas fa-check me-2"></i><?= $_t('सेवा सफलतापूर्वक रेकर्ड भयो।', 'Service log recorded successfully.') ?>
 </div>
 <?php endif; ?>
 <?php if (!empty($programSaved)): ?>
-<div style="background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:12px 16px;margin-bottom:16px;color:#16a34a;font-size:.9rem;">
+<div style="background:var(--color-success-bg);border:1px solid #86efac;border-radius:10px;padding:12px 16px;margin-bottom:16px;color:var(--color-success);font-size:.9rem;">
     <i class="fas fa-check me-2"></i><?= $_t('उपस्थिति दर्ता भयो।', 'Attendance recorded.') ?>
 </div>
 <?php endif; ?>
@@ -467,10 +467,10 @@ if (!$__err && !empty($result['error'])) $__err = $result['error'];
     </h3>
     <div style="display:flex;flex-direction:column;gap:8px;">
     <?php foreach ($activePrograms as $prog): ?>
-        <div style="padding:10px 14px;background:#f9fafb;border-radius:8px;border-left:4px solid var(--primary-color,#1a5f2a);font-size:.9rem;">
+        <div style="padding:10px 14px;background:var(--bg-light);border-radius:8px;border-left:4px solid var(--primary-color,#1a5f2a);font-size:.9rem;">
             <strong><?= htmlspecialchars($prog['title'] ?? '') ?></strong>
             <?php if (!empty($prog['program_date'])): ?>
-            <span style="color:#6b7280;font-size:.82rem;margin-left:8px;"><i class="fas fa-calendar-alt"></i> <?= htmlspecialchars($prog['program_date']) ?></span>
+            <span style="color:var(--text-muted);font-size:.82rem;margin-left:8px;"><i class="fas fa-calendar-alt"></i> <?= htmlspecialchars($prog['program_date']) ?></span>
             <?php endif; ?>
         </div>
     <?php endforeach; ?>

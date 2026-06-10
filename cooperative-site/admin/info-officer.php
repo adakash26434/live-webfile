@@ -106,7 +106,7 @@ if ($error) echo adminAlert('error', $error);
                                  alt="Photo">
                         <?php else: ?>
                             <div class="rounded-circle mb-3 d-inline-flex align-items-center justify-content-center border border-3"
-                                 style="width:100px;height:100px;background:#fef2f2;border-color:var(--secondary-color,#c0392b)!important;">
+                                 style="width:100px;height:100px;background:var(--color-danger-bg);border-color:var(--secondary-color,#c0392b)!important;">
                                 <i class="fas fa-user-shield fa-2x" style="color:var(--secondary-color,#c0392b);"></i>
                             </div>
                         <?php endif; ?>
@@ -222,7 +222,7 @@ if ($error) echo adminAlert('error', $error);
                 </div>
                 <?php if ($currentOfficer): ?>
                 <div class="card-footer bg-white border-top">
-                    <form method="POST" onsubmit="return confirm('सूचना अधिकारी हटाउने?')">
+                    <form method="POST" data-confirm="सूचना अधिकारी हटाउने?">
                         <?php echo csrfField(); ?>
                         <input type="hidden" name="member_id" value="0">
                         <button type="submit" name="set_officer" value="1" class="btn btn-sm btn-outline-danger">

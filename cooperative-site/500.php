@@ -38,7 +38,7 @@ if (file_exists(__DIR__ . '/includes/config.php')) {
 <style>
     body { background:#f5f7f5; font-family:'Segoe UI',sans-serif; min-height:100vh; display:flex; align-items:center; justify-content:center; }
     .err-box { max-width:520px; width:100%; background:#fff; border-radius:16px; padding:48px 40px; text-align:center; box-shadow:0 4px 24px rgba(0,0,0,.10); }
-    .err-num  { font-size:5rem; font-weight:900; color:#f3f4f6; line-height:1; }
+    .err-num  { font-size:5rem; font-weight:900; color:var(--bg-light); line-height:1; }
     .err-icon { font-size:2.5rem; color:#dc3545; margin:10px 0; }
     @media(max-width:575px){ .err-box{padding:32px 20px;} }
 </style>

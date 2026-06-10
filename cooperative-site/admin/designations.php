@@ -105,7 +105,7 @@ echo adminPageHeader(
                                 <td><?php if ($r['is_active']): ?><span class="badge bg-success">सक्रिय</span><?php else: ?><span class="badge bg-secondary">निष्क्रिय</span><?php endif; ?></td>
                                 <td class="text-nowrap">
                                     <a class="btn btn-sm btn-outline-primary" href="?edit=<?php echo (int)$r['id']; ?>&panel=form"><i class="fas fa-pen"></i></a>
-                                    <form method="post" class="d-inline" onsubmit="return confirm('यो पद मेटाउने? कतै प्रयोग भइरहेको भए text मा फर्किनेछ।');">
+                                    <form method="post" class="d-inline" data-confirm="यो पद मेटाउने? कतै प्रयोग भइरहेको भए text मा फर्किनेछ।">
                                         <?php echo csrfField(); ?>
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo (int)$r['id']; ?>">

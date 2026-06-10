@@ -117,7 +117,7 @@ echo adminPageHeader(
                             <td><?php echo (int)$p['display_order']; ?></td>
                             <td class="text-nowrap">
                                 <a class="btn btn-sm btn-outline-primary" href="?edit=<?php echo (int)$p['id']; ?>&panel=form"><i class="fas fa-pen"></i></a>
-                                <form method="post" class="d-inline" onsubmit="return confirm('यो पद मेटाउने?');">
+                                <form method="post" class="d-inline" data-confirm="यो पद मेटाउने?">
                                     <?php echo csrfField(); ?>
                                     <input type="hidden" name="action" value="delete_post">
                                     <input type="hidden" name="post_id" value="<?php echo (int)$p['id']; ?>">

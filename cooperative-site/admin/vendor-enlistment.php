@@ -199,7 +199,7 @@ $businessLabels = [
                         </button>
                     </form>
                     <?php endif; ?>
-                    <form method="POST" onsubmit="return confirm('के तपाईं पक्का हुनुहुन्छ?')">
+                    <form method="POST" data-confirm="के तपाईं पक्का हुनुहुन्छ?">
                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                         <input type="hidden" name="action" value="delete">
                         <input type="hidden" name="id" value="<?php echo $detail['id']; ?>">
@@ -304,14 +304,14 @@ $businessLabels = [
                     <div class="adm-action-icons">
                         <a href="?view=<?php echo $v['id']; ?>&tab=<?php echo $tab; ?>" class="adm-icon-btn adm-icon-btn--view" title="विवरण" aria-label="View"><i class="fas fa-eye"></i></a>
                         <?php if ($v['status'] === 'pending'): ?>
-                        <form method="POST" class="qaction-form" onsubmit="return confirm('भेन्डर स्वीकृत गर्नुहुन्छ?')">
+                        <form method="POST" class="qaction-form" data-confirm="भेन्डर स्वीकृत गर्नुहुन्छ?">
                             <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                             <input type="hidden" name="action" value="status">
                             <input type="hidden" name="id" value="<?php echo $v['id']; ?>">
                             <input type="hidden" name="status" value="approved">
                             <button type="submit" class="btn-qapprove"><i class="fas fa-check me-1"></i>स्वीकृत</button>
                         </form>
-                        <form method="POST" class="qaction-form" onsubmit="return confirm('भेन्डर अस्वीकृत गर्नुहुन्छ?')">
+                        <form method="POST" class="qaction-form" data-confirm="भेन्डर अस्वीकृत गर्नुहुन्छ?">
                             <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                             <input type="hidden" name="action" value="status">
                             <input type="hidden" name="id" value="<?php echo $v['id']; ?>">
@@ -319,7 +319,7 @@ $businessLabels = [
                             <button type="submit" class="btn-qreject"><i class="fas fa-times me-1"></i>अस्वीकृत</button>
                         </form>
                         <?php endif; ?>
-                        <form method="POST" class="adm-icon-form" onsubmit="return confirm('के तपाईं पक्का हुनुहुन्छ?')">
+                        <form method="POST" class="adm-icon-form" data-confirm="के तपाईं पक्का हुनुहुन्छ?">
                             <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                             <input type="hidden" name="action" value="delete">
                             <input type="hidden" name="id" value="<?php echo $v['id']; ?>">

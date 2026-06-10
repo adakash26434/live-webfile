@@ -170,7 +170,7 @@ $flash = getFlash();
                                        target="_blank" class="btn btn-sm btn-info" title="हेर्नुहोस्">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    <form method="POST" class="gal-inline-form" onsubmit="return confirm('यो फोटो/भिडियो मेटाउने हो?')">
+                                    <form method="POST" class="gal-inline-form" data-confirm="यो फोटो/भिडियो मेटाउने हो?">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo (int)$img['id']; ?>">
                                         <?php echo csrfField(); ?>

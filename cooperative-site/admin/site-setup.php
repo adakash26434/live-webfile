@@ -361,9 +361,9 @@ try {
 
                     <?php if ($isSuperAdmin): ?>
                     <form method="POST"
-                          onsubmit="return confirm('<?php echo $setupLocked
+                          data-confirm="<?php echo $setupLocked
                               ? 'setup.php unlock गर्ने? Public URL बाट access खुल्नेछ!'
-                              : '⚠️ setup.php lock गर्ने?'; ?>');">
+                              : '⚠️ setup.php lock गर्ने?'; ?>" >
                         <input type="hidden" name="action" value="toggle_lock">
                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                         <button type="submit"

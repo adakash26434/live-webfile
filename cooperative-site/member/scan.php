@@ -99,13 +99,13 @@ $extraHead = <<<'HTML'
 }
 .scan-btn-start { background: var(--primary-color,#1a8754); color: #fff; }
 .scan-btn-start:disabled { opacity: .6; cursor: not-allowed; }
-.scan-btn-stop  { background: #f1f5f9; color: #374151; border-color: #cbd5e1; }
+.scan-btn-stop  { background: #f1f5f9; color: var(--text-dark); border-color: #cbd5e1; }
 .scan-err {
   display: none;
   margin-top: 12px;
   padding: 12px 14px;
-  background: #fef2f2;
-  border: 1px solid #fecaca;
+  background: var(--color-danger-bg);
+  border: 1px solid var(--color-danger-border);
   border-radius: 10px;
   color: #b91c1c;
   font-size: .85rem;
@@ -128,7 +128,7 @@ $extraHead = <<<'HTML'
   display: none;
   margin-top: 12px;
   padding: 12px 14px;
-  background: #f0fdf4;
+  background: var(--color-success-bg);
   border: 1px solid #86efac;
   border-radius: 10px;
   color: #15803d;

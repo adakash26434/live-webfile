@@ -217,7 +217,7 @@ if (count($allCycles) > 1):
                     <div class="col-12">
                         <label class="form-label small fw-semibold">Master पदबाट छान्नुहोस् <small class="text-muted">(title, समिति, सिट auto-fill हुन्छ)</small></label>
                         <select class="form-select form-select-lg post-master-select" name="post_id" id="post_master_sel"
-                                style="background-color:#fff;border:1px solid #d1d5db;border-radius:10px;padding:10px 36px 10px 14px;font-size:14px;font-weight:600;color:#1f2937;box-shadow:0 1px 2px rgba(15,23,42,.04);width:100%;">
+                                style="background-color:#fff;border:1px solid #d1d5db;border-radius:10px;padding:10px 36px 10px 14px;font-size:14px;font-weight:600;color:var(--text-dark);box-shadow:0 1px 2px rgba(15,23,42,.04);width:100%;">
                             <option value="">— Master पद छान्नुहोस् —</option>
                             <?php foreach ($postsMaster as $pm): ?>
                                 <option value="<?php echo (int)$pm['id']; ?>"
@@ -304,7 +304,7 @@ if (count($allCycles) > 1):
                             <td><?php echo $cnt; ?></td>
                             <td class="text-nowrap">
                                 <a class="btn btn-sm btn-outline-primary" href="?cycle=<?php echo $cycleId; ?>&panel=positions&edit_pos=<?php echo (int)$p['id']; ?>"><i class="fas fa-pen"></i></a>
-                                <form method="post" class="d-inline" onsubmit="return confirm('यो पद, सबै उम्मेदवार र मत मेटाउने?');">
+                                <form method="post" class="d-inline" data-confirm="यो पद, सबै उम्मेदवार र मत मेटाउने?">
                                     <?php echo csrfField(); ?>
                                     <input type="hidden" name="action" value="delete_position">
                                     <input type="hidden" name="position_id" value="<?php echo (int)$p['id']; ?>">
@@ -401,7 +401,7 @@ if (count($allCycles) > 1):
                             <td><?php echo htmlspecialchars($cd['symbol_no'] ?? ''); ?></td>
                             <td class="text-nowrap">
                                 <a class="btn btn-sm btn-outline-primary" href="?cycle=<?php echo $cycleId; ?>&panel=candidates&edit_cand=<?php echo (int)$cd['id']; ?>"><i class="fas fa-pen"></i></a>
-                                <form method="post" class="d-inline" onsubmit="return confirm('उम्मेदवार र सम्बन्धित मतहरू मेटाउने?');">
+                                <form method="post" class="d-inline" data-confirm="उम्मेदवार र सम्बन्धित मतहरू मेटाउने?">
                                     <?php echo csrfField(); ?>
                                     <input type="hidden" name="action" value="delete_candidate">
                                     <input type="hidden" name="candidate_id" value="<?php echo (int)$cd['id']; ?>">

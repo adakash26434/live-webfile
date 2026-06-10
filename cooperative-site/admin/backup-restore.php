@@ -239,7 +239,7 @@ if ($flash) echo adminAlert($flash['type'], $flash['message']);
                     <div class="alert alert-warning">
                         <strong>सावधानी:</strong> गलत SQL restore गर्दा data परिवर्तन वा delete हुन सक्छ। पहिले backup download गर्नुहोस्।
                     </div>
-                    <form method="POST" enctype="multipart/form-data" onsubmit="return confirm('Restore/Import गर्ने हो? पहिले backup download गरेको छ भने मात्र OK थिच्नुहोस्।');">
+                    <form method="POST" enctype="multipart/form-data" data-confirm="Restore/Import गर्ने हो? पहिले backup download गरेको छ भने मात्र OK थिच्नुहोस्।">
                         <?php echo csrfField(); ?>
                         <div class="mb-3">
                             <label class="form-label fw-semibold">SQL file छान्नुहोस्</label>

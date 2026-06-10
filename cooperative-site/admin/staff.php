@@ -184,7 +184,7 @@ $users = filter_out_file_managed_superadmin_rows($users);
                             <input type="hidden" name="action" value="toggle">
                             <input type="hidden" name="id" value="<?= (int)$u['id'] ?>">
                             <button class="btn btn-sm btn-outline-secondary"
-                                    onclick="return confirm('Status बदल्ने?')">
+                                    onclick="event.preventDefault();window.coopConfirm('Status बदल्ने?',function(){this.closest('form')||this.click();}.bind(this));return false;">
                                 <i class="fas fa-power-off"></i>
                             </button>
                         </form>
@@ -194,7 +194,7 @@ $users = filter_out_file_managed_superadmin_rows($users);
                         </button>
                         <?php if (is_superadmin()): ?>
                             <form method="post" class="stf-inline-form"
-                                  onsubmit="return confirm('पक्का delete गर्ने?');">
+                                  data-confirm="पक्का delete गर्ने?">
                                 <?= csrfField() ?>
                                 <input type="hidden" name="action" value="delete">
                                 <input type="hidden" name="id" value="<?= (int)$u['id'] ?>">

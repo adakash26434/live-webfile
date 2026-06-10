@@ -309,7 +309,7 @@ echo adminPageHeader($teamHeaderTitle, $teamHeaderIcon, $teamHeaderSub, $teamHea
                                             title="<?php echo $__t('सम्पादन', 'Edit'); ?>">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <form method="POST" class="svc-inline-form" onsubmit="return confirm('<?php echo addslashes($__t('के तपाईं यो सदस्य मेटाउन निश्चित हुनुहुन्छ?', 'Are you sure you want to delete this member?')); ?>')">
+                                    <form method="POST" class="svc-inline-form" data-confirm="<?php echo addslashes($__t('के तपाईं यो सदस्य मेटाउन निश्चित हुनुहुन्छ?', 'Are you sure you want to delete this member?')); ?>">
                                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $m['id']; ?>">
@@ -388,7 +388,7 @@ echo adminPageHeader($teamHeaderTitle, $teamHeaderIcon, $teamHeaderSub, $teamHea
                                             title="<?php echo $__t('सम्पादन', 'Edit'); ?>">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <form method="POST" class="svc-inline-form" onsubmit="return confirm('<?php echo addslashes($__t('के तपाईं यो सदस्य मेटाउन निश्चित हुनुहुन्छ?', 'Are you sure you want to delete this member?')); ?>')">
+                                    <form method="POST" class="svc-inline-form" data-confirm="<?php echo addslashes($__t('के तपाईं यो सदस्य मेटाउन निश्चित हुनुहुन्छ?', 'Are you sure you want to delete this member?')); ?>">
                                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $m['id']; ?>">

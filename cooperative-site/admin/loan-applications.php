@@ -431,7 +431,7 @@ if ($viewApp):
 
                         <hr class="my-3">
                         <form method="POST"
-                              onsubmit="return confirm('<?php echo $__t('के तपाईं यो ऋण आवेदन स्थायी रूपले मेटाउन निश्चित हुनुहुन्छ?', 'Are you sure you want to permanently delete this loan application?'); ?>')">
+                              data-confirm="<?php echo $__t('के तपाईं यो ऋण आवेदन स्थायी रूपले मेटाउन निश्चित हुनुहुन्छ?', 'Are you sure you want to permanently delete this loan application?'); ?>">
                             <?php echo csrfField(); ?>
                             <input type="hidden" name="delete" value="1">
                             <input type="hidden" name="delete_id" value="<?php echo $viewApp['id']; ?>">
@@ -594,14 +594,14 @@ if ($viewApp):
                             <i class="fas fa-eye"></i>
                         </a>
                         <?php if ($app['status'] === 'pending' || $app['status'] === 'processing'): ?>
-                        <form method="POST" class="qaction-form" onsubmit="return confirm('<?php echo $__t('यो आवेदन स्वीकृत गर्नुहुन्छ?', 'Approve this application?'); ?>')">
+                        <form method="POST" class="qaction-form" data-confirm="<?php echo $__t('यो आवेदन स्वीकृत गर्नुहुन्छ?', 'Approve this application?'); ?>">
                             <?php echo csrfField(); ?>
                             <input type="hidden" name="quick_status" value="1">
                             <input type="hidden" name="quick_id" value="<?php echo $app['id']; ?>">
                             <input type="hidden" name="quick_status_val" value="approved">
                             <button type="submit" class="btn-qapprove"><i class="fas fa-check me-1"></i><?php echo $__t('स्वीकृत', 'Approve'); ?></button>
                         </form>
-                        <form method="POST" class="qaction-form" onsubmit="return confirm('<?php echo $__t('यो आवेदन अस्वीकृत गर्नुहुन्छ?', 'Reject this application?'); ?>')">
+                        <form method="POST" class="qaction-form" data-confirm="<?php echo $__t('यो आवेदन अस्वीकृत गर्नुहुन्छ?', 'Reject this application?'); ?>">
                             <?php echo csrfField(); ?>
                             <input type="hidden" name="quick_status" value="1">
                             <input type="hidden" name="quick_id" value="<?php echo $app['id']; ?>">

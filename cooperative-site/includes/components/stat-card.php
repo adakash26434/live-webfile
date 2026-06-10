@@ -57,7 +57,7 @@ $_iconMap = [
         <div class="sm-lbl">
             <?php echo $_label; ?>
             <?php if ($_badge): ?><span class="stat-card-badge"><?php echo $_badge; ?></span><?php endif; ?>
-            <?php if ($_trend): ?><small class="d-block" style="color:#9ca3af;font-size:.65rem;margin-top:1px;"><?php echo $_trend; ?></small><?php endif; ?>
+            <?php if ($_trend): ?><small class="d-block" style="color:var(--text-light);font-size:.65rem;margin-top:1px;"><?php echo $_trend; ?></small><?php endif; ?>
         </div>
     </<?php echo $_tag; ?>>
 <?php endforeach; ?>

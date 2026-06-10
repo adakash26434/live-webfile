@@ -221,7 +221,7 @@ $servicesArch = $svcPart['archived'];
                                     <a href="services.php?edit=<?php echo (int)$s['id']; ?>" class="btn btn-sm btn-primary me-1" title="<?php echo $__t('सम्पादन', 'Edit'); ?>">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form method="POST" class="svc-inline-form" onsubmit="return confirm('<?php echo $__t('के तपाईं यो सेवा मेटाउन निश्चित हुनुहुन्छ?', 'Are you sure you want to delete this service?'); ?>')">
+                                    <form method="POST" class="svc-inline-form" data-confirm="<?php echo $__t('के तपाईं यो सेवा मेटाउन निश्चित हुनुहुन्छ?', 'Are you sure you want to delete this service?'); ?>">
                                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $s['id']; ?>">
@@ -271,7 +271,7 @@ $servicesArch = $svcPart['archived'];
                                     <a href="services.php?edit=<?php echo (int)$s['id']; ?>" class="btn btn-sm btn-primary me-1" title="सम्पादन">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form method="POST" class="svc-inline-form" onsubmit="return confirm('के तपाईं यो सेवा मेटाउन निश्चित हुनुहुन्छ?')">
+                                    <form method="POST" class="svc-inline-form" data-confirm="के तपाईं यो सेवा मेटाउन निश्चित हुनुहुन्छ?">
                                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $s['id']; ?>">
@@ -452,7 +452,7 @@ $servicesArch = $svcPart['archived'];
                                             data-active="<?php echo (int)$sp['is_active']; ?>">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <form method="POST" class="svc-inline-form" onsubmit="return confirm('यो product हटाउने हो?')">
+                                    <form method="POST" class="svc-inline-form" data-confirm="यो product हटाउने हो?">
                                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                                         <input type="hidden" name="action" value="product_delete">
                                         <input type="hidden" name="product_id" value="<?php echo (int)$sp['id']; ?>">

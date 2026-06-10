@@ -730,7 +730,7 @@ set_exception_handler(function (\Throwable $ex) {
                             </li>
                             <li class="<?php echo $currentPage=='push-notifications' ? 'active' : ''; ?>">
                                 <a href="push-notifications.php">
-                                <span class="nav-icon-wrap"><i class="fas fa-bell-ring" style="color:#f59e0b;"></i></span>
+                                <span class="nav-icon-wrap"><i class="fas fa-bell-ring" style="color:var(--color-warning);"></i></span>
                                 <span><?php echo $adminT('Push Notifications', 'Push Notifications'); ?></span>
                             </a>
                             </li>

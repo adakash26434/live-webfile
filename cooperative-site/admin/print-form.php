@@ -339,10 +339,10 @@ $checklist = $checklists[$type];
     --c-dark:      #0d3d1a;
     --c-border:    #c5dace;
     --c-section:   #edf6f0;
-    --c-muted:     #6b7280;
-    --c-text:      #111827;
+    --c-muted:     var(--text-muted);
+    --c-text:      var(--text-dark);
     --c-zebra:     #f8fcfa;
-    --c-warn-bg:   #fffbeb;
+    --c-warn-bg:   var(--color-warning-bg);
     --c-warn-text: #78350f;
 }
 
@@ -409,7 +409,7 @@ body {
 .pf-photo-box {
     width: 92px; height: 112px;
     border: 1.5px solid var(--c-border); border-radius: 4px;
-    background: #f9fafb; display: flex; align-items: center; justify-content: center;
+    background: var(--bg-light); display: flex; align-items: center; justify-content: center;
     font-size: 10px; color: var(--c-muted); text-align: center; overflow: hidden;
 }
 .pf-photo-box img { width: 100%; height: 100%; object-fit: cover; }
@@ -445,14 +445,14 @@ body {
 .pf-tbl th, .pf-tbl td { padding: 6px 11px; border-bottom: 1px solid var(--c-border); vertical-align: top; }
 .pf-tbl tr:last-child th, .pf-tbl tr:last-child td { border-bottom: none; }
 .pf-tbl tr:nth-child(even) td { background: var(--c-zebra); }
-.pf-tbl th { width: 32%; background: #f3f9f5; font-weight: 600; color: #374151; }
-.pf-tbl .lnp { display: block; font-size: 12px; font-weight: 700; color: #1f2937; }
+.pf-tbl th { width: 32%; background: #f3f9f5; font-weight: 600; color: var(--text-dark); }
+.pf-tbl .lnp { display: block; font-size: 12px; font-weight: 700; color: var(--text-dark); }
 .pf-tbl .len { display: block; font-size: 10.5px; color: var(--c-muted); }
-.pf-tbl td.empty { color: #9ca3af; font-style: italic; font-size: 12px; }
+.pf-tbl td.empty { color: var(--text-light); font-style: italic; font-size: 12px; }
 
 /* ── Declaration ── */
 .pf-decl {
-    border: 1px solid #fde68a; border-radius: 5px;
+    border: 1px solid var(--color-warning-border); border-radius: 5px;
     background: var(--c-warn-bg); padding: 12px 15px;
     margin: 18px 0 16px; font-size: 12px;
 }
@@ -462,7 +462,7 @@ body {
     display: flex; gap: 24px; margin-top: 14px; flex-wrap: wrap;
 }
 .pf-sig-box { flex: 1; min-width: 140px; }
-.pf-sig-line { border-bottom: 1.5px solid #374151; height: 38px; margin-bottom: 4px; }
+.pf-sig-line { border-bottom: 1.5px solid var(--text-dark); height: 38px; margin-bottom: 4px; }
 .pf-sig-label { font-size: 10.5px; color: var(--c-muted); }
 
 /* ── Office section ── */
@@ -479,19 +479,19 @@ body {
     text-transform: uppercase; letter-spacing: .3px; margin-bottom: 10px;
 }
 .pf-officer-field { margin-bottom: 9px; }
-.pf-field-line { border-bottom: 1px solid #9ca3af; height: 30px; margin-bottom: 3px; }
+.pf-field-line { border-bottom: 1px solid var(--text-light); height: 30px; margin-bottom: 3px; }
 .pf-field-label { font-size: 10.5px; color: var(--c-muted); }
 
 /* Checklist */
-.pf-checklist-head { font-size: 11.5px; font-weight: 700; color: #374151; margin-bottom: 7px; border-top: 1px solid #e5e7eb; padding-top: 10px; }
+.pf-checklist-head { font-size: 11.5px; font-weight: 700; color: var(--text-dark); margin-bottom: 7px; border-top: 1px solid var(--border-color); padding-top: 10px; }
 .pf-check-row { display: flex; flex-wrap: wrap; gap: 10px 20px; }
 .pf-check-item { display: flex; align-items: center; gap: 7px; font-size: 12px; }
 .pf-checkbox { width: 14px; height: 14px; border: 1.5px solid var(--c-primary); border-radius: 2px; flex-shrink: 0; display: inline-block; }
 .pf-seal {
     width: 108px; height: 76px;
-    border: 1.5px dashed #9ca3af; border-radius: 6px;
+    border: 1.5px dashed var(--text-light); border-radius: 6px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 10.5px; color: #9ca3af; text-align: center; padding: 6px;
+    font-size: 10.5px; color: var(--text-light); text-align: center; padding: 6px;
     float: right; margin-top: -38px;
 }
 

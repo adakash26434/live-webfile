@@ -651,9 +651,9 @@ echo adminPageHeader(
             $_attachExt = strtolower(pathinfo($r['attachment_path'], PATHINFO_EXTENSION));
             $_isImg     = in_array($_attachExt, ['jpg','jpeg','png','gif','webp']);
             $_thumb     = $_isImg
-                ? '<img src="' . $_attachUrl . '" style="max-height:120px;max-width:100%;border-radius:8px;border:1px solid #e5e7eb;display:block;margin-bottom:10px;" alt="Preview">'
+                ? '<img src="' . $_attachUrl . '" style="max-height:120px;max-width:100%;border-radius:8px;border:1px solid var(--border-color);display:block;margin-bottom:10px;" alt="Preview">'
                 : '<div class="d-flex align-items-center gap-3 p-3 border rounded mb-2" style="background:#fff7ed;">'
-                  . '<i class="fas fa-file-pdf fa-2x" style="color:#dc2626;flex-shrink:0;"></i>'
+                  . '<i class="fas fa-file-pdf fa-2x" style="color:var(--color-danger);flex-shrink:0;"></i>'
                   . '<div><div class="fw-semibold text-dark" style="font-size:.85rem;">PDF कागजात</div>'
                   . '<div class="text-muted" style="font-size:.75rem;">' . htmlspecialchars(basename($r['attachment_path'])) . '</div></div></div>';
             $_existAttachPreview = $_thumb

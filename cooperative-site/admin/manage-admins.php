@@ -347,9 +347,9 @@ $activeTab = in_array($tabRaw, ['list', 'add'], true) ? $tabRaw : 'list';
                                         <!-- Toggle Active/Inactive -->
                                         <?php if (!$isMe): ?>
                                         <form method="POST" class="d-inline"
-                                              onsubmit="return confirm('<?php echo $adm['is_active']
+                                              data-confirm="<?php echo $adm['is_active']
                                                   ? htmlspecialchars($adm['full_name'],ENT_QUOTES).' को account निष्क्रिय गर्ने?'
-                                                  : htmlspecialchars($adm['full_name'],ENT_QUOTES).' को account सक्रिय गर्ने?'; ?>')">
+                                                  : htmlspecialchars($adm['full_name'],ENT_QUOTES).' को account सक्रिय गर्ने?'; ?>">
                                             <input type="hidden" name="action"     value="toggle_active">
                                             <input type="hidden" name="target_id"  value="<?php echo $adm['id']; ?>">
                                             <input type="hidden" name="new_status" value="<?php echo $adm['is_active'] ? 0 : 1; ?>">
@@ -365,7 +365,7 @@ $activeTab = in_array($tabRaw, ['list', 'add'], true) ? $tabRaw : 'list';
                                         <!-- Delete -->
                                         <?php if (!$isMe): ?>
                                         <form method="POST" class="d-inline"
-                                              onsubmit="return confirm('«<?php echo htmlspecialchars($adm['full_name'], ENT_QUOTES, 'UTF-8'); ?>» को account पूरै मेटाउने?\n\nयो कार्य फिर्ता हुँदैन!')">
+                                              data-confirm="<?php echo htmlspecialchars($adm['full_name'], ENT_QUOTES, 'UTF-8'); ?> को account पूरै मेटाउने?">
                                             <input type="hidden" name="action"     value="delete_admin">
                                             <input type="hidden" name="target_id"  value="<?php echo $adm['id']; ?>">
                                             <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">

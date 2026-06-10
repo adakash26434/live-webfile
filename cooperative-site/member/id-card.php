@@ -534,7 +534,7 @@ if ($cardLogoRaw !== '') {
 .idcard-back {
   background:
     radial-gradient(120% 160% at 100% 0%, rgba(255,255,255,.12), transparent 50%),
-    linear-gradient(135deg, #1f2937 0%, #111827 50%, #0a4a25 100%);
+    linear-gradient(135deg, var(--text-dark) 0%, var(--text-dark) 50%, #0a4a25 100%);
   transform: rotateY(180deg);
 }
 .idcard-magstripe { height:36px; background:#000; margin:14px -22px 0; }
@@ -542,7 +542,7 @@ if ($cardLogoRaw !== '') {
 .idcard-sigpanel {
   background:repeating-linear-gradient(45deg,#fff,#fff 4px,#f3f4f6 4px,#f3f4f6 8px);
   height:34px; border-radius:4px; display:flex; align-items:center; justify-content:space-between;
-  padding:0 8px; color:#111827;
+  padding:0 8px; color:var(--text-dark);
 }
 .idcard-sigpanel-text { font-style:italic; font-weight:600; font-size:.85rem; }
 .idcard-cvv-box { display:flex; flex-direction:column; align-items:flex-end; }
@@ -572,13 +572,13 @@ if ($cardLogoRaw !== '') {
 .idcard-detail-cvv-label { color:var(--secondary-dark,var(--secondary-color)); }
 .idcard-detail-cvv-value { color:var(--secondary-dark,var(--secondary-color)); font-size:18px; letter-spacing:.3em; }
 .idcard-detail-cvv-help { font-size:11px; color:var(--secondary-dark,var(--secondary-color)); margin-top:6px; line-height:1.5; }
-.idcard-detail { background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; }
-.idcard-detail .dl { font-size:.68rem; font-weight:700; color:#6b7280; letter-spacing:.04em; margin-bottom:4px; }
-.idcard-detail .dv { font-size:.85rem; color:#111827; word-break:break-word; }
+.idcard-detail { background:var(--bg-light); border:1px solid var(--border-color); border-radius:8px; padding:10px 12px; }
+.idcard-detail .dl { font-size:.68rem; font-weight:700; color:var(--text-muted); letter-spacing:.04em; margin-bottom:4px; }
+.idcard-detail .dv { font-size:.85rem; color:var(--text-dark); word-break:break-word; }
 .idcard-detail .dv.code { font-family:'Courier New',monospace; letter-spacing:.05em; font-weight:700; }
 
 .idcard-verify-help {
-  margin-top:18px; background:#fef2f2; border:1px solid #fecaca;
+  margin-top:18px; background:var(--color-danger-bg); border:1px solid var(--color-danger-border);
   border-radius:10px; padding:14px; display:flex; gap:10px; align-items:flex-start;
 }
 .vh-icon { color:var(--secondary-color,#c0392b); font-size:1.4rem; flex-shrink:0; }

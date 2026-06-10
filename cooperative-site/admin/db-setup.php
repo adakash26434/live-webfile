@@ -744,7 +744,7 @@ if (defined('BOOTSTRAP_MODE') && BOOTSTRAP_MODE):
             <a href="run-migration.php" class="btn btn-outline-secondary btn-sm">
                 <i class="fas fa-code-branch me-1"></i>Migration Runner
             </a>
-            <form method="post" class="d-inline" onsubmit="return confirm('Schema lock files clear गर्ने? अर्को page load मा सबै tables verify हुन्छ।')">
+            <form method="post" class="d-inline" data-confirm="Schema lock files clear गर्ने? अर्को page load मा सबै tables verify हुन्छ।">
                 <?php echo csrfField(); ?>
                 <input type="hidden" name="action" value="reset_schema_locks">
                 <button type="submit" class="btn btn-outline-warning btn-sm" title="v2: Schema लाई पुनः verify गर्न lock files हटाउने">
@@ -881,7 +881,7 @@ if (defined('BOOTSTRAP_MODE') && BOOTSTRAP_MODE):
                     </div>
 
                     <form method="POST"
-                          onsubmit="return confirm('install.sql run गर्ने? (data delete हुँदैन — safe operation)\n\nOK = Run गर्नुहोस्')">
+                          data-confirm="install.sql run गर्ने? (data delete हुँदैन — safe operation)\n\nOK = Run गर्नुहोस्">
                         <input type="hidden" name="action" value="run_full_setup">
                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                         <button type="submit" class="btn btn-success btn-lg px-4">
@@ -915,7 +915,7 @@ if (defined('BOOTSTRAP_MODE') && BOOTSTRAP_MODE):
                         <i class="fas fa-triangle-exclamation me-1"></i>
                         यो action ले पुरानो data पूर्ण हटाउँछ। Testing environment मा मात्र प्रयोग गर्नुहोस्।
                     </div>
-                    <form method="POST" onsubmit="return confirm('यो action irreversible छ। सबै data/table हटाएर fresh rebuild गर्ने?\n\nOK = जारी राख्नुहोस्')">
+                    <form method="POST" data-confirm="यो action irreversible छ। सबै data/table हटाएर fresh rebuild गर्ने?\n\nOK = जारी राख्नुहोस्">
                         <input type="hidden" name="action" value="reset_rebuild_testing">
                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                         <label class="form-label small fw-semibold">Confirm text टाइप गर्नुहोस्: <code>RESET TEST DB</code></label>
@@ -951,7 +951,7 @@ if (defined('BOOTSTRAP_MODE') && BOOTSTRAP_MODE):
                 <div class="p-3 border-bottom dbs-upload-strip">
                     <form method="POST" enctype="multipart/form-data"
                           class="d-flex align-items-end gap-2 flex-wrap"
-                          onsubmit="return confirm('यो SQL file database/ folder मा save गर्ने?\n\nSave भएपछि तल list मा देखिनेछ — त्यहाँबाट Run गर्न मिल्छ।')">
+                          data-confirm="यो SQL file database/ folder मा save गर्ने?\n\nSave भएपछि तल list मा देखिनेछ — त्यहाँबाट Run गर्न मिल्छ।">
                         <input type="hidden" name="action"     value="upload_to_db_folder">
                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                         <div class="flex-grow-1">
@@ -1030,7 +1030,7 @@ if (defined('BOOTSTRAP_MODE') && BOOTSTRAP_MODE):
                                     </td>
                                     <td class="text-center pe-3">
                                         <form method="POST"
-                                              onsubmit="return confirm('«<?php echo htmlspecialchars($sf['name'], ENT_QUOTES); ?>» run गर्ने?\n\nData delete हुँदैन — safe operation।\n\nOK = Run गर्नुहोस्')">
+                                              data-confirm="<?php echo htmlspecialchars($sf['name'], ENT_QUOTES); ?> run गर्ने?">
                                             <input type="hidden" name="action"       value="run_server_sql">
                                             <input type="hidden" name="sql_filename" value="<?php echo htmlspecialchars($sf['name'], ENT_QUOTES); ?>">
                                             <input type="hidden" name="csrf_token"   value="<?php echo $csrfToken; ?>">
@@ -1064,7 +1064,7 @@ if (defined('BOOTSTRAP_MODE') && BOOTSTRAP_MODE):
                 </div>
                 <div class="card-body">
                     <form method="POST" enctype="multipart/form-data"
-                          onsubmit="return confirm('Upload गरिएको SQL file run गर्ने?\n\nOK = Run गर्नुहोस्')">
+                          data-confirm="Upload गरिएको SQL file run गर्ने?\n\nOK = Run गर्नुहोस्">
                         <input type="hidden" name="action" value="run_uploaded_sql">
                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                         <div class="row g-3 align-items-end">
@@ -1096,7 +1096,7 @@ if (defined('BOOTSTRAP_MODE') && BOOTSTRAP_MODE):
                         admin_users, site_settings, activity_log — यी minimum tables बनाउँछ।
                         install.sql नभएको अवस्थामा काम लाग्छ।
                     </p>
-                    <form method="POST" onsubmit="return confirm('Core tables बनाउने? (already exist भए skip हुन्छन्)')">
+                    <form method="POST" data-confirm="Core tables बनाउने? (already exist भए skip हुन्छन्)">
                         <input type="hidden" name="action" value="create_core_tables">
                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                         <button type="submit" class="btn btn-outline-secondary">
@@ -1131,7 +1131,7 @@ if (defined('BOOTSTRAP_MODE') && BOOTSTRAP_MODE):
                             setup.php अझै public URL बाट खुल्छ!
                         <?php endif; ?>
                     </p>
-                    <form method="POST" onsubmit="return confirm('<?php echo $setupLocked ? 'setup.php unlock गर्ने?' : 'setup.php lock गर्ने? Public URL बाट access बन्द हुनेछ।'; ?>')">
+                    <form method="POST" data-confirm="<?php echo $setupLocked ? 'setup.php unlock गर्ने?' : 'setup.php lock गर्ने? Public URL बाट access बन्द हुनेछ।'; ?>">
                         <input type="hidden" name="action" value="toggle_lock">
                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                         <button type="submit"
@@ -1192,7 +1192,7 @@ if (defined('BOOTSTRAP_MODE') && BOOTSTRAP_MODE):
                     <?php endif; ?>
 
                     <form method="POST" action=""
-                          onsubmit="return confirm('DB credentials अपडेट गर्ने?\n\nGalat values राख्यो भने site काम गर्न छाड्छ!\n\nOK = अपडेट गर्नुहोस्')">
+                          data-confirm="DB credentials अपडेट गर्ने?\n\nGalat values राख्यो भने site काम गर्न छाड्छ!\n\nOK = अपडेट गर्नुहोस्">
                         <input type="hidden" name="action"     value="update_db_credentials">
                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
 

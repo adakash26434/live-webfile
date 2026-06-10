@@ -728,13 +728,13 @@ $programs = $db->query("SELECT id, title, is_active FROM upcoming_programs ORDER
         <td class="small"><?php echo htmlspecialchars($rx['requested_at'] ?? ''); ?></td>
         <td>
           <div class="d-flex flex-wrap gap-1">
-            <form method="POST" class="d-inline" onsubmit="return confirm('<?php echo $__t('यो सदस्यलाई उपस्थिति सूचीमा थप्ने? स्थलमा उपस्थिति पुष्टि भइसकेको हो?', 'Add this member to attendance list? Is physical attendance confirmed?'); ?>');">
+            <form method="POST" class="d-inline" data-confirm="<?php echo $__t('यो सदस्यलाई उपस्थिति सूचीमा थप्ने? स्थलमा उपस्थिति पुष्टि भइसकेको हो?', 'Add this member to attendance list? Is physical attendance confirmed?'); ?>" >
               <?php echo csrfField(); ?>
               <input type="hidden" name="action" value="approve_attendance_request">
               <input type="hidden" name="request_id" value="<?php echo (int)$rx['id']; ?>">
               <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-check me-1"></i><?php echo $__t('स्वीकृत','Approve'); ?></button>
             </form>
-            <form method="POST" class="d-inline-flex align-items-center gap-1 flex-wrap" onsubmit="return confirm('<?php echo $__t('अनुरोध अस्वीकृत गर्ने?', 'Reject this request?'); ?>');">
+            <form method="POST" class="d-inline-flex align-items-center gap-1 flex-wrap" data-confirm="<?php echo $__t('अनुरोध अस्वीकृत गर्ने?', 'Reject this request?'); ?>" >
               <?php echo csrfField(); ?>
               <input type="hidden" name="action" value="reject_attendance_request">
               <input type="hidden" name="request_id" value="<?php echo (int)$rx['id']; ?>">
@@ -749,7 +749,7 @@ $programs = $db->query("SELECT id, title, is_active FROM upcoming_programs ORDER
               <input type="number" min="1" name="target_member_id" class="form-control form-control-sm" style="width:92px;" placeholder="Member ID">
               <button type="submit" class="btn btn-sm btn-outline-primary"><i class="fas fa-link me-1"></i>Link</button>
             </form>
-            <form method="POST" class="d-inline" onsubmit="return confirm('<?php echo $__t('यस request बाट नयाँ सदस्य बनाउने?', 'Create a new member from this request?'); ?>');">
+            <form method="POST" class="d-inline" data-confirm="<?php echo $__t('यस request बाट नयाँ सदस्य बनाउने?', 'Create a new member from this request?'); ?>" >
               <?php echo csrfField(); ?>
               <input type="hidden" name="action" value="create_member_from_attendance_request">
               <input type="hidden" name="request_id" value="<?php echo (int)$rx['id']; ?>">
@@ -884,7 +884,7 @@ $programs = $db->query("SELECT id, title, is_active FROM upcoming_programs ORDER
           <?php if ($isDone): ?>
             <span class="text-success small fw-bold"><i class="fas fa-check-circle me-1"></i>Marked</span>
           <?php else: ?>
-            <form method="POST" class="d-inline" onsubmit="return confirm('यो सदस्यलाई attendance मा mark गर्ने?');">
+            <form method="POST" class="d-inline" data-confirm="यो सदस्यलाई attendance मा mark गर्ने?">
               <?php echo csrfField(); ?>
               <input type="hidden" name="action" value="mark_prereg_attended">
               <input type="hidden" name="prereg_id" value="<?php echo (int)$r['id']; ?>">

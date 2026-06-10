@@ -40,7 +40,7 @@ $_apInitial = mb_substr($_apAdminName, 0, 1);
 <link rel="stylesheet" href="<?= SITE_URL ?>assets/css/app-core.css">
 <link rel="stylesheet" href="<?= SITE_URL ?>assets/css/app-admin.css">
 <style>
-  :root { --hp-border:#e6e9ef; --hp-muted:#6b7280; --hp-text:#1f2937; --hp-soft:#f5f7fb; }
+  :root { --hp-border:#e6e9ef; --hp-muted:var(--text-muted); --hp-text:var(--text-dark); --hp-soft:#f5f7fb; }
   .hp-header{
     background:#fff; color:var(--hp-text);
     padding:10px 18px; display:flex; align-items:center; gap:14px;

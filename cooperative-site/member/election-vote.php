@@ -222,8 +222,8 @@ require __DIR__ . '/includes/chrome.php';
 .vote-card{border:2px solid transparent;transition:.2s;cursor:pointer;}
 .vote-card.selected{border-color:var(--primary-color);background:rgba(26,95,42,.04);}
 .vote-photo{width:100%;height:180px;object-fit:cover;border-radius:8px;}
-.vote-photo-empty{height:180px;display:flex;align-items:center;justify-content:center;background:#f3f4f6;border-radius:8px;color:#9ca3af;}
-.tally-bar{height:6px;background:#e5e7eb;border-radius:3px;overflow:hidden;margin-top:6px;}
+.vote-photo-empty{height:180px;display:flex;align-items:center;justify-content:center;background:var(--bg-light);border-radius:8px;color:var(--text-light);}
+.tally-bar{height:6px;background:var(--border-color);border-radius:3px;overflow:hidden;margin-top:6px;}
 .tally-bar > div{height:100%;background:linear-gradient(90deg,var(--primary-color),var(--primary-light));}
 .vote-cycle-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.65rem;flex-wrap:wrap;}
 .vote-cycle-tenure{background:var(--primary-color);color:#fff;border-radius:999px;padding:.26rem .62rem;font-size:.74rem;font-weight:700;white-space:nowrap;}

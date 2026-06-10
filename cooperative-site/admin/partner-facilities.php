@@ -197,7 +197,7 @@ $facilitiesArch = $pfPart['archived'];
                                         <i class="fas fa-edit"></i>
                                     </button>
                                     <form method="POST" class="svc-inline-form"
-                                          onsubmit="return confirm('के तपाईं यो सुविधा मेटाउन निश्चित हुनुहुन्छ?')">
+                                          data-confirm="के तपाईं यो सुविधा मेटाउन निश्चित हुनुहुन्छ?">
                                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $f['id']; ?>">
@@ -275,7 +275,7 @@ $facilitiesArch = $pfPart['archived'];
                                         <i class="fas fa-edit"></i>
                                     </button>
                                     <form method="POST" class="svc-inline-form"
-                                          onsubmit="return confirm('के तपाईं यो सुविधा मेटाउन निश्चित हुनुहुन्छ?')">
+                                          data-confirm="के तपाईं यो सुविधा मेटाउन निश्चित हुनुहुन्छ?">
                                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $f['id']; ?>">

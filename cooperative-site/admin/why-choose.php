@@ -172,7 +172,7 @@ if (!empty($flash)) echo adminAlert($flash['type'] === 'success' ? 'success' : '
                                 <i class="fas fa-edit"></i>
                             </button>
                             <form method="POST" style="display:inline"
-                                  onsubmit="return confirm('\"<?php echo addslashes($f['title_np']); ?>\" हटाउने?')">
+                                  data-confirm="<?php echo htmlspecialchars($f['title_np'], ENT_QUOTES, 'UTF-8'); ?> हटाउने?">
                                 <?php echo csrfField(); ?>
                                 <input type="hidden" name="action" value="delete">
                                 <input type="hidden" name="id" value="<?php echo $f['id']; ?>">

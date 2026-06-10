@@ -313,7 +313,7 @@ if ($flash) echo adminAlert($flash['type'], $flash['message']);
                                                                 <td class="text-center">
                                                                     <a class="btn btn-sm btn-primary" href="pages.php?tab=dynamic&action=edit&id=<?php echo (int)$pg['id']; ?>&panel=form" title="सम्पादन"><i class="fas fa-edit"></i></a>
                                                                     <?php $isProtected = in_array((string)($pg['slug'] ?? ''), ['privacy-policy','terms-of-service','cookie-policy'], true); ?>
-                                                                    <form method="POST" class="svc-inline-form" onsubmit="return confirm('यो पृष्ठ मेटाउने हो?')" style="display:inline;">
+                                                                    <form method="POST" class="svc-inline-form" data-confirm="यो पृष्ठ मेटाउने हो?" style="display:inline;">
                                                                         <?php echo csrfField(); ?>
                                                                         <input type="hidden" name="action" value="delete">
                                                                         <input type="hidden" name="id" value="<?php echo (int)$pg['id']; ?>">

@@ -136,7 +136,7 @@ $showPayForm = ($blockedPendingRow === null && !$blockedRenewalSent);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.4px;
-            color: #6b7280;
+            color: var(--text-muted);
             margin-bottom: 6px;
         }
         .slb-dates-box code {
@@ -221,7 +221,7 @@ $showPayForm = ($blockedPendingRow === null && !$blockedRenewalSent);
                 <?php echo csrfField(); ?>
                 <div class="mb-2">
                     <label class="form-label small fw-semibold">संस्थाको नाम (साइट सेटिङबाट स्वतः)</label>
-                    <div class="form-control form-control-sm" style="background:#f3f4f6;cursor:default;"><?php echo htmlspecialchars($blockedSubmitterDefault !== '' ? $blockedSubmitterDefault : 'सहकारी', ENT_QUOTES, 'UTF-8'); ?></div>
+                    <div class="form-control form-control-sm" style="background:var(--bg-light);cursor:default;"><?php echo htmlspecialchars($blockedSubmitterDefault !== '' ? $blockedSubmitterDefault : 'सहकारी', ENT_QUOTES, 'UTF-8'); ?></div>
                     <input type="hidden" name="submitter_name" value="<?php echo htmlspecialchars($blockedSubmitterDefault !== '' ? $blockedSubmitterDefault : 'सहकारी', ENT_QUOTES, 'UTF-8'); ?>">
                 </div>
                 <div class="mb-2">

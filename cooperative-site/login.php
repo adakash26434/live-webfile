@@ -367,25 +367,25 @@ body {
 
 /* Alerts */
 .alert { padding:9px 11px; border-radius:10px; margin-bottom:11px; font-size:.8rem; display:flex; align-items:flex-start; gap:8px; }
-.alert-error  { background:#fef2f2; color:#b91c1c; border:1px solid #fecaca; }
-.alert-success{ background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0; }
-.alert-warning{ background:#fffbeb; color:#92400e; border:1px solid #fde68a; }
+.alert-error  { background:var(--color-danger-bg); color:#b91c1c; border:1px solid var(--color-danger-border); }
+.alert-success{ background:var(--color-success-bg); color:#15803d; border:1px solid var(--color-success-border); }
+.alert-warning{ background:var(--color-warning-bg); color:#92400e; border:1px solid var(--color-warning-border); }
 .alert-info   { background:#eff6ff; color:#1e40af; border:1px solid #bfdbfe; }
 
 /* OAuth */
 .oauth-divider {
-    text-align:center; font-size:.72rem; color:#9ca3af;
+    text-align:center; font-size:.72rem; color:var(--text-light);
     position:relative; margin:12px 0 10px;
 }
 .oauth-divider::before, .oauth-divider::after {
-    content:''; position:absolute; top:50%; width:38%; height:1px; background:#e5e7eb;
+    content:''; position:absolute; top:50%; width:38%; height:1px; background:var(--border-color);
 }
 .oauth-divider::before { left:0; }
 .oauth-divider::after  { right:0; }
 .oauth-row { display:flex; gap:8px; margin-bottom:8px; }
 .oauth-btn {
-    flex:1; padding:8px; border:1.5px solid #e5e7eb; border-radius:10px;
-    background:#fafbfc; color:#374151; text-decoration:none;
+    flex:1; padding:8px; border:1.5px solid var(--border-color); border-radius:10px;
+    background:#fafbfc; color:var(--text-dark); text-decoration:none;
     font-size:.82rem; font-weight:600; display:flex; align-items:center; justify-content:center; gap:7px;
     transition:all .15s;
 }
@@ -393,7 +393,7 @@ body {
 .oauth-btn .google { color:#ea4335; }
 .oauth-btn .fb     { color:#1877f2; }
 
-.foot-link { text-align:center; margin-top:10px; font-size:.78rem; color:#6b7280; }
+.foot-link { text-align:center; margin-top:10px; font-size:.78rem; color:var(--text-muted); }
 .foot-link a { color:var(--primary-color,#1a8754); font-weight:600; text-decoration:none; }
 .foot-link a:hover { text-decoration:underline; }
 .login-logo-fallback{display:none;margin-bottom:0;}
@@ -406,7 +406,7 @@ body {
 .pw-strength{margin-top:5px;font-size:12px;}
 
 /* Password strength */
-.pw-rules { margin:6px 0 0; padding-left:0; font-size:11.5px; color:#6b7280; line-height:1.7; list-style:none; }
+.pw-rules { margin:6px 0 0; padding-left:0; font-size:11.5px; color:var(--text-muted); line-height:1.7; list-style:none; }
 .pw-rules li.rule-ok{color:var(--primary-color);}
 .pw-rules li.rule-muted{color:var(--text-muted,#9ca3af);}
 .pw-strength.str-0{color:var(--text-muted,#9ca3af);}

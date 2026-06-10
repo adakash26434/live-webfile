@@ -648,13 +648,13 @@ function adminApproveMember($memberId, $adminId = null) {
                 $html = "<div style='font-family:sans-serif;max-width:480px;margin:auto'>
                     <div style='background:var(--primary-color);padding:20px;color:#fff;text-align:center;border-radius:8px 8px 0 0'>
                         <h2 style='margin:0'>{$siteName}</h2></div>
-                    <div style='padding:28px;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 8px 8px'>
+                    <div style='padding:28px;border:1px solid var(--border-color);border-top:none;border-radius:0 0 8px 8px'>
                         <p>नमस्ते <strong>{$firstName}</strong> जी,</p>
-                        <p>तपाईंको Member Portal खाता <strong style='color:#16a34a'>स्वीकृत</strong> भएको छ।</p>
+                        <p>तपाईंको Member Portal खाता <strong style='color:var(--color-success)'>स्वीकृत</strong> भएको छ।</p>
                         <div style='text-align:center;margin:20px 0'>
                             <a href='".SITE_URL."member/login.php' style='background:var(--primary-color);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:bold'>अहिले Login गर्नुहोस्</a>
                         </div>
-                        <p style='color:#6b7280;font-size:.85rem'>धन्यवाद,<br>{$siteName}</p>
+                        <p style='color:var(--text-muted);font-size:.85rem'>धन्यवाद,<br>{$siteName}</p>
                     </div></div>";
                 @mail($m['email'], '=?UTF-8?B?'.base64_encode($subj).'?=', $html,
                       "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: {$siteName} <".getSetting('notify_email_from','noreply@coop.com').">\r\n");
@@ -1230,7 +1230,7 @@ function sendOTPviaEmail($emailAddr, $otp, $memberName, $siteName = '') {
     if (!$siteName) $siteName = function_exists('getSetting') ? getSetting('site_name', 'सहकारी') : 'सहकारी';
     $subject  = "{$siteName} — पासवर्ड रिसेट OTP";
     $htmlBody = "
-    <div style='font-family:sans-serif;max-width:480px;margin:auto;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden'>
+    <div style='font-family:sans-serif;max-width:480px;margin:auto;border:1px solid var(--border-color);border-radius:10px;overflow:hidden'>
       <div style='background:var(--primary-color);padding:20px;text-align:center;color:#fff'>
         <h2 style='margin:0'>{$siteName}</h2>
         <p style='margin:4px 0 0;opacity:.85;font-size:.9rem'>Member Portal</p>
@@ -1239,11 +1239,11 @@ function sendOTPviaEmail($emailAddr, $otp, $memberName, $siteName = '') {
         <p>नमस्ते <strong>" . htmlspecialchars($memberName) . "</strong> जी,</p>
         <p>तपाईंको पासवर्ड रिसेट गर्न OTP:</p>
         <div style='text-align:center;margin:24px 0'>
-          <span style='font-size:2.4rem;font-weight:700;letter-spacing:10px;color:var(--primary-color);background:#f0fdf4;padding:14px 28px;border-radius:8px;display:inline-block'>{$otp}</span>
+          <span style='font-size:2.4rem;font-weight:700;letter-spacing:10px;color:var(--primary-color);background:var(--color-success-bg);padding:14px 28px;border-radius:8px;display:inline-block'>{$otp}</span>
         </div>
-        <p style='color:#6b7280;font-size:.85rem'>यो OTP <strong>10 मिनेट</strong>मा expire हुन्छ।<br>अरूसँग share नगर्नुहोस्।</p>
+        <p style='color:var(--text-muted);font-size:.85rem'>यो OTP <strong>10 मिनेट</strong>मा expire हुन्छ।<br>अरूसँग share नगर्नुहोस्।</p>
       </div>
-      <div style='background:#f9fafb;padding:14px;text-align:center;color:#9ca3af;font-size:.78rem'>
+      <div style='background:var(--bg-light);padding:14px;text-align:center;color:var(--text-light);font-size:.78rem'>
         {$siteName} © " . date('Y') . "
       </div>
     </div>";

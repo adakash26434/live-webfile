@@ -198,7 +198,7 @@ if (count($allCycles) > 1):
     <div class="card-header"><h6 class="mb-0"><i class="fas fa-arrow-right-arrow-left me-2"></i>विजेताहरूलाई समिति सदस्यमा रूपान्तरण</h6></div>
     <div class="card-body">
         <p class="small text-muted">प्रत्येक पदको शीर्ष उम्मेदवारहरू (सिट संख्या बराबर) सम्बन्धित समितिमा नयाँ कार्यकालमा थपिनेछन्। यो action ले मतदान पनि बन्द गर्नेछ।</p>
-        <form method="post" class="row g-2" onsubmit="return confirm('विजेताहरू समितिमा थप्ने र मतदान बन्द गर्ने?');">
+        <form method="post" class="row g-2" data-confirm="विजेताहरू समितिमा थप्ने र मतदान बन्द गर्ने?">
             <?php echo csrfField(); ?>
             <input type="hidden" name="action" value="convert_winners">
             <div class="col-md-4"><label class="form-label small">कार्यकाल नाम</label>

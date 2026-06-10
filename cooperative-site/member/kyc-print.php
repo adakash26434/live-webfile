@@ -67,9 +67,9 @@ if (!$kycRow) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo htmlspecialchars($_t('KYC प्रिन्ट', 'KYC Print')); ?></title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; color: #111827; background: #f3f4f6; }
+        body { font-family: Arial, sans-serif; margin: 0; color: var(--text-dark); background: var(--bg-light); }
         .wrap { max-width: 980px; margin: 12px auto; background: #fff; border: 1px solid #d1d5db; }
-        .toolbar { padding: 10px 12px; border-bottom: 1px solid #e5e7eb; background: #f9fafb; display: flex; gap: 8px; }
+        .toolbar { padding: 10px 12px; border-bottom: 1px solid var(--border-color); background: var(--bg-light); display: flex; gap: 8px; }
         .btn { border: 1px solid var(--primary-color); color: var(--primary-color); background: #ecfdf5; padding: 6px 10px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 700; }
         .btn:hover { background: #dcfce7; }
         .page { padding: 14px 16px; }
@@ -78,14 +78,14 @@ if (!$kycRow) {
         .hdr .sub { font-size: 12px; color: #475569; margin-top: 4px; }
         .meta { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; margin: 10px 0; font-size: 12px; }
         .meta div { background: #f8fafc; border: 1px solid #e2e8f0; padding: 6px 8px; border-radius: 6px; }
-        .sec { margin-top: 10px; border: 1px solid #fecaca; border-radius: 8px; overflow: hidden; }
-        .sec h3 { margin: 0; font-size: 14px; padding: 7px 10px; background: #fef2f2; color: var(--secondary-dark,#922b21); }
+        .sec { margin-top: 10px; border: 1px solid var(--color-danger-border); border-radius: 8px; overflow: hidden; }
+        .sec h3 { margin: 0; font-size: 14px; padding: 7px 10px; background: var(--color-danger-bg); color: var(--secondary-dark,#922b21); }
         table { width: 100%; border-collapse: collapse; font-size: 12px; }
-        td, th { border-bottom: 1px solid #e5e7eb; padding: 6px 8px; vertical-align: top; }
+        td, th { border-bottom: 1px solid var(--border-color); padding: 6px 8px; vertical-align: top; }
         th { width: 32%; text-align: left; color: #475569; background: #f8fafc; }
-        .small { font-size: 11px; color: #6b7280; }
+        .small { font-size: 11px; color: var(--text-muted); }
         .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .empty { padding: 10px; color: #6b7280; font-size: 12px; }
+        .empty { padding: 10px; color: var(--text-muted); font-size: 12px; }
         @media print {
             body { background: #fff; }
             .wrap { border: none; margin: 0; max-width: none; }

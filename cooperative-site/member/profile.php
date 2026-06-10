@@ -357,7 +357,7 @@ $kymDobDisplay = (trim((string)($kymDobKr['dob_bs'] ?? '')) !== '')
                 </div>
                 <div class="mem-card-body">
                     <?php if (!$hasPwd): ?>
-                    <div class="mem-alert" style="background:#fef2f2;border-left:3px solid var(--secondary-color,#c0392b);color:var(--secondary-dark,#922b21);font-size:0.8rem;padding:9px 12px;margin-bottom:12px;">
+                    <div class="mem-alert" style="background:var(--color-danger-bg);border-left:3px solid var(--secondary-color,#c0392b);color:var(--secondary-dark,#922b21);font-size:0.8rem;padding:9px 12px;margin-bottom:12px;">
                         <i class="fas fa-info-circle me-1"></i>
                         तपाईंको account OAuth (Google/Facebook) बाट बनेको छ। तल नयाँ पासवर्ड सेट गर्नुहोस् — त्यसपछि इमेल + पासवर्डले पनि लगिन गर्न सक्नुहुनेछ।
                     </div>
@@ -581,12 +581,12 @@ $kymDobDisplay = (trim((string)($kymDobKr['dob_bs'] ?? '')) !== '')
                                 $docShowImg = $srcRaw !== '' && !kycDocNeedsUpload($srcRaw);
                                 $docImgUrl = $docShowImg ? publicSiteAssetUrl($srcRaw) : '';
                             ?>
-                            <div style="border:1px solid #e5e7eb;border-radius:10px;padding:8px;background:#f9fafb;">
-                                <div style="font-size:0.75rem;font-weight:600;color:#374151;margin-bottom:6px;"><?php echo htmlspecialchars($label); ?></div>
+                            <div style="border:1px solid var(--border-color);border-radius:10px;padding:8px;background:var(--bg-light);">
+                                <div style="font-size:0.75rem;font-weight:600;color:var(--text-dark);margin-bottom:6px;"><?php echo htmlspecialchars($label); ?></div>
                                 <?php if ($docShowImg && $docImgUrl !== ''): ?>
-                                    <img src="<?php echo htmlspecialchars($docImgUrl); ?>" alt="<?php echo htmlspecialchars($label); ?>" style="width:100%;height:74px;object-fit:cover;border-radius:8px;border:1px solid #fecaca;background:#fff;">
+                                    <img src="<?php echo htmlspecialchars($docImgUrl); ?>" alt="<?php echo htmlspecialchars($label); ?>" style="width:100%;height:74px;object-fit:cover;border-radius:8px;border:1px solid var(--color-danger-border);background:#fff;">
                                 <?php else: ?>
-                                    <div style="height:74px;border:1px dashed #d1d5db;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;color:#9ca3af;background:#fff;text-align:center;padding:6px;"><?php echo $srcRaw !== '' ? 'फाइल भेटिएन / URL मिलेन' : 'अपलोड छैन'; ?></div>
+                                    <div style="height:74px;border:1px dashed #d1d5db;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;color:var(--text-light);background:#fff;text-align:center;padding:6px;"><?php echo $srcRaw !== '' ? 'फाइल भेटिएन / URL मिलेन' : 'अपलोड छैन'; ?></div>
                                 <?php endif; ?>
                             </div>
                             <?php endforeach; ?>
@@ -597,14 +597,14 @@ $kymDobDisplay = (trim((string)($kymDobKr['dob_bs'] ?? '')) !== '')
                             <?php echo csrfField(); ?>
                             <input type="hidden" name="do_kyc_docs" value="1">
                             <?php if ($kycLocked): ?>
-                            <div class="mem-alert" style="margin-bottom:12px;background:#fffbeb;border:1px solid #fde68a;color:#92400e;font-size:0.8rem;padding:10px 12px;">
+                            <div class="mem-alert" style="margin-bottom:12px;background:var(--color-warning-bg);border:1px solid var(--color-warning-border);color:#92400e;font-size:0.8rem;padding:10px 12px;">
                                 <i class="fas fa-circle-info me-1"></i> KYC अनुमोदित छ। <strong>हराइरहेका वा फाइल नभएका</strong> कागजात मात्र थप्न सकिन्छ; पहिले नै भएको फाइल यहाँबाट बदल्न मिल्दैन।
                             </div>
                             <?php endif; ?>
                             <div class="small text-muted mb-2">KYM single-source कायम राख्दै, हराइरहेको कागजात यहींबाट अपडेट गर्न सक्नुहुन्छ।</div>
                             <?php if (kycDocNeedsUpload($kycRow['photo'] ?? null)): ?>
                             <div class="mem-field">
-                                <label>फोटो <span style="color:#dc2626;">*</span></label>
+                                <label>फोटो <span style="color:var(--color-danger);">*</span></label>
                                 <div class="kyc-cap-field" data-kyc-cap="passport">
                                     <span class="kyc-cap-label">पासपोर्ट साइज फोटो — दुवै आँखा र दुवै कान स्पष्ट हुनुपर्छ</span>
                                     <input type="hidden" name="photo">
@@ -614,7 +614,7 @@ $kymDobDisplay = (trim((string)($kymDobKr['dob_bs'] ?? '')) !== '')
                             <?php endif; ?>
                             <?php if (kycDocNeedsUpload($kycRow['citizenship_front'] ?? null)): ?>
                             <div class="mem-field">
-                                <label>नागरिकता अगाडि <span style="color:#dc2626;">*</span></label>
+                                <label>नागरिकता अगाडि <span style="color:var(--color-danger);">*</span></label>
                                 <div class="kyc-cap-field" data-kyc-cap="citizen_front">
                                     <span class="kyc-cap-label">नागरिकता अगाडिको फोटो — असली नागरिकता पत्र मात्र</span>
                                     <input type="hidden" name="citizenship_front">
@@ -624,7 +624,7 @@ $kymDobDisplay = (trim((string)($kymDobKr['dob_bs'] ?? '')) !== '')
                             <?php endif; ?>
                             <?php if (kycDocNeedsUpload($kycRow['citizenship_back'] ?? null)): ?>
                             <div class="mem-field">
-                                <label>नागरिकता पछाडि <span style="color:#dc2626;">*</span></label>
+                                <label>नागरिकता पछाडि <span style="color:var(--color-danger);">*</span></label>
                                 <div class="kyc-cap-field" data-kyc-cap="citizen_back">
                                     <span class="kyc-cap-label">नागरिकता पछाडिको फोटो — असली नागरिकता पत्र मात्र</span>
                                     <input type="hidden" name="citizenship_back">
@@ -660,7 +660,7 @@ $kymDobDisplay = (trim((string)($kymDobKr['dob_bs'] ?? '')) !== '')
                             <button type="submit" class="mem-submit-btn" style="margin-top:4px;"><i class="fas fa-upload me-2"></i>हराइरहेको KYC कागजात अपडेट</button>
                         </form>
                         <?php else: ?>
-                        <div class="mem-alert" style="margin-top:8px;background:#fef2f2;border-left:3px solid var(--secondary-color,#c0392b);color:var(--secondary-dark,#922b21);font-size:0.8rem;padding:9px 12px;">
+                        <div class="mem-alert" style="margin-top:8px;background:var(--color-danger-bg);border-left:3px solid var(--secondary-color,#c0392b);color:var(--secondary-dark,#922b21);font-size:0.8rem;padding:9px 12px;">
                             <i class="fas fa-database me-1"></i>
                             सबै KYM data single-source रूपमा सुरक्षित छ। थप field/नयाँ आवेदनको लागि
                             <a href="<?php echo htmlspecialchars($kycEditUrl); ?>" style="margin-left:6px;font-weight:700;">KYM फर्म खोल्नुहोस्</a>।

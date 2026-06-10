@@ -551,7 +551,7 @@ if ($viewApplication && !empty($viewApplication['id'])) {
                                                 <i class="fas fa-eye"></i>
                                             </a>
                                             <form method="POST" class="adm-icon-form"
-                                                  onsubmit="return confirm('के तपाईं पक्का हुनुहुन्छ? यो कार्य फिर्ता हुँदैन।')">
+                                                  data-confirm="के तपाईं पक्का हुनुहुन्छ? यो कार्य फिर्ता हुँदैन।">
                                                 <?php echo csrfField(); ?>
                                                 <input type="hidden" name="action" value="delete">
                                                 <input type="hidden" name="id" value="<?php echo $app['id']; ?>">

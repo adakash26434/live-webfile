@@ -224,7 +224,7 @@ try {
                                     </li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
-                                        <form method="POST" class="d-inline" onsubmit="return confirm('के तपाईं पक्का हुनुहुन्छ?')">
+                                        <form method="POST" class="d-inline" data-confirm="के तपाईं पक्का हुनुहुन्छ?">
                                             <?php echo csrfField(); ?>
                                             <input type="hidden" name="delete_bid" value="1">
                                             <input type="hidden" name="bid_id" value="<?php echo (int)$bid['id']; ?>">

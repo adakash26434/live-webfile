@@ -177,7 +177,7 @@ $newsArch = $newsPart['archived'];
                                             title="सम्पादन">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <form method="POST" class="svc-inline-form" onsubmit="return confirm('के तपाईं यो समाचार मेटाउन निश्चित हुनुहुन्छ?')">
+                                    <form method="POST" class="svc-inline-form" data-confirm="के तपाईं यो समाचार मेटाउन निश्चित हुनुहुन्छ?">
     <?php echo csrfField(); ?>
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $n['id']; ?>">
@@ -239,7 +239,7 @@ $newsArch = $newsPart['archived'];
                                             title="सम्पादन">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <form method="POST" class="svc-inline-form" onsubmit="return confirm('के तपाईं यो समाचार मेटाउन निश्चित हुनुहुन्छ?')">
+                                    <form method="POST" class="svc-inline-form" data-confirm="के तपाईं यो समाचार मेटाउन निश्चित हुनुहुन्छ?">
     <?php echo csrfField(); ?>
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $n['id']; ?>">

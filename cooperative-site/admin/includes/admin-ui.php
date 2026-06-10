@@ -147,7 +147,7 @@ function adminActiveBadge($isActive): string {
          . 'background:color-mix(in srgb, var(--secondary-color) 10%, #ffffff);color:var(--secondary-dark,var(--secondary-color));border-radius:20px;'
          . 'padding:4px 10px;font-weight:600;font-size:0.72rem;'
          . 'display:inline-flex;align-items:center;gap:5px;">'
-         . '<span style="width:6px;height:6px;border-radius:50%;background:#9ca3af;flex-shrink:0;"></span>'
+         . '<span style="width:6px;height:6px;border-radius:50%;background:var(--text-light);flex-shrink:0;"></span>'
          . htmlspecialchars(adminUiT('लुकाइएको', 'Hidden')) . '</span>';
 }
 
@@ -238,7 +238,7 @@ function adminToggleBtn(int $recordId, $isActive, string $csrfToken, string $ext
    ────────────────────────────────────────────────────────────── */
 function adminDeleteBtn(int $recordId, string $csrfToken, string $confirmMsg = 'यो record हटाउने? यो कार्य फिर्ता हुँदैन।', string $extraFields = ''): string {
     $safeMsg = addslashes($confirmMsg);
-    return '<form method="POST" class="d-inline" onsubmit="return confirm(\'' . $safeMsg . '\')">'
+    return '<form method="POST" class="d-inline" data-confirm="' . $safeMsg . '">'
          . '<input type="hidden" name="action" value="delete">'
          . '<input type="hidden" name="id" value="' . $recordId . '">'
          . '<input type="hidden" name="csrf_token" value="' . htmlspecialchars($csrfToken) . '">'

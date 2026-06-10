@@ -177,7 +177,7 @@ $flash = getFlash();
                                             title="सम्पादन">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <form method="POST" style="display:inline" onsubmit="return confirm('के तपाईं यो फाइल मेटाउन निश्चित हुनुहुन्छ?')">
+                                    <form method="POST" style="display:inline" data-confirm="के तपाईं यो फाइल मेटाउन निश्चित हुनुहुन्छ?">
     <?php echo csrfField(); ?>
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $d['id']; ?>">
@@ -239,7 +239,7 @@ $flash = getFlash();
                                             title="सम्पादन">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <form method="POST" style="display:inline" onsubmit="return confirm('के तपाईं यो फाइल मेटाउन निश्चित हुनुहुन्छ?')">
+                                    <form method="POST" style="display:inline" data-confirm="के तपाईं यो फाइल मेटाउन निश्चित हुनुहुन्छ?">
     <?php echo csrfField(); ?>
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $d['id']; ?>">

@@ -213,11 +213,11 @@ foreach ($rows as $_r) {
                           data-qr-member="<?php echo $dMember; ?>" data-qr-legacy="<?php echo $dLegacy; ?>" data-qr-title="<?php echo $dTitle; ?>"
                           title="थिचेर ठूलो QR र लिंक">
                     <img src="https://api.qrserver.com/v1/create-qr-code/?data=<?php echo rawurlencode($memberQrUrl); ?>&size=56x56&margin=1" width="56" height="56" alt="QR"
-                         style="border:1px solid #e5e7eb;border-radius:6px;display:block;background:#fff;">
+                         style="border:1px solid var(--border-color);border-radius:6px;display:block;background:#fff;">
                   </button>
                   <span class="text-muted" style="font-size:.62rem;white-space:nowrap;">थिच्नुहोस् → ठूलो</span>
                   <code class="small text-muted user-select-all" style="font-size:.58rem;max-width:88px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="<?php echo htmlspecialchars($r['qr_token']); ?>"><?php echo htmlspecialchars(substr($r['qr_token'], 0, 8)) . '…'; ?></code>
-                  <form method="POST" class="m-0" onsubmit="return confirm('QR हटाउने?');">
+                  <form method="POST" class="m-0" data-confirm="QR हटाउने?">
                     <?php echo csrfField(); ?>
                     <input type="hidden" name="action" value="clear_qr">
                     <input type="hidden" name="id" value="<?php echo (int)$r['id']; ?>">
@@ -236,7 +236,7 @@ foreach ($rows as $_r) {
             <td>
               <a class="btn btn-sm btn-outline-primary" href="programs.php?edit=<?php echo (int)$r['id']; ?>"><i class="fas fa-edit"></i></a>
               <form method="POST" class="d-inline"><?php echo csrfField(); ?><input type="hidden" name="action" value="toggle"><input type="hidden" name="id" value="<?php echo (int)$r['id']; ?>"><button type="submit" class="btn btn-sm btn-outline-warning" title="सक्रिय/निष्क्रिय"><i class="fas fa-power-off"></i></button></form>
-              <form method="POST" class="d-inline" onsubmit="return confirm('हटाउने?');"><?php echo csrfField(); ?><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="<?php echo (int)$r['id']; ?>"><button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button></form>
+              <form method="POST" class="d-inline" data-confirm="हटाउने?"><?php echo csrfField(); ?><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="<?php echo (int)$r['id']; ?>"><button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button></form>
             </td>
           </tr>
           <?php

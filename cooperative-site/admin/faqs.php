@@ -172,7 +172,7 @@ $faqsArch = $faqPart['archived'];
                                             title="सम्पादन">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <form method="POST" style="display:inline" onsubmit="return confirm('के तपाईं यो मेटाउन निश्चित हुनुहुन्छ?')">
+                                    <form method="POST" style="display:inline" data-confirm="के तपाईं यो मेटाउन निश्चित हुनुहुन्छ?">
                                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $f['id']; ?>">
@@ -225,7 +225,7 @@ $faqsArch = $faqPart['archived'];
                                             title="सम्पादन">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <form method="POST" style="display:inline" onsubmit="return confirm('के तपाईं यो मेटाउन निश्चित हुनुहुन्छ?')">
+                                    <form method="POST" style="display:inline" data-confirm="के तपाईं यो मेटाउन निश्चित हुनुहुन्छ?">
                                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $f['id']; ?>">

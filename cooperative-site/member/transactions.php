@@ -84,7 +84,7 @@ if (isset($_GET['export']) && $_GET['export'] === 'csv') {
 .tx-card.credit{background:color-mix(in srgb, var(--primary-color) 12%, white);border-color:color-mix(in srgb, var(--primary-color) 24%, white);}
 .tx-card.debit{background:color-mix(in srgb, var(--secondary-color) 12%, white);border-color:color-mix(in srgb, var(--secondary-color) 24%, white);}
 .tx-card.balance{background:color-mix(in srgb, var(--secondary-color) 10%, white);border-color:color-mix(in srgb, var(--secondary-color) 20%, white);}
-.tx-card.total{background:color-mix(in srgb, var(--primary-color) 8%, white);border-color:color-mix(in srgb, var(--primary-color) 14%, #e5e7eb);}
+.tx-card.total{background:color-mix(in srgb, var(--primary-color) 8%, white);border-color:color-mix(in srgb, var(--primary-color) 14%, var(--border-color));}
 .tx-amt{font-size:1.1rem;font-weight:700;}
 .tx-amt.credit{color:var(--primary-color);}
 .tx-amt.debit{color:var(--secondary-color);}
@@ -100,11 +100,11 @@ if (isset($_GET['export']) && $_GET['export'] === 'csv') {
 .tx-empty-text{color:var(--text-light,#6b7280);margin:0;}
 .tx-scroll{overflow-x:auto;}
 .tx-table{width:100%;border-collapse:collapse;}
-.tx-th-row{background:color-mix(in srgb, var(--primary-color) 8%, white);border-bottom:2px solid color-mix(in srgb, var(--primary-color) 14%, #e5e7eb);}
+.tx-th-row{background:color-mix(in srgb, var(--primary-color) 8%, white);border-bottom:2px solid color-mix(in srgb, var(--primary-color) 14%, var(--border-color));}
 .tx-th{padding:12px 16px;text-align:left;font-size:12px;font-weight:600;color:var(--text-color,#374151);}
 .tx-th-right{text-align:right;white-space:nowrap;}
 .tx-th-center{text-align:center;padding:12px 8px;}
-.tx-row{border-bottom:1px solid color-mix(in srgb, var(--primary-color) 10%, #f3f4f6);}
+.tx-row{border-bottom:1px solid color-mix(in srgb, var(--primary-color) 10%, var(--bg-light));}
 .tx-td{padding:12px 16px;font-size:13px;color:var(--text-light,#6b7280);white-space:nowrap;}
 .tx-td-main{padding:12px 16px;font-size:13px;color:var(--text-color,#111827);}
 .tx-ref{color:var(--text-muted,#9ca3af);}
@@ -115,11 +115,11 @@ if (isset($_GET['export']) && $_GET['export'] === 'csv') {
 .tx-pill{display:inline-flex;align-items:center;gap:4px;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600;border:1px solid transparent;}
 .tx-pill.credit{background:color-mix(in srgb, var(--primary-color) 12%, white);color:var(--primary-color);border-color:color-mix(in srgb, var(--primary-color) 24%, white);}
 .tx-pill.debit{background:color-mix(in srgb, var(--secondary-color) 12%, white);color:var(--secondary-color);border-color:color-mix(in srgb, var(--secondary-color) 24%, white);}
-.tx-pag{display:flex;justify-content:center;gap:8px;padding:16px;border-top:1px solid color-mix(in srgb, var(--primary-color) 10%, #f3f4f6);flex-wrap:wrap;}
+.tx-pag{display:flex;justify-content:center;gap:8px;padding:16px;border-top:1px solid color-mix(in srgb, var(--primary-color) 10%, var(--bg-light));flex-wrap:wrap;}
 .tx-page-link{padding:6px 12px;border:1px solid color-mix(in srgb, var(--primary-color) 18%, #d1d5db);border-radius:6px;font-size:13px;color:var(--text-color,#374151);text-decoration:none;}
 .tx-page-link.active{background:var(--primary-color);color:var(--text-on-primary,white);border:1px solid var(--primary-color);}
-.tx-csv-btn{border-color:#6b7280;color:#374151;background:white;}
-.tx-csv-btn:hover{background:#f0fdf4;border-color:var(--primary-color);color:var(--primary-color);}
+.tx-csv-btn{border-color:var(--text-muted);color:var(--text-dark);background:white;}
+.tx-csv-btn:hover{background:var(--color-success-bg);border-color:var(--primary-color);color:var(--primary-color);}
 </style>
 
   <!-- Page header -->

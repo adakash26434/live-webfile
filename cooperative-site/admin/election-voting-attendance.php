@@ -160,7 +160,7 @@ try {
         <div class="card admin-table-card h-100">
             <div class="card-header"><h6 class="mb-0"><i class="fas fa-id-card me-2"></i>Manual Voting Attendance</h6></div>
             <div class="card-body">
-                <form method="post" class="row g-2" onsubmit="return confirm('यो सदस्यको voting attendance/vote confirm गर्ने? Confirm पछि duplicate मानिन्छ।');">
+                <form method="post" class="row g-2" data-confirm="यो सदस्यको voting attendance/vote confirm गर्ने? Confirm पछि duplicate मानिन्छ।">
                     <?php echo csrfField(); ?>
                     <input type="hidden" name="action" value="mark_manual_vote">
                     <div class="col-md-6"><label class="form-label small">Member ID / सदस्य नं.</label><input name="member_key" class="form-control" placeholder="MEM-... / ID"></div>
