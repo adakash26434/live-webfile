@@ -1111,6 +1111,27 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                     <li class="<?php echo $currentPage == 'contact' ? 'active' : ''; ?>">
                         <a href="<?php echo SITE_URL; ?>contact.php"><?php echo $L['contact']; ?></a>
                     </li>
+
+                    <!-- Mobile Quick Links — only visible in nav drawer (d-lg-none hides on desktop) -->
+                    <li class="has-dropdown d-lg-none">
+                        <a href="javascript:void(0);">
+                            <i class="fas fa-th me-1"></i>
+                            <?php echo isEnglish() ? 'Quick Links' : 'छिटो लिंक'; ?>
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown">
+                            <li><a href="<?php echo SITE_URL; ?>emi-calculator.php"><i class="fas fa-calculator"></i> <?php echo isEnglish() ? 'EMI Calculator' : 'ईएमआई क्याल्कुलेटर'; ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>exchange-rate.php"><i class="fas fa-exchange-alt"></i> <?php echo isEnglish() ? 'Exchange Rate' : 'विनिमय दर'; ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>date-converter.php"><i class="fas fa-calendar-alt"></i> <?php echo isEnglish() ? 'Date Converter' : 'मिति परिवर्तन'; ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>auction.php"><i class="fas fa-gavel"></i> <?php echo isEnglish() ? 'Auction Portal' : 'लिलामी पोर्टल'; ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>application-tracker.php"><i class="fas fa-search"></i> <?php echo isEnglish() ? 'Track Application' : 'आवेदन ट्र्याक'; ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>digital-services.php"><i class="fas fa-laptop"></i> <?php echo isEnglish() ? 'Digital Services' : 'डिजिटल सेवा'; ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>service-centers.php"><i class="fas fa-map-marker-alt"></i> <?php echo isEnglish() ? 'Branches' : 'शाखाहरू'; ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>downloads.php"><i class="fas fa-download"></i> <?php echo isEnglish() ? 'Downloads' : 'डाउनलोड'; ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>reports.php"><i class="fas fa-chart-bar"></i> <?php echo isEnglish() ? 'Reports' : 'प्रतिवेदन'; ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>faqs.php"><i class="fas fa-question-circle"></i> <?php echo isEnglish() ? 'FAQs' : 'प्रश्नोत्तर'; ?></a></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
         </div>

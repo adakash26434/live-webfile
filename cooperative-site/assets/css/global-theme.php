@@ -2357,5 +2357,40 @@ body.dark-mode .mem-danger-link                 { background: rgba(220,38,38,.12
 body.dark-mode .mem-success-link                { background: rgba(22,163,74,.12) !important; color: #86efac !important; border-color: rgba(22,163,74,.2) !important; }
 body.dark-mode .mem-section-hr                  { border-top-color: #2d3a4f !important; }
 
+/* ════════════════════════════════════════════════════════════
+   BUG-FIX PATCH — UI Issues (2026-06-12)
+   ════════════════════════════════════════════════════════════ */
+
+/* BUG 2: Notices Section Header — text visible on dark green background */
+.notices-section .section-header h2,
+.notices-section .section-header h3             { color: #fff !important; }
+.notices-section .section-header p              { color: rgba(255,255,255,0.85) !important; }
+.notices-section .section-header .section-badge {
+    background: rgba(255,255,255,0.15) !important;
+    color: #fff !important;
+    border-color: rgba(255,255,255,0.3) !important;
+}
+.notices-section .section-header .section-divider,
+.notices-section .section-header .section-divider::before {
+    background: rgba(255,255,255,0.4) !important;
+}
+
+/* BUG 3: Contact Page — text visible on dark green background */
+.contact-info-box h4                            { color: #fff !important; }
+.contact-info-box > p                           { color: rgba(255,255,255,0.88) !important; opacity: 1 !important; }
+.contact-details h6                             { color: rgba(255,255,255,0.75) !important; }
+.contact-details p,
+.contact-details p a                            { color: rgba(255,255,255,0.92) !important; }
+
+/* BUG 4: Career Page — stat box stacks on mobile instead of floating right */
+@media (max-width: 575px) {
+    .cr-hero-inner   { flex-direction: column !important; align-items: flex-start !important; gap: 1rem !important; }
+    .cr-stats        { width: 100% !important; justify-content: flex-start !important; }
+    .cr-stat-box     { min-width: 76px !important; padding: .65rem .9rem !important; }
+}
+
+/* BUG 1: Mobile nav drawer — show .d-lg-none items inside drawer */
+body.header-v2 #mainNavV2 .nav-menu > li.d-lg-none { display: block !important; }
+
 </style>
 
