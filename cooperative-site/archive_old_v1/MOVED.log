@@ -1,0 +1,2 @@
+2026-06-12 | core/helpers.php | Dead code — PLANNED BUT NOT YET INTEGRATED. Canonical functions in includes/config.php. Zero references confirmed.
+2026-06-12 | core/init.php    | Dead code — planned unified init, never integrated. Zero references confirmed.

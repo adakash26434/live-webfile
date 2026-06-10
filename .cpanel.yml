@@ -1,0 +1,8 @@
+---
+deployment:
+  tasks:
+    - /bin/rsync -rl --exclude='.git' --exclude='.emergent' --exclude='.gitconfig' --exclude='.pytest_cache' --exclude='tests/' --exclude='scripts/' --exclude='memory/' --exclude='test_reports/' --exclude='docs/' --exclude='archive_old_v1/' --exclude='*.zip' --exclude='*.bak' cooperative-site/ ./
+    - /bin/rm -rf cooperative-site
+    - /bin/rm -rf .emergent
+    - /bin/rm -f .gitconfig
+    - /bin/rm -rf .ruff_cache
