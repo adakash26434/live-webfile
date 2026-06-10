@@ -20,6 +20,7 @@ $branches    = hrmListBranches($db);
 
 /* ── POST handlers ── */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    checkCSRF();
     $a = $_POST['action'] ?? '';
 
     if ($a === 'add_contract') {
@@ -182,13 +183,13 @@ $emp->execute([$id]);
 $emp = $emp->fetch(PDO::FETCH_ASSOC);
 if (!$emp) { setFlash('error','कर्मचारी फेला परेन।'); header('Location: hrm-employees.php'); exit; }
 
-$contracts  = $db->prepare("SELECT * FROM hrm_employee_contracts WHERE employee_id=? ORDER BY id DESC");        $contracts->execute([$id]); $contracts = $contracts->fetchAll(PDO::FETCH_ASSOC);
-$documents  = $db->prepare("SELECT * FROM hrm_employee_documents WHERE employee_id=? ORDER BY id DESC");        $documents->execute([$id]); $documents = $documents->fetchAll(PDO::FETCH_ASSOC);
-$education  = $db->prepare("SELECT * FROM hrm_employee_education WHERE employee_id=? ORDER BY sort_order, id"); $education->execute([$id]); $education = $education->fetchAll(PDO::FETCH_ASSOC);
-$experience = $db->prepare("SELECT * FROM hrm_employee_experience WHERE employee_id=? ORDER BY from_date_ad DESC"); $experience->execute([$id]); $experience = $experience->fetchAll(PDO::FETCH_ASSOC);
-$family     = $db->prepare("SELECT * FROM hrm_employee_family WHERE employee_id=? ORDER BY id");                $family->execute([$id]);    $family = $family->fetchAll(PDO::FETCH_ASSOC);
-$bank       = $db->prepare("SELECT * FROM hrm_employee_bank WHERE employee_id=?");                              $bank->execute([$id]);      $bank = $bank->fetch(PDO::FETCH_ASSOC) ?: [];
-$history    = $db->prepare("SELECT * FROM hrm_employee_history WHERE employee_id=? ORDER BY event_date_ad DESC, id DESC"); $history->execute([$id]); $history = $history->fetchAll(PDO::FETCH_ASSOC);
+$contracts  = $db->prepare("SELECT id, employee_id, contract_no, contract_type, designation, department_id, branch_id, start_date_bs, start_date_ad, end_date_bs, end_date_ad, basic_salary, allowance, notes, file_path, is_active, created_by, created_at FROM hrm_employee_contracts WHERE employee_id=? ORDER BY id DESC");        $contracts->execute([$id]); $contracts = $contracts->fetchAll(PDO::FETCH_ASSOC);
+$documents  = $db->prepare("SELECT id, employee_id, doc_type, title, doc_number, issued_by, issued_date_bs, issued_date_ad, expiry_date_ad, file_path, notes, uploaded_by, created_at FROM hrm_employee_documents WHERE employee_id=? ORDER BY id DESC");        $documents->execute([$id]); $documents = $documents->fetchAll(PDO::FETCH_ASSOC);
+$education  = $db->prepare("SELECT id, employee_id, level, board_university, institution, major, passed_year, division_grade, percentage, file_path, sort_order FROM hrm_employee_education WHERE employee_id=? ORDER BY sort_order, id"); $education->execute([$id]); $education = $education->fetchAll(PDO::FETCH_ASSOC);
+$experience = $db->prepare("SELECT id, employee_id, organization, designation, from_date_ad, to_date_ad, responsibilities, sort_order FROM hrm_employee_experience WHERE employee_id=? ORDER BY from_date_ad DESC"); $experience->execute([$id]); $experience = $experience->fetchAll(PDO::FETCH_ASSOC);
+$family     = $db->prepare("SELECT id, employee_id, relation, full_name, contact, occupation, is_nominee, nominee_share, notes FROM hrm_employee_family WHERE employee_id=? ORDER BY id");                $family->execute([$id]);    $family = $family->fetchAll(PDO::FETCH_ASSOC);
+$bank       = $db->prepare("SELECT id, employee_id, bank_name, branch, account_no, account_name, pf_no, cit_no, ssf_no, insurance_no, notes FROM hrm_employee_bank WHERE employee_id=?");                              $bank->execute([$id]);      $bank = $bank->fetch(PDO::FETCH_ASSOC) ?: [];
+$history    = $db->prepare("SELECT id, employee_id, event_type, event_date_bs, event_date_ad, from_designation, to_designation, from_department_id, to_department_id, from_branch_id, to_branch_id, reference_no, description, file_path, created_by, created_at FROM hrm_employee_history WHERE employee_id=? ORDER BY event_date_ad DESC, id DESC"); $history->execute([$id]); $history = $history->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <div class="admin-content">
   <div class="page-header stf-page-head">

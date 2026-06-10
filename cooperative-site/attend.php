@@ -30,7 +30,7 @@ if ($db) {
 /* ── Load program from token ── */
 if ($db && $token) {
     try {
-        $st = $db->prepare("SELECT * FROM upcoming_programs WHERE qr_token=? AND is_active=1 LIMIT 1");
+        $st = $db->prepare("SELECT id, title, description, event_date, event_time, location, is_active, pre_registration_open, qr_token, created_by, created_at, updated_at FROM upcoming_programs WHERE qr_token=? AND is_active=1 LIMIT 1");
         $st->execute([$token]);
         $prog = $st->fetch(PDO::FETCH_ASSOC) ?: null;
         if (!$prog) $err = $_t('यो QR code मान्य छैन वा कार्यक्रम समाप्त भयो।', 'This QR code is invalid or the program has ended.');

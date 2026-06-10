@@ -41,6 +41,7 @@ if (file_exists($configFile)) {
    POST HANDLERS
 ══════════════════════════════════════════════════════ */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    checkCSRF();
     $action = $_POST['action'] ?? '';
 
     /* ── १. Site Settings Update — setup.php र admin panel दुवैले same table use गर्छन् ── */

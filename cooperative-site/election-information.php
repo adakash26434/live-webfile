@@ -38,7 +38,7 @@ try {
     )->fetchAll(PDO::FETCH_ASSOC) ?: [];
 
     if ($reqId > 0) {
-        $st = $db->prepare("SELECT * FROM election_cycles WHERE id = ? AND is_published = 1 LIMIT 1");
+        $st = $db->prepare("SELECT id, title_np, title_en, intro_np, intro_en, period_label, date_from, date_to, is_published, show_in_navbar, sort_order, created_at, updated_at FROM election_cycles WHERE id = ? AND is_published = 1 LIMIT 1");
         $st->execute([$reqId]);
         $cycle = $st->fetch(PDO::FETCH_ASSOC) ?: null;
     }
@@ -48,7 +48,7 @@ try {
 
     if ($cycle) {
         $ms = $db->prepare(
-            "SELECT * FROM election_milestones WHERE cycle_id = ? AND is_active = 1
+            "SELECT id, cycle_id, event_date, title_np, title_en, detail_np, detail_en, attachment, display_order, is_active, created_at FROM election_milestones WHERE cycle_id = ? AND is_active = 1
              ORDER BY display_order ASC, event_date ASC, id ASC"
         );
         $ms->execute([(int)$cycle['id']]);

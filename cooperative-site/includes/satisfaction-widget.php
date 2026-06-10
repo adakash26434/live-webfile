@@ -32,7 +32,7 @@ try {
 
         /* Active links ल्याउनुहोस् — enabled भएमा मात्र */
         if ($satisfactionEnabled) {
-            $linksStmt = $db->prepare("SELECT * FROM satisfaction_links WHERE is_active = 1 ORDER BY display_order ASC LIMIT 5");
+            $linksStmt = $db->prepare("SELECT id, title, title_en, url, icon, is_active, display_order, created_at, updated_at FROM satisfaction_links WHERE is_active = 1 ORDER BY display_order ASC LIMIT 5");
             $linksStmt->execute();
             $satisfactionLinks = $linksStmt->fetchAll() ?: [];
         }

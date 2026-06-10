@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (string) ($_POST['action'] ?? '') =
                 try {
                     $db = getDB();
                     coop_admin_ensure_twofa_columns($db);
-                    $st = $db->prepare("SELECT * FROM admin_users WHERE id=? AND is_active=1 LIMIT 1");
+                    $st = $db->prepare("SELECT id, username, password, full_name, email, role, is_active, created_at, last_login FROM admin_users WHERE id=? AND is_active=1 LIMIT 1");
                     $st->execute([(int)$pending['id']]);
                     $user = $st->fetch(PDO::FETCH_ASSOC) ?: null;
                     if (!$user) {
@@ -206,7 +206,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (string) ($_POST['action'] ?? '') =
                 }
             }
 
-            $stmt = $db->prepare("SELECT * FROM admin_users WHERE username = ? AND is_active = 1");
+            $stmt = $db->prepare("SELECT id, username, password, full_name, email, role, is_active, created_at, last_login FROM admin_users WHERE username = ? AND is_active = 1");
             $stmt->execute([$username]);
             $user = $stmt->fetch();
 

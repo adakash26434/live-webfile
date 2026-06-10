@@ -1530,7 +1530,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
     $popupNotices = [];
     try {
         $db = getDB();
-        $popupStmt = $db->query("SELECT * FROM notices WHERE is_popup = 1 AND is_active = 1 ORDER BY id DESC LIMIT 5");
+        $popupStmt = $db->query("SELECT id, title, title_np, content, content_np, notice_date, attachment, is_active, is_popup, created_at, updated_at FROM notices WHERE is_popup = 1 AND is_active = 1 ORDER BY id DESC LIMIT 5");
         if ($popupStmt) $popupNotices = $popupStmt->fetchAll();
     } catch (Exception $e) {
         $popupNotices = [];

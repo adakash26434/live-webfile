@@ -52,20 +52,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'reque
 /* Step 1: load member */
 $me = null;
 try {
-    $stmt = $pdo->prepare("SELECT * FROM members WHERE id = :mid LIMIT 1");
+    $stmt = $pdo->prepare("SELECT id, name, email, phone, sadasyata_number, google_id, facebook_id, avatar_url, member_card_no, address, dob, gender, approval_status, approved_at, approved_by, rejection_reason, id_card_generated, id_card_generated_at, is_verified, is_active, created_at, last_login FROM members WHERE id = :mid LIMIT 1");
     $stmt->execute([':mid' => (int) $mid]);
     $me = $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
 } catch (Throwable $e) { error_log('[id-card-pk] ' . $e->getMessage()); }
 if (!$me) {
     try {
-        $stmt = $pdo->prepare("SELECT * FROM members WHERE member_card_no = :mid LIMIT 1");
+        $stmt = $pdo->prepare("SELECT id, name, email, phone, sadasyata_number, google_id, facebook_id, avatar_url, member_card_no, address, dob, gender, approval_status, approved_at, approved_by, rejection_reason, id_card_generated, id_card_generated_at, is_verified, is_active, created_at, last_login FROM members WHERE member_card_no = :mid LIMIT 1");
         $stmt->execute([':mid' => $mid]);
         $me = $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
     } catch (Throwable $e) { error_log('[id-card-mid] ' . $e->getMessage()); }
 }
 if (!$me) {
     try {
-        $stmt = $pdo->prepare("SELECT * FROM members WHERE sadasyata_number = :mid LIMIT 1");
+        $stmt = $pdo->prepare("SELECT id, name, email, phone, sadasyata_number, google_id, facebook_id, avatar_url, member_card_no, address, dob, gender, approval_status, approved_at, approved_by, rejection_reason, id_card_generated, id_card_generated_at, is_verified, is_active, created_at, last_login FROM members WHERE sadasyata_number = :mid LIMIT 1");
         $stmt->execute([':mid' => $mid]);
         $me = $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
     } catch (Throwable $e) {}

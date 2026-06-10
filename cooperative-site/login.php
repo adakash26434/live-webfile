@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['do_member_2fa'])) {
         } else {
             try {
                 $db = getDB();
-                $st = $db->prepare("SELECT * FROM members WHERE id=? AND is_active=1 AND approval_status='approved' LIMIT 1");
+                $st = $db->prepare("SELECT id, name, email, phone, sadasyata_number, google_id, facebook_id, avatar_url, member_card_no, address, dob, gender, approval_status, approved_at, approved_by, rejection_reason, id_card_generated, id_card_generated_at, is_verified, is_active, created_at, last_login FROM members WHERE id=? AND is_active=1 AND approval_status='approved' LIMIT 1");
                 $st->execute([(int)$pending['id']]);
                 $m = $st->fetch(PDO::FETCH_ASSOC) ?: null;
                 if (!$m) {

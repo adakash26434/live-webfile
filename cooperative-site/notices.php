@@ -12,12 +12,12 @@ try {
     $db = getDB();
 
     if ($noticeId > 0) {
-        $stmt = $db->prepare("SELECT * FROM notices WHERE id = ? AND is_active = 1");
+        $stmt = $db->prepare("SELECT id, title, title_np, content, content_np, notice_date, attachment, is_active, is_popup, created_at, updated_at FROM notices WHERE id = ? AND is_active = 1");
         $stmt->execute([$noticeId]);
         $singleNotice = $stmt->fetch();
     }
 
-    $notices = $db->query("SELECT * FROM notices WHERE is_active = 1 ORDER BY id DESC")->fetchAll();
+    $notices = $db->query("SELECT id, title, title_np, content, content_np, notice_date, attachment, is_active, is_popup, created_at, updated_at FROM notices WHERE is_active = 1 ORDER BY id DESC")->fetchAll();
 } catch (Exception $e) {
     $notices = [];
     $singleNotice = null;

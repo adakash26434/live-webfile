@@ -19,7 +19,7 @@ try {
     $totalPages = ceil($totalNews / $perPage);
 
     // Get news with pagination
-    $stmt = $db->prepare("SELECT * FROM news WHERE is_active = 1 ORDER BY created_at DESC LIMIT ? OFFSET ?");
+    $stmt = $db->prepare("SELECT id, title, title_np, content, content_np, image, is_active, created_at FROM news WHERE is_active = 1 ORDER BY created_at DESC LIMIT ? OFFSET ?");
     $stmt->bindValue(1, $perPage, PDO::PARAM_INT);
     $stmt->bindValue(2, $offset, PDO::PARAM_INT);
     $stmt->execute();

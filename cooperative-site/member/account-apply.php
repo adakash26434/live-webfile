@@ -135,7 +135,7 @@ $accountTypeLabels = [
 /* Branches */
 $branches = [];
 try {
-    $branches = $db->query("SELECT * FROM service_centers WHERE is_active=1 ORDER BY is_main_branch DESC, display_order ASC, name ASC LIMIT 20")->fetchAll(PDO::FETCH_ASSOC);
+    $branches = $db->query("SELECT id, name, name_np, address, phone, email, province, opening_hours, map_url, is_main_branch, is_active, display_order, created_at FROM service_centers WHERE is_active=1 ORDER BY is_main_branch DESC, display_order ASC, name ASC LIMIT 20")->fetchAll(PDO::FETCH_ASSOC);
 } catch (Throwable $e) {}
 
 $siteName  = getSetting('site_name', 'सहकारी');

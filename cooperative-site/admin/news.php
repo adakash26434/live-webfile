@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     redirect('news.php');
 }
 
-try { $news = $db->query("SELECT * FROM news ORDER BY created_at DESC")->fetchAll(); }
+try { $news = $db->query("SELECT id, title, title_np, content, content_np, image, is_active, created_at FROM news ORDER BY created_at DESC")->fetchAll(); }
 catch (Exception $e) { $news = []; }
 $newsPart = adminPartitionRowsByIsActive($news);
 $newsLive = $newsPart['live'];

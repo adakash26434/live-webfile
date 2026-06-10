@@ -75,7 +75,7 @@ $awards = [];
 try {
     $check = $db->query("SHOW TABLES LIKE 'awards'");
     if ($check->fetch() !== false) {
-        $awards = $db->query("SELECT * FROM awards ORDER BY display_order, id DESC LIMIT 500")->fetchAll();
+        $awards = $db->query("SELECT id, title, title_np, description, description_np, awarded_by, awarded_by_np, award_date, image, is_active, display_order, created_at, updated_at FROM awards ORDER BY display_order, id DESC LIMIT 500")->fetchAll();
     }
 } catch (Exception $e) { $awards = []; }
 

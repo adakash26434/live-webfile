@@ -44,7 +44,7 @@ if (isset($_GET['read']) && is_numeric($_GET['read'])) {
    ═══════════════════════════════════════════════════ */
 if ($action === 'view' && isset($_GET['id'])) {
     $id   = (int)$_GET['id'];
-    $stmt = $db->prepare("SELECT * FROM contact_messages WHERE id=?");
+    $stmt = $db->prepare("SELECT id, name, email, phone, subject, message, is_read, created_at FROM contact_messages WHERE id=?");
     $stmt->execute([$id]);
     $message = $stmt->fetch();
 
@@ -168,7 +168,7 @@ if ($action === 'view' && isset($_GET['id'])) {
     $messages = [];
     $totalCount = $unreadCount = $readCount = 0;
     try {
-        $stmt = $db->prepare("SELECT * FROM contact_messages {$w['sql']} ORDER BY created_at DESC");
+        $stmt = $db->prepare("SELECT id, name, email, phone, subject, message, is_read, created_at FROM contact_messages {$w['sql']} ORDER BY created_at DESC");
         $stmt->execute($w['params']);
         $messages = $stmt->fetchAll();
 

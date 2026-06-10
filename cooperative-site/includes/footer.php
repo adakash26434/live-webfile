@@ -72,7 +72,7 @@ try {
     /* useful_links table check — fetch() प्रयोग गर्नुहोस् */
     $tableCheck = $db->query("SHOW TABLES LIKE 'useful_links'");
     if ($tableCheck && $tableCheck->fetch() !== false) {
-        $usefulLinksStmt = $db->query("SELECT * FROM useful_links WHERE is_active = 1 ORDER BY display_order ASC LIMIT 6");
+        $usefulLinksStmt = $db->query("SELECT id, title, title_np, url, icon, description, description_np, is_popup, is_active, display_order, created_at FROM useful_links WHERE is_active = 1 ORDER BY display_order ASC LIMIT 6");
         if ($usefulLinksStmt) $usefulLinks = $usefulLinksStmt->fetchAll() ?: [];
     }
 } catch (Exception $e) {
@@ -278,7 +278,7 @@ try {
         /* chatbot_faqs table check — fetch() reliable, rowCount() होइन */
         $tableCheck = $db->query("SHOW TABLES LIKE 'chatbot_faqs'");
         if ($tableCheck && $tableCheck->fetch() !== false) {
-            $faqsStmt = $db->query("SELECT * FROM chatbot_faqs WHERE is_active = 1 ORDER BY display_order");
+            $faqsStmt = $db->query("SELECT id, question, question_en, answer, answer_en, category, keywords, display_order, is_active, created_at FROM chatbot_faqs WHERE is_active = 1 ORDER BY display_order");
             if ($faqsStmt) $chatbotFaqs = $faqsStmt->fetchAll() ?: [];
         }
     } catch (Exception $e) {

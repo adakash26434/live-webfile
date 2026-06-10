@@ -61,8 +61,8 @@ $savingRates = [];
 $loanRates   = [];
 try {
     $db          = getDB();
-    $savingRates = $db->query("SELECT * FROM interest_rates WHERE category='saving' ORDER BY display_order, id")->fetchAll();
-    $loanRates   = $db->query("SELECT * FROM interest_rates WHERE category='loan'   ORDER BY display_order, id")->fetchAll();
+    $savingRates = $db->query("SELECT id, category, name, name_np, rate, description, description_np, is_active, display_order, updated_at FROM interest_rates WHERE category='saving' ORDER BY display_order, id")->fetchAll();
+    $loanRates   = $db->query("SELECT id, category, name, name_np, rate, description, description_np, is_active, display_order, updated_at FROM interest_rates WHERE category='loan'   ORDER BY display_order, id")->fetchAll();
 } catch (Exception $e) {}
 
 $totalRates = count($savingRates) + count($loanRates);

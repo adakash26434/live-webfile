@@ -65,11 +65,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $editId = (int)($_GET['edit'] ?? 0);
 $edit = null;
 if ($editId > 0) {
-    $st = $db->prepare("SELECT * FROM upcoming_programs WHERE id=?");
+    $st = $db->prepare("SELECT id, title, description, event_date, event_time, location, is_active, pre_registration_open, qr_token, created_by, created_at, updated_at FROM upcoming_programs WHERE id=?");
     $st->execute([$editId]);
     $edit = $st->fetch(PDO::FETCH_ASSOC) ?: null;
 }
-$rows = $db->query("SELECT * FROM upcoming_programs ORDER BY COALESCE(event_date,'9999-12-31') ASC, id DESC")->fetchAll(PDO::FETCH_ASSOC);
+$rows = $db->query("SELECT id, title, description, event_date, event_time, location, is_active, pre_registration_open, qr_token, created_by, created_at, updated_at FROM upcoming_programs ORDER BY COALESCE(event_date,'9999-12-31') ASC, id DESC")->fetchAll(PDO::FETCH_ASSOC);
 
 $preregByProgram = [];
 try {

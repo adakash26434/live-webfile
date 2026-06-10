@@ -208,7 +208,7 @@ $editId     = (int)($_GET['id'] ?? 0);
 $editRecord = null;
 
 if ($viewAction === 'edit' && $editId && $tableExists) {
-    $s = $db->prepare("SELECT * FROM institutional_profile WHERE id = ?");
+    $s = $db->prepare("SELECT id, fiscal_year, total_members, share_capital, deposit, loan, total_assets, other_fund, bank_cash_balance, fixed_assets, total_loan_members, npa_percent, profit_loss, is_active, created_at, updated_at FROM institutional_profile WHERE id = ?");
     $s->execute([$editId]);
     $editRecord = $s->fetch();
     if (!$editRecord) {
@@ -221,7 +221,7 @@ if ($viewAction === 'edit' && $editId && $tableExists) {
 $profiles = [];
 if ($tableExists && $viewAction === 'list') {
     try {
-        $profiles = $db->query("SELECT * FROM institutional_profile ORDER BY fiscal_year DESC")->fetchAll();
+        $profiles = $db->query("SELECT id, fiscal_year, total_members, share_capital, deposit, loan, total_assets, other_fund, bank_cash_balance, fixed_assets, total_loan_members, npa_percent, profit_loss, is_active, created_at, updated_at FROM institutional_profile ORDER BY fiscal_year DESC")->fetchAll();
     } catch (Exception $e) {}
 }
 

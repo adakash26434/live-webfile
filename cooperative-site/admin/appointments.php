@@ -152,7 +152,7 @@ $offset = ($page - 1) * $limit;
 try {
     $cnt = $db->prepare("SELECT COUNT(*) FROM appointments WHERE $where"); $cnt->execute($aptParams); $total = $cnt->fetchColumn();
     $totalPages = ceil($total / $limit);
-    $stmt = $db->prepare("SELECT * FROM appointments WHERE $where ORDER BY preferred_date DESC, created_at DESC LIMIT ? OFFSET ?");
+    $stmt = $db->prepare("SELECT id, tracking_id, name, phone, email, member_id, purpose, purpose_detail, preferred_date, preferred_time, branch, status, remarks, created_at, updated_at FROM appointments WHERE $where ORDER BY preferred_date DESC, created_at DESC LIMIT ? OFFSET ?");
     $stmt->execute(array_merge($aptParams, [$limit, $offset])); $appointments = $stmt->fetchAll();
 } catch (Exception $e) { $appointments = []; $total = 0; $totalPages = 0; }
 
@@ -176,7 +176,7 @@ try {
 /* ─── Single view ─── */
 $viewApt = null;
 if (isset($_GET['view'])) {
-    $s = $db->prepare("SELECT * FROM appointments WHERE id=?");
+    $s = $db->prepare("SELECT id, tracking_id, name, phone, email, member_id, purpose, purpose_detail, preferred_date, preferred_time, branch, status, remarks, created_at, updated_at FROM appointments WHERE id=?");
     $s->execute([(int)$_GET['view']]);
     $viewApt = $s->fetch();
     if (!$viewApt) { setFlash('error', 'भेटघाट फेला परेन।'); redirect('appointments.php'); }

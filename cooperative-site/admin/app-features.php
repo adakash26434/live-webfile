@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     redirect('app-features.php');
 }
 
-try { $features = $db->query("SELECT * FROM app_features ORDER BY sort_order, id LIMIT 500")->fetchAll(); }
+try { $features = $db->query("SELECT id, title, title_np, icon, description, description_np, is_new, is_active, sort_order, created_at FROM app_features ORDER BY sort_order, id LIMIT 500")->fetchAll(); }
 catch (Exception $e) { $features = []; }
 
 $flash = getFlash();

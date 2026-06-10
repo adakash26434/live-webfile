@@ -6,7 +6,7 @@
  *
  * Usage:
  *   $w = sqWhere(['is_read' => 0], ['name','email','subject'], $searchTerm);
- *   $stmt = $db->prepare("SELECT * FROM contact_messages {$w['sql']} ORDER BY created_at DESC");
+ *   $stmt = $db->prepare("SELECT id, name, email, phone, subject, message, is_read, created_at FROM contact_messages {$w['sql']} ORDER BY created_at DESC");
  *   $stmt->execute($w['params']);
  *   $rows = $stmt->fetchAll();
  */

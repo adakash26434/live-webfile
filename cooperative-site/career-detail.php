@@ -13,7 +13,7 @@ if (!$jobId) {
 // Get job details
 try {
     $db = getDB();
-    $stmt = $db->prepare("SELECT * FROM careers WHERE id = ? AND is_active = 1");
+    $stmt = $db->prepare("SELECT id, title, title_np, department, location, job_type, description, description_np, requirements, deadline, attachment, vacancies, min_qualification, experience_required, salary_range, allow_online_apply, is_active, created_at, updated_at FROM careers WHERE id = ? AND is_active = 1");
     $stmt->execute([$jobId]);
     $job = $stmt->fetch();
 

@@ -7,7 +7,7 @@ $L = getLangStrings();
 // Get service centers from database
 try {
     $db = getDB();
-    $centers = $db->query("SELECT * FROM service_centers WHERE is_active = 1 ORDER BY province, name")->fetchAll();
+    $centers = $db->query("SELECT id, name, name_np, address, phone, email, province, opening_hours, map_url, is_main_branch, is_active, display_order, created_at FROM service_centers WHERE is_active = 1 ORDER BY province, name")->fetchAll();
 } catch (Exception $e) {
     $centers = [];
 }

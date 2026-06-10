@@ -7,7 +7,7 @@ $L = getLangStrings();
 // Get all awards
 try {
     $db = getDB();
-    $awardsStmt = $db->query("SELECT * FROM awards WHERE is_active = 1 ORDER BY award_date DESC, display_order ASC");
+    $awardsStmt = $db->query("SELECT id, title, title_np, description, description_np, awarded_by, awarded_by_np, award_date, image, is_active, display_order, created_at, updated_at FROM awards WHERE is_active = 1 ORDER BY award_date DESC, display_order ASC");
     $awards = $awardsStmt->fetchAll();
 } catch (Exception $e) {
     $awards = [];
@@ -17,7 +17,7 @@ try {
 $singleAward = null;
 if (isset($_GET['id'])) {
     try {
-        $stmt = $db->prepare("SELECT * FROM awards WHERE id = ? AND is_active = 1");
+        $stmt = $db->prepare("SELECT id, title, title_np, description, description_np, awarded_by, awarded_by_np, award_date, image, is_active, display_order, created_at, updated_at FROM awards WHERE id = ? AND is_active = 1");
         $stmt->execute([(int)$_GET['id']]);
         $singleAward = $stmt->fetch();
     } catch (Exception $e) {

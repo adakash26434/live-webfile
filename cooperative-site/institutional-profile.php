@@ -20,7 +20,7 @@ try {
     $tableExists = ($r->rowCount() > 0);
     if ($tableExists) {
         $profiles = $db->query(
-            "SELECT * FROM institutional_profile WHERE is_active = 1 ORDER BY fiscal_year DESC LIMIT 10"
+            "SELECT id, fiscal_year, total_members, share_capital, deposit, loan, total_assets, other_fund, bank_cash_balance, fixed_assets, total_loan_members, npa_percent, profit_loss, is_active, created_at, updated_at FROM institutional_profile WHERE is_active = 1 ORDER BY fiscal_year DESC LIMIT 10"
         )->fetchAll();
     }
 } catch (Exception $e) {

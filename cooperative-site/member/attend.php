@@ -150,7 +150,7 @@ $qrProgramRow = null;
 $qrAlreadyAttended = false;
 if ($qrToken !== '') {
     try {
-        $qst = $db->prepare('SELECT * FROM upcoming_programs WHERE qr_token = ? AND is_active = 1 LIMIT 1');
+        $qst = $db->prepare('SELECT id, title, description, event_date, event_time, location, is_active, pre_registration_open, qr_token, created_by, created_at, updated_at FROM upcoming_programs WHERE qr_token = ? AND is_active = 1 LIMIT 1');
         $qst->execute([$qrToken]);
         $qrProgramRow = $qst->fetch(PDO::FETCH_ASSOC) ?: null;
         if ($qrProgramRow && !empty($qrProgramRow['qr_starts_at']) && strtotime((string)$qrProgramRow['qr_starts_at']) > time()) {
@@ -232,7 +232,7 @@ $upcoming = [];
 try {
     $attended_ids = array_column($myAttendance, 'program_id');
     $prereg_ids   = array_column($myPreregs, 'program_id');
-    $st = $db->query("SELECT * FROM upcoming_programs WHERE is_active=1 ORDER BY COALESCE(event_date,'9999-12-31') ASC, id DESC LIMIT 20");
+    $st = $db->query("SELECT id, title, description, event_date, event_time, location, is_active, pre_registration_open, qr_token, created_by, created_at, updated_at FROM upcoming_programs WHERE is_active=1 ORDER BY COALESCE(event_date,'9999-12-31') ASC, id DESC LIMIT 20");
     $upcoming = $st->fetchAll(PDO::FETCH_ASSOC) ?: [];
 } catch (Throwable $e) { $upcoming = []; }
 

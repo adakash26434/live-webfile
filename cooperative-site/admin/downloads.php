@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     redirect('downloads.php');
 }
 
-try { $downloads = $db->query("SELECT * FROM downloads ORDER BY created_at DESC LIMIT 500")->fetchAll(); }
+try { $downloads = $db->query("SELECT id, title, title_np, file_path, file_type, category, download_count, is_active, created_at FROM downloads ORDER BY created_at DESC LIMIT 500")->fetchAll(); }
 catch (Exception $e) { $downloads = []; }
 
 $dlPart = adminPartitionRowsByIsActive($downloads);

@@ -30,7 +30,7 @@ $admin = null;
 try {
     $db = getDB();
     $adminId = $_SESSION['admin_id'];
-    $stmt = $db->prepare("SELECT * FROM admin_users WHERE id = ?");
+    $stmt = $db->prepare("SELECT id, username, password, full_name, email, role, is_active, created_at, last_login FROM admin_users WHERE id = ?");
     $stmt->execute([$adminId]);
     $admin = $stmt->fetch();
 } catch (Exception $e) {

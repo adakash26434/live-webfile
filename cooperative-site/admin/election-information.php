@@ -153,7 +153,7 @@ $qTo     = trim((string)($_GET['to'] ?? ''));
 $panel   = (string)($_GET['panel'] ?? 'list'); // list|form
 if (!in_array($panel, ['list', 'form'], true)) $panel = 'list';
 
-$cycles = $db->query('SELECT * FROM election_cycles ORDER BY sort_order ASC, id DESC')->fetchAll(PDO::FETCH_ASSOC) ?: [];
+$cycles = $db->query('SELECT id, title_np, title_en, intro_np, intro_en, period_label, date_from, date_to, is_published, show_in_navbar, sort_order, created_at, updated_at FROM election_cycles ORDER BY sort_order ASC, id DESC')->fetchAll(PDO::FETCH_ASSOC) ?: [];
 
 /* Bucket each cycle by status (Asia/Kathmandu) */
 try { $tz = new DateTimeZone('Asia/Kathmandu'); $now = new DateTime('now', $tz); }
@@ -199,14 +199,14 @@ if ($milestonesFor > 0 && !in_array($milestonesFor, $cycleIds, true)) {
 }
 $editRow = null;
 if ($editId > 0) {
-    $st = $db->prepare('SELECT * FROM election_cycles WHERE id=? LIMIT 1');
+    $st = $db->prepare('SELECT id, title_np, title_en, intro_np, intro_en, period_label, date_from, date_to, is_published, show_in_navbar, sort_order, created_at, updated_at FROM election_cycles WHERE id=? LIMIT 1');
     $st->execute([$editId]);
     $editRow = $st->fetch(PDO::FETCH_ASSOC) ?: null;
     if ($editRow) $panel = 'form';
 }
 $milestoneRows = [];
 if ($milestonesFor > 0) {
-    $ms = $db->prepare('SELECT * FROM election_milestones WHERE cycle_id=? ORDER BY display_order ASC, event_date ASC, id ASC');
+    $ms = $db->prepare('SELECT id, cycle_id, event_date, title_np, title_en, detail_np, detail_en, attachment, display_order, is_active, created_at FROM election_milestones WHERE cycle_id=? ORDER BY display_order ASC, event_date ASC, id ASC');
     $ms->execute([$milestonesFor]);
     $milestoneRows = $ms->fetchAll(PDO::FETCH_ASSOC) ?: [];
 }

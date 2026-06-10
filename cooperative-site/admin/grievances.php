@@ -211,7 +211,7 @@ if ($search !== '') {
     $params = array_merge($params, [$t,$t,$t,$t,$t]);
 }
 try {
-    $stmt = $db->prepare("SELECT * FROM grievances WHERE $where ORDER BY created_at DESC");
+    $stmt = $db->prepare("SELECT id, tracking_id, name, member_id, phone, email, category, subject, description, attachment, is_anonymous, status, admin_response, resolved_at, created_at, updated_at FROM grievances WHERE $where ORDER BY created_at DESC");
     $stmt->execute($params);
     $grievances = $stmt->fetchAll();
 } catch (Exception $e) { $grievances = []; }
@@ -227,7 +227,7 @@ $total = array_sum($counts);
 /* ── Single view ── */
 $viewGrv = null;
 if (isset($_GET['view'])) {
-    $s = $db->prepare("SELECT * FROM grievances WHERE id=?");
+    $s = $db->prepare("SELECT id, tracking_id, name, member_id, phone, email, category, subject, description, attachment, is_anonymous, status, admin_response, resolved_at, created_at, updated_at FROM grievances WHERE id=?");
     $s->execute([(int)$_GET['view']]);
     $viewGrv = $s->fetch();
 }

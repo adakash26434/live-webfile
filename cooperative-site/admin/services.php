@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 }
 
 try {
-    $services = $db->query("SELECT * FROM services ORDER BY display_order, id DESC")->fetchAll();
+    $services = $db->query("SELECT id, title, title_np, title_en, description, description_np, icon, image, is_active, display_order, created_at FROM services ORDER BY display_order, id DESC")->fetchAll();
 } catch (Exception $e) { $services = []; }
 try {
     $serviceProducts = $db->query("SELECT sp.*, s.title_np AS service_title_np, s.title_en AS service_title_en, s.title AS service_title

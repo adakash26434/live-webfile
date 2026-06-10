@@ -18,6 +18,7 @@ $error   = '';
 
 /* ── ADD / EDIT ── */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+    checkCSRF();
     $act = $_POST['action'];
     if (in_array($act, ['add','edit','delete'])) {
         try {

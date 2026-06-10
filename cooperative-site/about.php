@@ -8,12 +8,12 @@ require_once 'includes/header.php';
 // Get about page content
 try {
     $db = getDB();
-    $stmt = $db->prepare("SELECT * FROM pages WHERE slug = 'about' AND is_active = 1 ORDER BY id DESC LIMIT 1");
+    $stmt = $db->prepare("SELECT id, slug, title, title_np, title_en, content, content_np, show_in_menu, menu_position, menu_order, is_new, new_until, is_active, updated_at FROM pages WHERE slug = 'about' AND is_active = 1 ORDER BY id DESC LIMIT 1");
     $stmt->execute();
     $page = $stmt->fetch();
 
     // Get team members (board)
-    $boardMembers = $db->query("SELECT * FROM team_members WHERE category = 'board' AND is_active = 1 ORDER BY display_order LIMIT 20")->fetchAll();
+    $boardMembers = $db->query("SELECT id, name, name_en, position, position_np, position_en, photo, phone, email, category, is_information_officer, is_grievance_officer, is_active, display_order, created_at FROM team_members WHERE category = 'board' AND is_active = 1 ORDER BY display_order LIMIT 20")->fetchAll();
 } catch (Exception $e) {
     $page = null;
     $boardMembers = [];

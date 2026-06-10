@@ -5,16 +5,16 @@ require_once 'includes/header.php';
 // Get team members
 try {
     $db = getDB();
-    $boardMembers = $db->query("SELECT * FROM team_members WHERE category = 'board' AND is_active = 1 ORDER BY display_order")->fetchAll();
-    $managementMembers = $db->query("SELECT * FROM team_members WHERE category = 'management' AND is_active = 1 ORDER BY display_order")->fetchAll();
-    $staffMembers = $db->query("SELECT * FROM team_members WHERE category = 'staff' AND is_active = 1 ORDER BY display_order")->fetchAll();
+    $boardMembers = $db->query("SELECT id, name, name_en, position, position_np, position_en, photo, phone, email, category, is_information_officer, is_grievance_officer, is_active, display_order, created_at FROM team_members WHERE category = 'board' AND is_active = 1 ORDER BY display_order")->fetchAll();
+    $managementMembers = $db->query("SELECT id, name, name_en, position, position_np, position_en, photo, phone, email, category, is_information_officer, is_grievance_officer, is_active, display_order, created_at FROM team_members WHERE category = 'management' AND is_active = 1 ORDER BY display_order")->fetchAll();
+    $staffMembers = $db->query("SELECT id, name, name_en, position, position_np, position_en, photo, phone, email, category, is_information_officer, is_grievance_officer, is_active, display_order, created_at FROM team_members WHERE category = 'staff' AND is_active = 1 ORDER BY display_order")->fetchAll();
 
     $committeeTypes = [];
     $committeeMembers = [];
     try {
         $committeeTypes = $db->query("SELECT id, name, name_np FROM committee_types WHERE is_active = 1 ORDER BY display_order, id")->fetchAll();
         foreach ($committeeTypes as $_ct) {
-            $committeeMembers[(int)$_ct['id']] = $db->prepare("SELECT * FROM team_members WHERE category = ? AND is_active = 1 ORDER BY display_order");
+            $committeeMembers[(int)$_ct['id']] = $db->prepare("SELECT id, name, name_en, position, position_np, position_en, photo, phone, email, category, is_information_officer, is_grievance_officer, is_active, display_order, created_at FROM team_members WHERE category = ? AND is_active = 1 ORDER BY display_order");
             $committeeMembers[(int)$_ct['id']]->execute(['cmt_' . (int)$_ct['id']]);
             $committeeMembers[(int)$_ct['id']] = $committeeMembers[(int)$_ct['id']]->fetchAll();
         }
@@ -24,8 +24,8 @@ try {
     }
 
     // Get Information Officer and Grievance Officer
-    $informationOfficer = $db->query("SELECT * FROM team_members WHERE is_information_officer = 1 AND is_active = 1 LIMIT 1")->fetch();
-    $grievanceOfficer = $db->query("SELECT * FROM team_members WHERE is_grievance_officer = 1 AND is_active = 1 LIMIT 1")->fetch();
+    $informationOfficer = $db->query("SELECT id, name, name_en, position, position_np, position_en, photo, phone, email, category, is_information_officer, is_grievance_officer, is_active, display_order, created_at FROM team_members WHERE is_information_officer = 1 AND is_active = 1 LIMIT 1")->fetch();
+    $grievanceOfficer = $db->query("SELECT id, name, name_en, position, position_np, position_en, photo, phone, email, category, is_information_officer, is_grievance_officer, is_active, display_order, created_at FROM team_members WHERE is_grievance_officer = 1 AND is_active = 1 LIMIT 1")->fetch();
 } catch (Exception $e) {
     $boardMembers = $managementMembers = $staffMembers = [];
     $informationOfficer = $grievanceOfficer = null;

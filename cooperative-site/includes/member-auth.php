@@ -292,7 +292,7 @@ function currentMember() {
     if (!memberIsLoggedIn()) return null;
     global $db;
     if (!$db) return null;
-    $st = $db->prepare("SELECT * FROM members WHERE id=? AND is_active=1 AND approval_status='approved'");
+    $st = $db->prepare("SELECT id, name, email, phone, sadasyata_number, password_hash, google_id, facebook_id, avatar_url, member_card_no, address, dob, gender, approval_status, approved_at, approved_by, rejection_reason, id_card_generated, id_card_generated_at, is_verified, is_active, created_at, last_login FROM members WHERE id=? AND is_active=1 AND approval_status='approved'");
     $st->execute([$_SESSION['member_id']]);
     return $st->fetch(PDO::FETCH_ASSOC);
 }
@@ -483,7 +483,7 @@ function memberLogin($email, $password, bool $skipSession = false) {
 
     $email = strtolower(trim($email));
     try {
-        $st = $db->prepare("SELECT * FROM members WHERE (email=? OR sadasyata_number=?) AND is_active=1 LIMIT 1");
+        $st = $db->prepare("SELECT id, name, email, phone, sadasyata_number, password_hash, google_id, facebook_id, avatar_url, member_card_no, address, dob, gender, approval_status, approved_at, approved_by, rejection_reason, id_card_generated, id_card_generated_at, is_verified, is_active, created_at, last_login FROM members WHERE (email=? OR sadasyata_number=?) AND is_active=1 LIMIT 1");
         $st->execute([$email, $email]);
         $m = $st->fetch(PDO::FETCH_ASSOC);
     } catch (\Throwable $e) {
@@ -540,12 +540,12 @@ function memberOAuthLogin($provider, $providerId, $name, $email, $avatarUrl = ''
     $name  = strip_tags(trim($name));
     $avatarUrl = memberSafeAvatarUrl($avatarUrl);
 
-    $st = $db->prepare("SELECT * FROM members WHERE $col=? AND is_active=1");
+    $st = $db->prepare("SELECT id, name, email, phone, sadasyata_number, password_hash, google_id, facebook_id, avatar_url, member_card_no, address, dob, gender, approval_status, approved_at, approved_by, rejection_reason, id_card_generated, id_card_generated_at, is_verified, is_active, created_at, last_login FROM members WHERE $col=? AND is_active=1");
     $st->execute([$providerId]);
     $m = $st->fetch(PDO::FETCH_ASSOC);
 
     if (!$m && $email) {
-        $st = $db->prepare("SELECT * FROM members WHERE email=? AND is_active=1");
+        $st = $db->prepare("SELECT id, name, email, phone, sadasyata_number, password_hash, google_id, facebook_id, avatar_url, member_card_no, address, dob, gender, approval_status, approved_at, approved_by, rejection_reason, id_card_generated, id_card_generated_at, is_verified, is_active, created_at, last_login FROM members WHERE email=? AND is_active=1");
         $st->execute([$email]);
         $m = $st->fetch(PDO::FETCH_ASSOC);
         if ($m) {
@@ -579,7 +579,7 @@ function memberOAuthLogin($provider, $providerId, $name, $email, $avatarUrl = ''
                           WHERE id=?")
                ->execute([$providerId, $avatarUrl, $syncSid, $syncPhone, $syncName, ($syncKycId > 0 ? $syncKycId : null), $m['id']]);
             // refresh row
-            $st = $db->prepare("SELECT * FROM members WHERE id=? LIMIT 1");
+            $st = $db->prepare("SELECT id, name, email, phone, sadasyata_number, password_hash, google_id, facebook_id, avatar_url, member_card_no, address, dob, gender, approval_status, approved_at, approved_by, rejection_reason, id_card_generated, id_card_generated_at, is_verified, is_active, created_at, last_login FROM members WHERE id=? LIMIT 1");
             $st->execute([$m['id']]);
             $m = $st->fetch(PDO::FETCH_ASSOC) ?: $m;
         }
@@ -851,7 +851,7 @@ function memberRequestPasswordReset($memberId) {
 function adminApprovePasswordReset($requestId, $adminId, $newPassword) {
     global $db;
     if (!$db || !$newPassword || strlen($newPassword) < 6) return false;
-    $st = $db->prepare("SELECT * FROM member_password_reset_requests WHERE id=? AND status='pending'");
+    $st = $db->prepare("SELECT id, member_id, status, requested_at, admin_id, resolved_at, temp_password, admin_note FROM member_password_reset_requests WHERE id=? AND status='pending'");
     $st->execute([$requestId]);
     $req = $st->fetch(PDO::FETCH_ASSOC);
     if (!$req) return false;
@@ -960,13 +960,13 @@ function findMemberByContact($email, $phone) {
     global $db;
     if (!$db) return null;
     if ($email) {
-        $st = $db->prepare("SELECT * FROM members WHERE email=? AND is_active=1");
+        $st = $db->prepare("SELECT id, name, email, phone, sadasyata_number, password_hash, google_id, facebook_id, avatar_url, member_card_no, address, dob, gender, approval_status, approved_at, approved_by, rejection_reason, id_card_generated, id_card_generated_at, is_verified, is_active, created_at, last_login FROM members WHERE email=? AND is_active=1");
         $st->execute([strtolower(trim($email))]);
         $m = $st->fetch(PDO::FETCH_ASSOC);
         if ($m) return $m;
     }
     if ($phone) {
-        $st = $db->prepare("SELECT * FROM members WHERE phone=? AND is_active=1");
+        $st = $db->prepare("SELECT id, name, email, phone, sadasyata_number, password_hash, google_id, facebook_id, avatar_url, member_card_no, address, dob, gender, approval_status, approved_at, approved_by, rejection_reason, id_card_generated, id_card_generated_at, is_verified, is_active, created_at, last_login FROM members WHERE phone=? AND is_active=1");
         $st->execute([$phone]);
         $m = $st->fetch(PDO::FETCH_ASSOC);
         if ($m) return $m;

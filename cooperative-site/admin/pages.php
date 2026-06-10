@@ -186,7 +186,7 @@ if ($action === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
 // Fetch dynamic pages
 $dynamicPages = [];
 try {
-    $sql = "SELECT * FROM pages ORDER BY menu_position, menu_order, id";
+    $sql = "SELECT id, slug, title, title_np, title_en, content, content_np, show_in_menu, menu_position, menu_order, is_new, new_until, is_active, updated_at FROM pages ORDER BY menu_position, menu_order, id";
     $st = $db->prepare($sql);
     $st->execute();
     $dynamicPages = $st->fetchAll(PDO::FETCH_ASSOC);
@@ -202,7 +202,7 @@ $editDynId = (int) ($_GET['id'] ?? 0);
 $dynEditRow = null;
 if ($tab === 'dynamic' && $action === 'edit' && $editDynId > 0) {
     try {
-        $st = $db->prepare("SELECT * FROM pages WHERE id = ? LIMIT 1");
+        $st = $db->prepare("SELECT id, slug, title, title_np, title_en, content, content_np, show_in_menu, menu_position, menu_order, is_new, new_until, is_active, updated_at FROM pages WHERE id = ? LIMIT 1");
         $st->execute([$editDynId]);
         $dynEditRow = $st->fetch(PDO::FETCH_ASSOC) ?: null;
     } catch (Throwable $e) {

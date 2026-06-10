@@ -19,6 +19,7 @@ $flash = '';
 
 /* ── POST: send message ── */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'send_message') {
+    checkCSRF();
     $rid = (int)($_POST['receiver_employee_id'] ?? 0);
     $subject = trim((string)($_POST['subject'] ?? ''));
     $body = trim((string)($_POST['body'] ?? ''));

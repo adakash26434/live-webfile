@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['set_officer'])) {
 /* हालको गुनासो अधिकारी */
 $currentOfficer = null;
 try {
-    $row = $db->query("SELECT * FROM team_members WHERE is_grievance_officer = 1 LIMIT 1")->fetch();
+    $row = $db->query("SELECT id, name, name_en, position, position_np, position_en, photo, phone, email, category, is_information_officer, is_grievance_officer, is_active, display_order, created_at FROM team_members WHERE is_grievance_officer = 1 LIMIT 1")->fetch();
     if ($row) $currentOfficer = $row;
 } catch (Exception $e) {}
 

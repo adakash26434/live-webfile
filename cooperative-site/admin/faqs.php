@@ -67,7 +67,7 @@ $faqs = [];
 try {
     $checkTable = $db->query("SHOW TABLES LIKE 'faqs'");
     if ($checkTable->fetch() !== false) {
-        $faqs = $db->query("SELECT * FROM faqs ORDER BY display_order, id DESC LIMIT 500")->fetchAll();
+        $faqs = $db->query("SELECT id, question, question_np, answer, answer_np, category, is_active, display_order, created_at, updated_at FROM faqs ORDER BY display_order, id DESC LIMIT 500")->fetchAll();
     }
 } catch (Exception $e) { $faqs = []; }
 

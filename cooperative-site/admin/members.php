@@ -84,7 +84,7 @@ $viewApps   = [];
 $viewNotifs = [];
 $viewCard   = null; /* Issue #3: card details (CVV / VCode / expiry) */
 if ($viewId) {
-    $st = $db->prepare("SELECT * FROM members WHERE id=?");
+    $st = $db->prepare("SELECT id, name, email, phone, sadasyata_number, google_id, facebook_id, avatar_url, member_card_no, address, dob, gender, approval_status, approved_at, approved_by, rejection_reason, id_card_generated, id_card_generated_at, is_verified, is_active, created_at, last_login FROM members WHERE id=?");
     $st->execute([$viewId]);
     $viewMember = $st->fetch(PDO::FETCH_ASSOC);
     if ($viewMember) {

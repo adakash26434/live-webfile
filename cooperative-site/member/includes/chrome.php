@@ -215,7 +215,7 @@ try {
 .mem-nav-item-rel{position:relative;}
 .mem-notif-dot-inline{position:static;margin-left:4px;}
 .mem-nav-vote-live{position:relative;}
-.mem-vote-live-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#16a34a;margin-left:6px;box-shadow:0 0 0 0 rgba(22,163,74,.55);animation:memVoteLivePulse 1.4s infinite;}
+.mem-vote-live-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--color-success);margin-left:6px;box-shadow:0 0 0 0 rgba(22,163,74,.55);animation:memVoteLivePulse 1.4s infinite;}
 @keyframes memVoteLivePulse{0%{box-shadow:0 0 0 0 rgba(22,163,74,.55);}70%{box-shadow:0 0 0 8px rgba(22,163,74,0);}100%{box-shadow:0 0 0 0 rgba(22,163,74,0);}}
 </style>
 <?php echo $extraHead; ?>

@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $editItem = null;
 if ($action === 'edit' && $editId > 0 && $tableExists) {
     try {
-        $s = $db->prepare("SELECT * FROM chatbot_faqs WHERE id=?");
+        $s = $db->prepare("SELECT id, question, question_en, answer, answer_en, category, keywords, display_order, is_active, created_at FROM chatbot_faqs WHERE id=?");
         $s->execute([$editId]);
         $editItem = $s->fetch();
         if (!$editItem) { setFlash('error', 'प्रश्न फेला परेन।'); redirect('help-center.php'); }
@@ -126,7 +126,7 @@ if ($action === 'list' && $tableExists) {
             $where .= ' AND (question LIKE ? OR question_en LIKE ? OR answer LIKE ? OR keywords LIKE ?)';
             $t = "%$search%"; $params = array_merge($params, [$t,$t,$t,$t]);
         }
-        $stmt = $db->prepare("SELECT * FROM chatbot_faqs WHERE $where ORDER BY display_order ASC, id DESC");
+        $stmt = $db->prepare("SELECT id, question, question_en, answer, answer_en, category, keywords, display_order, is_active, created_at FROM chatbot_faqs WHERE $where ORDER BY display_order ASC, id DESC");
         $stmt->execute($params);
         $helpItems = $stmt->fetchAll();
     } catch (Exception $e) { $helpItems = []; }

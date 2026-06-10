@@ -140,7 +140,7 @@ function gs($key, $default = '') {
 /* Recent notification log */
 $logs = [];
 try {
-    $logStmt = $db->query("SELECT * FROM notification_log ORDER BY created_at DESC LIMIT 50");
+    $logStmt = $db->query("SELECT id, event_type, channel, recipient, subject, message, status, error_msg, created_at, member_id FROM notification_log ORDER BY created_at DESC LIMIT 50");
     $logs = $logStmt ? $logStmt->fetchAll() : [];
 } catch (Exception $e) { $logs = []; }
 

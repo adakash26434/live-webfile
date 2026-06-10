@@ -87,11 +87,11 @@ $memberId = (int)$mem['id'];
 /* चक्र चयन: ?cycle=ID, या hal active चक्र */
 $cycleId = (int)($_GET['cycle'] ?? 0);
 if ($cycleId > 0) {
-    $cs = $db->prepare('SELECT * FROM election_cycles WHERE id=? AND is_published=1 LIMIT 1');
+    $cs = $db->prepare('SELECT id, title_np, title_en, intro_np, intro_en, period_label, date_from, date_to, is_published, show_in_navbar, sort_order, created_at, updated_at FROM election_cycles WHERE id=? AND is_published=1 LIMIT 1');
     $cs->execute([$cycleId]);
     $cycle = $cs->fetch(PDO::FETCH_ASSOC) ?: null;
 } else {
-    $cycle = $db->query("SELECT * FROM election_cycles WHERE is_published=1 ORDER BY voting_enabled DESC, sort_order ASC, id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC) ?: null;
+    $cycle = $db->query("SELECT id, title_np, title_en, intro_np, intro_en, period_label, date_from, date_to, is_published, show_in_navbar, sort_order, created_at, updated_at FROM election_cycles WHERE is_published=1 ORDER BY voting_enabled DESC, sort_order ASC, id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC) ?: null;
     if ($cycle) $cycleId = (int)$cycle['id'];
 }
 

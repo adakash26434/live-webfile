@@ -153,7 +153,7 @@ case 'loan':
 
 /* ════════════════════════════ WELFARE ════════════════════════════ */
 case 'welfare':
-    $st = $db->prepare("SELECT * FROM member_welfare_claims WHERE id=?");
+    $st = $db->prepare("SELECT id, tracking_id, member_name, member_id, phone, email, address, claim_type, claim_amount, description, claim_date_bs, claim_date_ad, status, approved_amount, admin_remarks, attachment_path, created_at, updated_at FROM member_welfare_claims WHERE id=?");
     $st->execute([$id]);  $data = $st->fetch();
     if (!$data) goto NOT_FOUND;
     $ctLabels    = ['maternity'=>'सुत्केरी सुविधा','death'=>'मृत्यु सुविधा','insurance'=>'बीमा दाबी','medical'=>'उपचार खर्च','accident'=>'दुर्घटना सुविधा','other'=>'अन्य सुविधा'];

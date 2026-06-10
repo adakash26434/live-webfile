@@ -78,9 +78,9 @@ try {
         'rejected' => (int)($cRow['rejected']  ?? 0),
     ];
     if ($tab === 'all') {
-        $vendors = $db->query("SELECT * FROM vendors ORDER BY status='pending' DESC, created_at DESC")->fetchAll();
+        $vendors = $db->query("SELECT id, tracking_id, company_name, owner_name, address, phone, email, pan_no, business_type, description, status, created_at FROM vendors ORDER BY status='pending' DESC, created_at DESC")->fetchAll();
     } else {
-        $vendors = $db->prepare("SELECT * FROM vendors WHERE status = ? ORDER BY created_at DESC");
+        $vendors = $db->prepare("SELECT id, tracking_id, company_name, owner_name, address, phone, email, pan_no, business_type, description, status, created_at FROM vendors WHERE status = ? ORDER BY created_at DESC");
         $vendors->execute([$tab]);
         $vendors = $vendors->fetchAll();
     }
@@ -94,7 +94,7 @@ $detail = null;
 if (isset($_GET['view'])) {
     $vid = intval($_GET['view']);
     try {
-        $stmt = $db->prepare("SELECT * FROM vendors WHERE id = ?");
+        $stmt = $db->prepare("SELECT id, tracking_id, company_name, owner_name, address, phone, email, pan_no, business_type, description, status, created_at FROM vendors WHERE id = ?");
         $stmt->execute([$vid]);
         $detail = $stmt->fetch();
     } catch (Exception $e) {}

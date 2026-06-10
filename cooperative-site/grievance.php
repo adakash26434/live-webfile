@@ -18,7 +18,7 @@ if (isset($_GET['track']) && !empty($_GET['track'])) {
     $searchId = clean_text($_GET['track'] ?? '', 80);
     try {
         $db = getDB();
-        $stmt = $db->prepare("SELECT * FROM grievances WHERE tracking_id = ? OR id = ?");
+        $stmt = $db->prepare("SELECT id, tracking_id, name, member_id, phone, email, category, subject, description, attachment, is_anonymous, status, admin_response, resolved_at, created_at, updated_at FROM grievances WHERE tracking_id = ? OR id = ?");
         $trackingNum = (int) preg_replace('/[^0-9]/', '', $searchId);
         $stmt->execute([$searchId, $trackingNum]);
         $trackingResult = $stmt->fetch();

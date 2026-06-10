@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 /* ── Data ── */
 try {
-    $committeeTypes = $db->query("SELECT * FROM committee_types ORDER BY display_order, id LIMIT 500")->fetchAll();
+    $committeeTypes = $db->query("SELECT id, name, name_np, description, is_active, show_in_navbar, display_order, created_at FROM committee_types ORDER BY display_order, id LIMIT 500")->fetchAll();
     $tenures = $db->query("SELECT t.*, ct.name_np AS type_name FROM committee_tenures t LEFT JOIN committee_types ct ON t.committee_type_id=ct.id ORDER BY t.is_current DESC, t.start_date DESC")->fetchAll();
 ensureDesignationsTable(getDB());
 $__designations = fetchDesignations(getDB(), ['committee']);

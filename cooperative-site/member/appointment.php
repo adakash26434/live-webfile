@@ -44,7 +44,7 @@ $rEmail = $memEmail ?: trim((string)($kycRow['email'] ?? ''));
 /* Branches */
 $branches = [];
 try {
-    $branches = $db->query("SELECT * FROM service_centers WHERE is_active=1 ORDER BY is_main_branch DESC, display_order ASC, name ASC LIMIT 20")->fetchAll(PDO::FETCH_ASSOC);
+    $branches = $db->query("SELECT id, name, name_np, address, phone, email, province, opening_hours, map_url, is_main_branch, is_active, display_order, created_at FROM service_centers WHERE is_active=1 ORDER BY is_main_branch DESC, display_order ASC, name ASC LIMIT 20")->fetchAll(PDO::FETCH_ASSOC);
 } catch (Throwable $e) {}
 
 /* Time options */
@@ -53,7 +53,7 @@ $timeOptions = function_exists('getOfficeTimeOptions') ? getOfficeTimeOptions(30
 /* Recent appointments */
 $recentAppts = [];
 try {
-    $ra = $db->prepare("SELECT * FROM appointments WHERE member_id=? ORDER BY created_at DESC LIMIT 10");
+    $ra = $db->prepare("SELECT id, tracking_id, name, phone, email, member_id, purpose, purpose_detail, preferred_date, preferred_time, branch, status, remarks, created_at, updated_at FROM appointments WHERE member_id=? ORDER BY created_at DESC LIMIT 10");
     $ra->execute([$memberId]);
     $recentAppts = $ra->fetchAll(PDO::FETCH_ASSOC) ?: [];
 } catch (Throwable $e) {}
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'submi
                 $stmt = $db->prepare("INSERT INTO appointments (tracking_id, name, phone, email, member_id, purpose, purpose_detail, preferred_date, preferred_time, branch) VALUES (?,?,?,?,?,?,?,?,?,?)");
                 $stmt->execute([$apptTrackingId, $memName, $rPhone, $rEmail, $memberId, $purpose, $purpose_detail, $preferred_date, $preferred_time, $branch]);
                 /* Reload history */
-                $ra2 = $db->prepare("SELECT * FROM appointments WHERE member_id=? ORDER BY created_at DESC LIMIT 10");
+                $ra2 = $db->prepare("SELECT id, tracking_id, name, phone, email, member_id, purpose, purpose_detail, preferred_date, preferred_time, branch, status, remarks, created_at, updated_at FROM appointments WHERE member_id=? ORDER BY created_at DESC LIMIT 10");
                 $ra2->execute([$memberId]);
                 $recentAppts = $ra2->fetchAll(PDO::FETCH_ASSOC) ?: [];
                 $successMsg = $_t('भेटघाट अनुरोध सफलतापूर्वक पेश भयो! Tracking ID: ', 'Appointment submitted! Tracking ID: ') . $apptTrackingId;

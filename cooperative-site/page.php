@@ -55,10 +55,10 @@ try {
     }
 
     if ($slug) {
-        $stmt = $db->prepare('SELECT * FROM pages WHERE slug = ? AND is_active = 1');
+        $stmt = $db->prepare('SELECT id, slug, title, title_np, title_en, content, content_np, show_in_menu, menu_position, menu_order, is_new, new_until, is_active, updated_at FROM pages WHERE slug = ? AND is_active = 1');
         $stmt->execute([$slug]);
     } elseif ($pageId) {
-        $stmt = $db->prepare('SELECT * FROM pages WHERE id = ? AND is_active = 1');
+        $stmt = $db->prepare('SELECT id, slug, title, title_np, title_en, content, content_np, show_in_menu, menu_position, menu_order, is_new, new_until, is_active, updated_at FROM pages WHERE id = ? AND is_active = 1');
         $stmt->execute([$pageId]);
     } else {
         throw new Exception('Page not found');

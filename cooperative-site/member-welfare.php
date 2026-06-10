@@ -28,7 +28,7 @@ if (isset($_GET['track']) && !empty($_GET['track'])) {
     $searchId = clean_text($_GET['track'] ?? '', 80);
     try {
         $db = getDB();
-        $stmt = $db->prepare("SELECT * FROM member_welfare_claims WHERE tracking_id = ? OR phone = ?");
+        $stmt = $db->prepare("SELECT id, tracking_id, member_name, member_id, phone, email, address, claim_type, claim_amount, description, claim_date_bs, claim_date_ad, status, approved_amount, admin_remarks, attachment_path, created_at, updated_at FROM member_welfare_claims WHERE tracking_id = ? OR phone = ?");
         $phoneKey = preg_replace('/[^0-9]/', '', $searchId);
         $stmt->execute([$searchId, $phoneKey !== '' ? $phoneKey : $searchId]);
         $trackingResult = $stmt->fetch();

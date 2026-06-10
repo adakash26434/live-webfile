@@ -107,11 +107,11 @@ if (!in_array($filterType, $allowedReportTypes, true)) {
 // Get all reports
 try {
     if ($filterType !== 'all') {
-        $stmt = $db->prepare("SELECT * FROM reports WHERE report_type = ? ORDER BY report_year DESC, display_order ASC, created_at DESC");
+        $stmt = $db->prepare("SELECT id, title, title_np, report_type, report_year, report_month, report_quarter, file_path, is_active, display_order, created_at FROM reports WHERE report_type = ? ORDER BY report_year DESC, display_order ASC, created_at DESC");
         $stmt->execute([$filterType]);
         $reports = $stmt->fetchAll();
     } else {
-        $reports = $db->query("SELECT * FROM reports ORDER BY report_year DESC, display_order ASC, created_at DESC")->fetchAll();
+        $reports = $db->query("SELECT id, title, title_np, report_type, report_year, report_month, report_quarter, file_path, is_active, display_order, created_at FROM reports ORDER BY report_year DESC, display_order ASC, created_at DESC")->fetchAll();
     }
 } catch (Exception $e) {
     $reports = [];
@@ -120,7 +120,7 @@ try {
 // Get single report for editing
 $editReport = null;
 if (isset($_GET['edit'])) {
-    $stmt = $db->prepare("SELECT * FROM reports WHERE id = ?");
+    $stmt = $db->prepare("SELECT id, title, title_np, report_type, report_year, report_month, report_quarter, file_path, is_active, display_order, created_at FROM reports WHERE id = ?");
     $stmt->execute([(int) $_GET['edit']]);
     $editReport = $stmt->fetch();
 }

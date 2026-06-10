@@ -164,7 +164,7 @@ if ($filterType !== '' && !in_array($filterType, $fbTypeAllowed, true)) {
 }
 $filterSearch = mb_substr(trim((string)($_GET['search'] ?? '')), 0, 200, 'UTF-8');
 
-$sql    = "SELECT * FROM member_feedback WHERE 1=1";
+$sql    = "SELECT id, tracking_id, name, member_id, phone, email, type, subject, message, status, admin_reply, created_at, updated_at FROM member_feedback WHERE 1=1";
 $params = [];
 if ($filterStatus) { $sql .= " AND status = ?"; $params[] = $filterStatus; }
 if ($filterType)   { $sql .= " AND type = ?";   $params[] = $filterType;   }
@@ -180,7 +180,7 @@ $feedbacks = $stmt->fetchAll();
 /* ─── Single view ─── */
 $viewFeedback = null;
 if (isset($_GET['view'])) {
-    $s = $db->prepare("SELECT * FROM member_feedback WHERE id = ?");
+    $s = $db->prepare("SELECT id, tracking_id, name, member_id, phone, email, type, subject, message, status, admin_reply, created_at, updated_at FROM member_feedback WHERE id = ?");
     $s->execute([(int)$_GET['view']]);
     $viewFeedback = $s->fetch();
 }

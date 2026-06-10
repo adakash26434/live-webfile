@@ -27,9 +27,9 @@ $branches = [];
 $loanRates = [];
 try {
     $db = getDB();
-    $brStmt = $db->query("SELECT * FROM service_centers WHERE is_active = 1 ORDER BY is_main_branch DESC, display_order ASC, name ASC LIMIT 20");
+    $brStmt = $db->query("SELECT id, name, name_np, address, phone, email, province, opening_hours, map_url, is_main_branch, is_active, display_order, created_at FROM service_centers WHERE is_active = 1 ORDER BY is_main_branch DESC, display_order ASC, name ASC LIMIT 20");
     if ($brStmt) $branches = $brStmt->fetchAll() ?: [];
-    $lrStmt = $db->query("SELECT * FROM interest_rates WHERE category = 'loan' AND is_active = 1 ORDER BY display_order ASC LIMIT 10");
+    $lrStmt = $db->query("SELECT id, category, name, name_np, rate, description, description_np, is_active, display_order, updated_at FROM interest_rates WHERE category = 'loan' AND is_active = 1 ORDER BY display_order ASC LIMIT 10");
     if ($lrStmt) $loanRates = $lrStmt->fetchAll() ?: [];
 } catch (\Throwable $e) {
     $branches = [];

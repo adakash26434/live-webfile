@@ -23,7 +23,7 @@ if ($cycleId <= 0) {
         redirect('election-information.php');
     }
 }
-$cs = $db->prepare('SELECT * FROM election_cycles WHERE id=? LIMIT 1');
+$cs = $db->prepare('SELECT id, title_np, title_en, intro_np, intro_en, period_label, date_from, date_to, is_published, show_in_navbar, sort_order, created_at, updated_at FROM election_cycles WHERE id=? LIMIT 1');
 $cs->execute([$cycleId]);
 $cycle = $cs->fetch(PDO::FETCH_ASSOC);
 if (!$cycle) { setFlash('error','चक्र भेटिएन।'); redirect('election-information.php'); }

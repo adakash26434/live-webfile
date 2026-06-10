@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $preregId = (int)($_POST['prereg_id'] ?? 0);
         if ($preregId > 0) {
             try {
-                $stp = $db->prepare("SELECT * FROM member_program_preregistrations WHERE id=? LIMIT 1");
+                $stp = $db->prepare("SELECT id, member_id, member_card_no, member_name, phone, email, program_id, program_title, event_date, note, source, created_at FROM member_program_preregistrations WHERE id=? LIMIT 1");
                 $stp->execute([$preregId]);
                 $pr = $stp->fetch(PDO::FETCH_ASSOC) ?: null;
                 if ($pr) {
@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $adminId = (int)($_SESSION['admin_id'] ?? 0);
         if ($reqId > 0) {
             try {
-                $stR = $db->prepare("SELECT * FROM member_program_attendance_requests WHERE id=? AND status='pending' LIMIT 1");
+                $stR = $db->prepare("SELECT id, member_id, member_card_no, member_name, program_id, program_title, status, requested_at, processed_at, verified_by_ip, admin_id, admin_note, source FROM member_program_attendance_requests WHERE id=? AND status='pending' LIMIT 1");
                 $stR->execute([$reqId]);
                 $req = $stR->fetch(PDO::FETCH_ASSOC) ?: null;
                 if (!$req) {
@@ -190,7 +190,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $reqId = (int)($_POST['request_id'] ?? 0);
         if ($reqId > 0) {
             try {
-                $stR = $db->prepare("SELECT * FROM member_program_attendance_requests WHERE id=? AND status='pending' LIMIT 1");
+                $stR = $db->prepare("SELECT id, member_id, member_card_no, member_name, program_id, program_title, status, requested_at, processed_at, verified_by_ip, admin_id, admin_note, source FROM member_program_attendance_requests WHERE id=? AND status='pending' LIMIT 1");
                 $stR->execute([$reqId]);
                 $req = $stR->fetch(PDO::FETCH_ASSOC) ?: null;
                 if (!$req) {

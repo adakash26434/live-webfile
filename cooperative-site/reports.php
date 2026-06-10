@@ -44,7 +44,7 @@ try {
     $db = getDB();
 
     // Build query
-    $sql = "SELECT * FROM reports WHERE is_active = 1";
+    $sql = "SELECT id, title, title_np, report_type, report_year, report_month, report_quarter, file_path, is_active, display_order, created_at FROM reports WHERE is_active = 1";
     $params = [];
 
     if ($filterType !== 'all') {

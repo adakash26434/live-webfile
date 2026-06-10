@@ -8,7 +8,7 @@ $L = getLangStrings();
 
 try {
     $db   = getDB();
-    $jobs = $db->query("SELECT * FROM careers WHERE is_active = 1 ORDER BY created_at DESC LIMIT 20")->fetchAll();
+    $jobs = $db->query("SELECT id, title, title_np, department, location, job_type, description, description_np, requirements, deadline, attachment, vacancies, min_qualification, experience_required, salary_range, allow_online_apply, is_active, created_at, updated_at FROM careers WHERE is_active = 1 ORDER BY created_at DESC LIMIT 20")->fetchAll();
 } catch (Exception $e) {
     $jobs = [];
 }

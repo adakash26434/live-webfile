@@ -56,6 +56,7 @@ try {
 } catch (\Throwable $e) { /* best-effort */ }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    checkCSRF();
     $db = getDB();
     try {
         switch ($_POST['action'] ?? '') {
@@ -156,11 +157,11 @@ if ($teamListSection === 'governance') {
         $govCategoryList[] = 'cmt_' . (int)$ct['id'];
     }
     $ph = implode(',', array_fill(0, count($govCategoryList), '?'));
-    $stTeam = $db->prepare("SELECT * FROM team_members WHERE category IN ($ph) ORDER BY category, display_order, id DESC");
+    $stTeam = $db->prepare("SELECT id, name, name_en, position, position_np, position_en, photo, phone, email, category, is_information_officer, is_grievance_officer, is_active, display_order, created_at FROM team_members WHERE category IN ($ph) ORDER BY category, display_order, id DESC");
     $stTeam->execute($govCategoryList);
     $team = $stTeam->fetchAll();
 } else {
-    $stTeam = $db->prepare("SELECT * FROM team_members WHERE category IN ('management','staff') ORDER BY category, display_order, id DESC");
+    $stTeam = $db->prepare("SELECT id, name, name_en, position, position_np, position_en, photo, phone, email, category, is_information_officer, is_grievance_officer, is_active, display_order, created_at FROM team_members WHERE category IN ('management','staff') ORDER BY category, display_order, id DESC");
     $stTeam->execute();
     $team = $stTeam->fetchAll();
 }

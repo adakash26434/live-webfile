@@ -15,7 +15,7 @@ try {
     $db = getDB();
 
     // Get committee types
-    $committeeTypes = $db->query("SELECT * FROM committee_types WHERE is_active = 1 ORDER BY display_order, id")->fetchAll();
+    $committeeTypes = $db->query("SELECT id, name, name_np, description, is_active, show_in_navbar, display_order, created_at FROM committee_types WHERE is_active = 1 ORDER BY display_order, id")->fetchAll();
 
     // Resolve name → id (nav links use ?name=sanchalak etc.)
     if (!$selectedType && $selectedName) {
@@ -39,7 +39,7 @@ try {
     }
 
     // Also get board members from team_members table (for showing in filters)
-    $boardMembers = $db->query("SELECT * FROM team_members WHERE category = 'board' AND is_active = 1 ORDER BY display_order")->fetchAll();
+    $boardMembers = $db->query("SELECT id, name, name_en, position, position_np, position_en, photo, phone, email, category, is_information_officer, is_grievance_officer, is_active, display_order, created_at FROM team_members WHERE category = 'board' AND is_active = 1 ORDER BY display_order")->fetchAll();
 
     // Get current tenures with members
     $currentCommittees = [];
@@ -53,13 +53,13 @@ try {
         if ($selectedType && $selectedType != $type['id']) continue;
 
         // Get current tenure
-        $stmt = $db->prepare("SELECT * FROM committee_tenures WHERE committee_type_id = ? AND is_current = 1 AND is_active = 1");
+        $stmt = $db->prepare("SELECT id, committee_type_id, tenure_name, tenure_name_np, start_date, end_date, is_current, is_active, created_at FROM committee_tenures WHERE committee_type_id = ? AND is_current = 1 AND is_active = 1");
         $stmt->execute([$type['id']]);
         $currentTenure = $stmt->fetch();
 
         if ($currentTenure) {
             // Get members for current tenure
-            $memberStmt = $db->prepare("SELECT * FROM committee_members WHERE tenure_id = ? AND is_active = 1 ORDER BY display_order, id");
+            $memberStmt = $db->prepare("SELECT id, tenure_id, name, name_en, position, position_en, phone, email, address, photo, is_active, display_order, created_at FROM committee_members WHERE tenure_id = ? AND is_active = 1 ORDER BY display_order, id");
             $memberStmt->execute([$currentTenure['id']]);
             $members = $memberStmt->fetchAll();
 
@@ -86,12 +86,12 @@ try {
 
         // Get past tenures
         if ($showPast || $selectedType) {
-            $pastStmt = $db->prepare("SELECT * FROM committee_tenures WHERE committee_type_id = ? AND is_current = 0 AND is_active = 1 ORDER BY start_date DESC");
+            $pastStmt = $db->prepare("SELECT id, committee_type_id, tenure_name, tenure_name_np, start_date, end_date, is_current, is_active, created_at FROM committee_tenures WHERE committee_type_id = ? AND is_current = 0 AND is_active = 1 ORDER BY start_date DESC");
             $pastStmt->execute([$type['id']]);
             $pastTenures = $pastStmt->fetchAll();
 
             foreach ($pastTenures as $tenure) {
-                $memberStmt = $db->prepare("SELECT * FROM committee_members WHERE tenure_id = ? AND is_active = 1 ORDER BY display_order, id");
+                $memberStmt = $db->prepare("SELECT id, tenure_id, name, name_en, position, position_en, phone, email, address, photo, is_active, display_order, created_at FROM committee_members WHERE tenure_id = ? AND is_active = 1 ORDER BY display_order, id");
                 $memberStmt->execute([$tenure['id']]);
                 $members = $memberStmt->fetchAll();
 

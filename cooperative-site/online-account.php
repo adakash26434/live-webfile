@@ -200,7 +200,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Get branches
 try {
     $db = getDB();
-    $branches = $db->query("SELECT * FROM service_centers WHERE is_active = 1 ORDER BY name")->fetchAll();
+    $branches = $db->query("SELECT id, name, name_np, address, phone, email, province, opening_hours, map_url, is_main_branch, is_active, display_order, created_at FROM service_centers WHERE is_active = 1 ORDER BY name")->fetchAll();
 } catch (Exception $e) {
     $branches = [];
 }

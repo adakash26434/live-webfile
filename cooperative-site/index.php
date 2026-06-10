@@ -12,16 +12,16 @@ $homepageData = getCachedData('homepage_data', 1800, function() {
     $data = [];
     try {
         $db = getDB();
-        $data['sliders'] = $db->query("SELECT * FROM sliders WHERE is_active = 1 ORDER BY display_order, id")->fetchAll();
+        $data['sliders'] = $db->query("SELECT id, title, subtitle, image, button_text, button_url, is_active, display_order, created_at FROM sliders WHERE is_active = 1 ORDER BY display_order, id")->fetchAll();
         /* Homepage मा सिर्फ ३ सेवाहरू देखाउने — बाँकी services.php मा */
-        $data['services'] = $db->query("SELECT * FROM services WHERE is_active = 1 ORDER BY display_order LIMIT 3")->fetchAll();
+        $data['services'] = $db->query("SELECT id, title, title_np, title_en, description, description_np, icon, image, is_active, display_order, created_at FROM services WHERE is_active = 1 ORDER BY display_order LIMIT 3")->fetchAll();
         $totalServicesRow = $db->query("SELECT COUNT(*) as cnt FROM services WHERE is_active = 1")->fetch();
         $data['totalServices'] = $totalServicesRow ? (int)$totalServicesRow['cnt'] : count($data['services']);
-        $data['notices'] = $db->query("SELECT * FROM notices WHERE is_active = 1 ORDER BY id DESC LIMIT 5")->fetchAll();
-        $data['savingRates'] = $db->query("SELECT * FROM interest_rates WHERE category = 'saving' AND is_active = 1 ORDER BY display_order LIMIT 5")->fetchAll();
-        $data['loanRates'] = $db->query("SELECT * FROM interest_rates WHERE category = 'loan' AND is_active = 1 ORDER BY display_order LIMIT 5")->fetchAll();
+        $data['notices'] = $db->query("SELECT id, title, title_np, content, content_np, notice_date, attachment, is_active, is_popup, created_at, updated_at FROM notices WHERE is_active = 1 ORDER BY id DESC LIMIT 5")->fetchAll();
+        $data['savingRates'] = $db->query("SELECT id, category, name, name_np, rate, description, description_np, is_active, display_order, updated_at FROM interest_rates WHERE category = 'saving' AND is_active = 1 ORDER BY display_order LIMIT 5")->fetchAll();
+        $data['loanRates'] = $db->query("SELECT id, category, name, name_np, rate, description, description_np, is_active, display_order, updated_at FROM interest_rates WHERE category = 'loan' AND is_active = 1 ORDER BY display_order LIMIT 5")->fetchAll();
         // Get latest 3 news
-        $data['latestNews'] = $db->query("SELECT * FROM news WHERE is_active = 1 ORDER BY created_at DESC LIMIT 3")->fetchAll();
+        $data['latestNews'] = $db->query("SELECT id, title, title_np, content, content_np, image, is_active, created_at FROM news WHERE is_active = 1 ORDER BY created_at DESC LIMIT 3")->fetchAll();
         // NOTE: PDO object लाई cache मा नराख्ने — json_encode ले serialize गर्न सक्दैन
     } catch (Throwable $e) {
         $data = [
@@ -53,7 +53,7 @@ try {
 if ($db instanceof PDO) {
     try {
         $spotlightStmt = $db->prepare(
-            "SELECT * FROM member_of_year
+            "SELECT id, spotlight_year, member_name, member_name_en, member_id, photo, member_since, quote, quote_en, achievement, achievement_en, is_active, created_at, updated_at FROM member_of_year
              WHERE spotlight_year = ? AND is_active = 1
              LIMIT 1"
         );
@@ -160,12 +160,12 @@ if ($db instanceof PDO) {
         // Check if reports table exists
         $reportsCheck = $db->query("SHOW TABLES LIKE 'reports'");
         if ($reportsCheck && $reportsCheck->fetch() !== false) {
-            $monthlyStmt = $db->query("SELECT * FROM reports WHERE is_active = 1 AND report_type = 'monthly' ORDER BY report_year DESC, created_at DESC LIMIT 1");
+            $monthlyStmt = $db->query("SELECT id, title, title_np, report_type, report_year, report_month, report_quarter, file_path, is_active, display_order, created_at FROM reports WHERE is_active = 1 AND report_type = 'monthly' ORDER BY report_year DESC, created_at DESC LIMIT 1");
             if ($monthlyStmt) {
                 $latestMonthlyReport = $monthlyStmt->fetch();
             }
 
-            $annualStmt = $db->query("SELECT * FROM reports WHERE is_active = 1 AND report_type = 'annual' ORDER BY report_year DESC, created_at DESC LIMIT 1");
+            $annualStmt = $db->query("SELECT id, title, title_np, report_type, report_year, report_month, report_quarter, file_path, is_active, display_order, created_at FROM reports WHERE is_active = 1 AND report_type = 'annual' ORDER BY report_year DESC, created_at DESC LIMIT 1");
             if ($annualStmt) {
                 $latestAnnualReport = $annualStmt->fetch();
             }
@@ -529,7 +529,7 @@ if ($db instanceof PDO) {
 $whyFeatures = [];
 if ($db instanceof PDO) {
     try {
-        $whyFeatures = $db->query("SELECT * FROM why_choose_features WHERE is_active=1 ORDER BY sort_order, id")->fetchAll();
+        $whyFeatures = $db->query("SELECT id, icon, title_np, title_en, desc_np, desc_en, sort_order, is_active, created_at FROM why_choose_features WHERE is_active=1 ORDER BY sort_order, id")->fetchAll();
     } catch (Throwable $e) {
         $whyFeatures = [];
     }
@@ -586,8 +586,8 @@ $ceoDesignationEn = trim((string)getSetting('ceo_designation_en', 'Chief Executi
 $informationOfficer = $grievanceOfficer = null;
 if ($db instanceof PDO) {
     try {
-        $informationOfficer = $db->query("SELECT * FROM team_members WHERE is_information_officer = 1 AND is_active = 1 LIMIT 1")->fetch();
-        $grievanceOfficer = $db->query("SELECT * FROM team_members WHERE is_grievance_officer = 1 AND is_active = 1 LIMIT 1")->fetch();
+        $informationOfficer = $db->query("SELECT id, name, name_en, position, position_np, position_en, photo, phone, email, category, is_information_officer, is_grievance_officer, is_active, display_order, created_at FROM team_members WHERE is_information_officer = 1 AND is_active = 1 LIMIT 1")->fetch();
+        $grievanceOfficer = $db->query("SELECT id, name, name_en, position, position_np, position_en, photo, phone, email, category, is_information_officer, is_grievance_officer, is_active, display_order, created_at FROM team_members WHERE is_grievance_officer = 1 AND is_active = 1 LIMIT 1")->fetch();
     } catch (Throwable $e) {
         $informationOfficer = $grievanceOfficer = null;
     }
@@ -779,7 +779,7 @@ if ($db instanceof PDO) {
 $appFeatures = [];
 if ($db instanceof PDO) {
     try {
-        $appFeatures = $db->query("SELECT * FROM app_features WHERE is_active = 1 ORDER BY sort_order ASC LIMIT 24")->fetchAll();
+        $appFeatures = $db->query("SELECT id, title, title_np, icon, description, description_np, is_new, is_active, sort_order, created_at FROM app_features WHERE is_active = 1 ORDER BY sort_order ASC LIMIT 24")->fetchAll();
     } catch (Throwable $e) {
         $appFeatures = [];
     }
@@ -915,7 +915,7 @@ $awards = [];
 $totalAwards = 0;
 if ($db instanceof PDO) {
     try {
-        $awardsStmt = $db->query("SELECT * FROM awards WHERE is_active = 1 ORDER BY display_order ASC, award_date DESC LIMIT 3");
+        $awardsStmt = $db->query("SELECT id, title, title_np, description, description_np, awarded_by, awarded_by_np, award_date, image, is_active, display_order, created_at, updated_at FROM awards WHERE is_active = 1 ORDER BY display_order ASC, award_date DESC LIMIT 3");
         $awards = $awardsStmt->fetchAll();
         // Check total count for "View All" link
         $totalAwardsStmt = $db->query("SELECT COUNT(*) as total FROM awards WHERE is_active = 1");

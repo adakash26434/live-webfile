@@ -49,6 +49,7 @@ if (($_GET['ajax'] ?? '') === 'log') {
 
 /* ── POST handlers (admin+ only for mutations) ── */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    checkCSRF();
     require_role('admin');
     $action = $_POST['action'] ?? '';
     $me     = (int)($_SESSION['admin_id'] ?? 0);
@@ -121,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 /* ── Fetch credentials ── */
 $rows = $db->query(
-    "SELECT * FROM office_credentials WHERE is_active = 1
+    "SELECT id, site_name, site_url, site_logo, username, password_enc, password_iv, category, notes, is_active, sort_order, created_by, updated_by, created_at, updated_at FROM office_credentials WHERE is_active = 1
      ORDER BY category, sort_order, site_name LIMIT 500"
 )->fetchAll(PDO::FETCH_ASSOC);
 ?>

@@ -26,6 +26,7 @@ if ($conv > 0) {
 
 /* POST: reply */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'reply' && $conv > 0) {
+    checkCSRF();
     $body = trim((string)($_POST['body'] ?? ''));
     if ($body !== '') {
         $st = $db->prepare("INSERT INTO hrm_internal_messages
@@ -56,7 +57,7 @@ if ($conv > 0) {
     $st = $db->prepare("SELECT * FROM hrm_employees WHERE id=?");
     $st->execute([$conv]);
     $activeEmp = $st->fetch(PDO::FETCH_ASSOC);
-    $st = $db->prepare("SELECT * FROM hrm_internal_messages
+    $st = $db->prepare("SELECT id, sender_admin_id, sender_employee_id, receiver_employee_id, subject, body, is_read, read_at, created_at FROM hrm_internal_messages
                         WHERE receiver_employee_id=? ORDER BY created_at ASC LIMIT 200");
     $st->execute([$conv]);
     $messages = $st->fetchAll(PDO::FETCH_ASSOC);

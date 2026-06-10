@@ -54,7 +54,7 @@ $links = [];
 try {
     $check = $db->query("SHOW TABLES LIKE 'useful_links'");
     if ($check->fetch() !== false) {
-        $links = $db->query("SELECT * FROM useful_links ORDER BY display_order, id DESC")->fetchAll();
+        $links = $db->query("SELECT id, title, title_np, url, icon, description, description_np, is_popup, is_active, display_order, created_at FROM useful_links ORDER BY display_order, id DESC")->fetchAll();
     } else {
         $error = 'useful_links टेबल छैन। कृपया migration चलाउनुहोस्।';
     }

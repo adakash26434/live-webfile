@@ -46,7 +46,7 @@ $rCitizen = trim((string)($kycRow['citizenship_no'] ?? ''));
 /* Loan rates */
 $loanRates = [];
 try {
-    $loanRates = $db->query("SELECT * FROM interest_rates WHERE category='loan' AND is_active=1 ORDER BY display_order ASC LIMIT 15")->fetchAll(PDO::FETCH_ASSOC);
+    $loanRates = $db->query("SELECT id, category, name, name_np, rate, description, description_np, is_active, display_order, updated_at FROM interest_rates WHERE category='loan' AND is_active=1 ORDER BY display_order ASC LIMIT 15")->fetchAll(PDO::FETCH_ASSOC);
 } catch (Throwable $e) {}
 
 /* Recent loan applications */

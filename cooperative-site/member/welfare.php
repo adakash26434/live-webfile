@@ -132,7 +132,7 @@ try {
     $params = [$memberId];
     if ($resolvedPhone) { $conds[] = 'phone=?'; $params[] = $resolvedPhone; }
     if ($resolvedEmail) { $conds[] = 'LOWER(email)=?'; $params[] = strtolower($resolvedEmail); }
-    $st = $db->prepare("SELECT * FROM member_welfare_claims WHERE " . implode(' OR ', $conds) . " ORDER BY created_at DESC LIMIT 50");
+    $st = $db->prepare("SELECT id, tracking_id, member_name, member_id, phone, email, address, claim_type, claim_amount, description, claim_date_bs, claim_date_ad, status, approved_amount, admin_remarks, attachment_path, created_at, updated_at FROM member_welfare_claims WHERE " . implode(' OR ', $conds) . " ORDER BY created_at DESC LIMIT 50");
     $st->execute($params);
     $myClaims = $st->fetchAll(PDO::FETCH_ASSOC) ?: [];
 } catch (Throwable $e) { $myClaims = []; }

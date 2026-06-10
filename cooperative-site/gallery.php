@@ -26,11 +26,11 @@ try {
 
     if ($hasMediaType) {
         // Separate photos and videos
-        $photos = $db->query("SELECT * FROM gallery WHERE is_active = 1 AND (media_type = 'photo' OR media_type IS NULL) ORDER BY id DESC")->fetchAll();
-        $videos = $db->query("SELECT * FROM gallery WHERE is_active = 1 AND media_type = 'video' ORDER BY id DESC")->fetchAll();
+        $photos = $db->query("SELECT id, title, title_np, image, category, is_active, display_order, created_at FROM gallery WHERE is_active = 1 AND (media_type = 'photo' OR media_type IS NULL) ORDER BY id DESC")->fetchAll();
+        $videos = $db->query("SELECT id, title, title_np, image, category, is_active, display_order, created_at FROM gallery WHERE is_active = 1 AND media_type = 'video' ORDER BY id DESC")->fetchAll();
     } else {
         // All items are photos
-        $photos = $db->query("SELECT * FROM gallery WHERE is_active = 1 ORDER BY id DESC")->fetchAll();
+        $photos = $db->query("SELECT id, title, title_np, image, category, is_active, display_order, created_at FROM gallery WHERE is_active = 1 ORDER BY id DESC")->fetchAll();
         $videos = [];
     }
 

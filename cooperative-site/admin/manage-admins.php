@@ -165,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 /* ── Admin list (फाइल-सुपरएडमिन सूचीबाट लुकाउने) ── */
 try {
-    $admins = $db->query("SELECT * FROM admin_users ORDER BY id ASC")->fetchAll() ?: [];
+    $admins = $db->query("SELECT id, username, password, full_name, email, role, is_active, created_at, last_login FROM admin_users ORDER BY id ASC")->fetchAll() ?: [];
     $admins = filter_out_file_managed_superadmin_rows($admins);
 } catch (Exception $e) {
     $admins = [];
