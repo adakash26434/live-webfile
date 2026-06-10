@@ -21969,7 +21969,7 @@ footer.main-footer,
   body.header-v2 .menu-overlay.active,
   body.header-v2 .mobile-nav-backdrop.active,
   body.header-v2 #pflMobileBackdrop.active{
-    z-index: 200040 !important;
+    /* z-index: 200040 !important; */
     background: rgba(15,23,42,.58) !important;
   }
 }

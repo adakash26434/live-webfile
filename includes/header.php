@@ -450,11 +450,11 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                 display: none;
                 position: fixed; top: 0; left: 0; right: 0; bottom: 0;
                 background: rgba(0,0,0,0.5);
-                z-index: 199998;
+                z-index: 1999;
                 -webkit-backdrop-filter: none !important;
                 backdrop-filter: none !important;
             }
-            #pflMobileBackdrop { z-index: 200000 !important; }
+            /* #pflMobileBackdrop { z-index: 20000 !important; } */
             .mobile-nav-backdrop.active { display: block; }
 
             /* Main header flex layout fix */
@@ -1051,8 +1051,8 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                             <?php endif; ?>
                         </ul>
                     </li>
-                    <li class="has-dropdown">
-                        <a href="javascript:void(0);"><?php echo isEnglish() ? 'More' : 'थप'; ?> <i class="fas fa-chevron-down"></i></a>
+                    <li class="has-dropdown<?php echo $currentPage == 'index' ? 'active' : ''; ?>">
+                        <a href="<?php echo SITE_URL; ?>"><?php echo isEnglish() ? 'More' : 'थप'; ?> <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown">
                             <li><a href="<?php echo SITE_URL; ?>news.php"><i class="fas fa-newspaper"></i> <?php echo isEnglish() ? 'News & Activities' : 'समाचार'; ?></a></li>
                             <li><a href="<?php echo SITE_URL; ?>career.php"><i class="fas fa-briefcase"></i> <?php echo isEnglish() ? 'Career' : 'बिज्ञापन'; ?><?php echo nav_submenu_count_badge_html($navMenuBadges['career_open']); ?></a></li>
@@ -1365,7 +1365,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
     </header>
 
     <!-- PFL Mobile Nav Backdrop -->
-    <div class="mobile-nav-backdrop" id="pflMobileBackdrop" aria-hidden="true"></div>
+    <!-- <div class="mobile-nav-backdrop" id="pflMobileBackdrop" aria-hidden="true"></div> -->
 
     <script>/* v9.4: PFL mobile nav toggle moved to assets/js/v9-mobile-fix.js */</script>
     <script src="<?php echo SITE_URL; ?>assets/js/coop-mobile.js?v=6.5" defer></script>

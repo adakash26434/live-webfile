@@ -2927,6 +2927,7 @@ footer a:hover, .site-footer a:hover, .footer a:hover { color: var(--text-on-foo
     body.header-v2 #mainNavV2.active,
     body.header-v2 #mainNav.nav-open, body.header-v2 #mainNav.open,
     body.header-v2 #mainNav.active {
+        margin-top: 40px;
         transform: translate3d(0, 0, 0);
     }
 
@@ -2944,6 +2945,7 @@ footer a:hover, .site-footer a:hover, .footer a:hover { color: var(--text-on-foo
     }
     /* Close button */
     body.header-v2 .main-nav .close-menu {
+        margin-top: 10px;
         display: inline-flex; position: absolute;
         top: 18px; right: 14px;
         width: 38px; height: 38px;
