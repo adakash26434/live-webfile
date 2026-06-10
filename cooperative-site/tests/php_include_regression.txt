@@ -1,0 +1,20 @@
+=== root_bootstrap ===
+exit_code=0
+<!DOCTYPE html><html lang="ne"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Setup - Aakash Cooperative</title><style>body{margin:0;font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--primary-color)}.box{background:#fff;border-radius:12px;padding:40px;max-width:400px;width:90%;text-align:center}h1{color:var(--primary-color);margin-bottom:10px;font-size:22px}p{color:#555;margin-bottom:24px;line-height:1.6}a{background:var(--primary-color);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:16px}</style></head><body><div class="box"><h1>Aakash Cooperative</h1><p>Website setup in progress.<br>Go to Admin Panel to configure the database.</p><a href="http://example.test/admin/">Admin Panel Setup</a></div></body></html>
+
+=== root_index ===
+exit_code=0
+<!DOCTYPE html><html lang="ne"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Setup - Aakash Cooperative</title><style>body{margin:0;font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--primary-color)}.box{background:#fff;border-radius:12px;padding:40px;max-width:400px;width:90%;text-align:center}h1{color:var(--primary-color);margin-bottom:10px;font-size:22px}p{color:#555;margin-bottom:24px;line-height:1.6}a{background:var(--primary-color);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:16px}</style></head><body><div class="box"><h1>Aakash Cooperative</h1><p>Website setup in progress.<br>Go to Admin Panel to configure the database.</p><a href="http://example.test/admin/">Admin Panel Setup</a></div></body></html>
+
+=== member_login ===
+exit_code=0
+<!DOCTYPE html><html lang="ne"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Setup - Aakash Cooperative</title><style>body{margin:0;font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--primary-color)}.box{background:#fff;border-radius:12px;padding:40px;max-width:400px;width:90%;text-align:center}h1{color:var(--primary-color);margin-bottom:10px;font-size:22px}p{color:#555;margin-bottom:24px;line-height:1.6}a{background:var(--primary-color);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:16px}</style></head><body><div class="box"><h1>Aakash Cooperative</h1><p>Website setup in progress.<br>Go to Admin Panel to configure the database.</p><a href="http://example.test/admin/">Admin Panel Setup</a></div></body></html>
+
+=== admin_bootstrap ===
+exit_code=0
+OK_ADMIN_BOOTSTRAP
+
+=== admin_dashboard ===
+exit_code=0
+
+

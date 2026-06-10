@@ -1,0 +1,57 @@
+{
+  "metadata": {
+    "archetype": "Archetype 1: Organic & Earthy",
+    "theme": "Light",
+    "vibe": "Trust, Stability, Dense but breathable data entry",
+    "domain": "Finance / Cooperative Admin"
+  },
+  "colors": {
+    "brand_primary": "#166534",
+    "brand_hover": "#14532D",
+    "background_page": "#F4F5F4",
+    "background_card": "#FFFFFF",
+    "text_main": "#064E3B",
+    "text_muted": "#475569",
+    "border_subtle": "#E2E8F0",
+    "focus_ring": "#86EFAC"
+  },
+  "typography": {
+    "headings": "Work Sans, sans-serif",
+    "data_body": "IBM Plex Sans, sans-serif",
+    "rules": [
+      "Card Headings: font-weight 600, text-lg, tight tracking.",
+      "Labels: font-size 12px, uppercase, tracking-[0.05em], text_muted.",
+      "Values/Inputs: IBM Plex Sans for tabular/numeric clarity."
+    ]
+  },
+  "layout": {
+    "strategy": "MODE B: Control Room Grid (Bento style).",
+    "implementation": "Translate to Bootstrap classes: Use .container-fluid, .row, and .col-md-6 .col-lg-4 to create a dense grid of cards.",
+    "spacing": "Page background should be #F4F5F4. Cards get .p-3 or .p-4 with .mb-4 to allow visual breathing room."
+  },
+  "components": {
+    "cards": {
+      "design": ".bg-white, .rounded-3 (8px radius), 1px solid #E2E8F0, .shadow-sm."
+    },
+    "form_inputs": {
+      "design": "Clean standard Bootstrap .form-control but override focus border to #166534 and box-shadow to a subtle #86EFAC ring. No heavy shadows."
+    },
+    "sticky_action_bar": {
+      "design": "Wrap the Save button and Report Note in a sticky bottom container: .position-sticky .bottom-0 .bg-white .border-top .p-3 (with high z-index). This satisfies the 'sticky save ergonomics'."
+    }
+  },
+  "data_grouping": [
+    "Card 1 (Report Setup): Fiscal Year, Report Date, Attachment",
+    "Card 2 (Core Demographics): Total Members, Loan Members",
+    "Card 3 (Capital & Funds): Share Capital, Reserved Fund, Other Fund",
+    "Card 4 (Assets & Banking): Total Assets, Bank Cash, Fixed Assets",
+    "Card 5 (Liquidity & Loans): Deposit, Loan, NPA, NPL, Liquidity"
+  ],
+  "instructions_to_main_agent": [
+    "Do NOT migrate to React/Tailwind. Maintain existing PHP/Bootstrap environment.",
+    "Preserve the exact HTML `name` attributes and existing POST save flow logic.",
+    "Add `data-testid` attributes to all form inputs and the save button.",
+    "Restructure the flat vertical form into a Bento-card grid grouping using Bootstrap cards, aligning with `data_grouping`.",
+    "Implement the sticky save bar so the user doesn't have to scroll to the bottom of the page to save."
+  ]
+}

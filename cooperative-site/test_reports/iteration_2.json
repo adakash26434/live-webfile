@@ -1,0 +1,53 @@
+{
+  "summary": "Ran combined PHP/static + isolated DOM regression tests for Nepal address data, KYC selectors, mobile menu drawer JS, and institutional profile field wiring. 6/7 automated checks passed; one backward-compatibility issue found in public institutional profile rendering.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "/institutional-profile.php",
+        "issue": "Public profile page accesses new DB columns directly (e.g., $p['other_fund']) without null-safe fallback, which can trigger Undefined array key notices on older databases where those columns are not yet present.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [
+      {
+        "flow": "Real page/integration smoke",
+        "issue": "Workspace database is not configured; public URL serves setup page, so end-to-end DB-backed UI flows cannot be validated in this run.",
+        "affected_selectors": []
+      }
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/tests/test_php_feature_regression.py",
+    "/app/test_reports/pytest/pytest_results.xml",
+    "/app/test_reports/iteration_2.json"
+  ],
+  "action_items": [
+    "Update /app/institutional-profile.php to use null-safe access for optional/new columns (other_fund, bank_cash_balance, fixed_assets, total_loan_members), e.g. ($p['field'] ?? 0) patterns.",
+    "After fix, rerun /app/tests/test_php_feature_regression.py and then retest with configured DB to validate real public/admin render flows."
+  ],
+  "critical_code_review_comments": [
+    "Address dataset integrity checks are good: 7 provinces, 77 districts, 753 local levels, no duplicate municipality names within district scope.",
+    "Target correction entries verified: दोधारा चाँदनी नगरपालिका, पचालझरना गाउँपालिका, and दोर्दी गाउँपालिका wards=9.",
+    "Mobile drawer JS behavior validated in isolated DOM: open/close, chevron injection, submenu toggle, aria-expanded updates all work."
+  ],
+  "updated_files": [
+    "/app/tests/test_php_feature_regression.py",
+    "/app/test_reports/iteration_2.json",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "success_rate": {
+    "backend": "86%",
+    "frontend": "100% (isolated DOM test), E2E blocked by DB setup"
+  },
+  "test_credentials": "Read /app/memory/test_credentials.md. No test credentials available in workspace (DB not configured).",
+  "seed_data_creation": "",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Automated regression exists at /app/tests/test_php_feature_regression.py. Current sole failing check is null-safe rendering expectation in /app/institutional-profile.php. Mobile JS and address dataset checks are already passing.",
+  "rca of the issue": "RCA: New institutional profile fields were added in admin schema/forms, but public renderer still assumes all keys always exist in fetched row arrays. On environments where migration/ALTER hasn't run (or partial schema), direct access can emit Undefined array key notices and unstable rendering. Mitigation: null-coalescing defaults and defensive casting before condition/render logic."
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="7" time="0.402" timestamp="2026-06-08T14:30:09.772624+00:00" hostname="agent-env-fee2db2e-3fa9-4c13-a1cf-226bc57653d3"><testcase classname="tests.test_php_feature_regression" name="test_nepal_address_counts_and_uniqueness" time="0.044" /><testcase classname="tests.test_php_feature_regression" name="test_nepal_address_specific_corrected_entries" time="0.039" /><testcase classname="tests.test_php_feature_regression" name="test_php_syntax_for_modified_files" time="0.231" /><testcase classname="tests.test_php_feature_regression" name="test_mobile_menu_js_syntax" time="0.024" /><testcase classname="tests.test_php_feature_regression" name="test_admin_profile_new_fields_wired" time="0.000" /><testcase classname="tests.test_php_feature_regression" name="test_kyc_selectors_present" time="0.000" /><testcase classname="tests.test_php_feature_regression" name="test_public_profile_new_fields_are_missing_safe" time="0.009"><failure message="AssertionError: Missing null-safe access for: ($p['other_fund'] ??&#10;assert &quot;($p['other_fund'] ??&quot; in &quot;&lt;?php\n/**\n * Public Page: संस्थागत प्रोफाइल\n * File: institutional-profile.php\n *\n * Admin मा थपिएको financial d... = ipOpenDoc;\n    window.ipCloseDoc = ipCloseDoc;\n}());\n&lt;/script&gt;\n\n&lt;?php require_once 'includes/footer.php'; ?&gt;\n&quot;">def test_public_profile_new_fields_are_missing_safe() -&gt; None:
+        """Should use null-safe access to avoid Undefined array key notices on old schema."""
+        content = Path("/app/institutional-profile.php").read_text(encoding="utf-8")
+        expected_safe_patterns = [
+            "($p['other_fund'] ??",
+            "($p['bank_cash_balance'] ??",
+            "($p['fixed_assets'] ??",
+            "($p['total_loan_members'] ??",
+        ]
+        for pattern in expected_safe_patterns:
+&gt;           assert pattern in content, f"Missing null-safe access for: {pattern}"
+E           AssertionError: Missing null-safe access for: ($p['other_fund'] ??
+E           assert "($p['other_fund'] ??" in "&lt;?php\n/**\n * Public Page: संस्थागत प्रोफाइल\n * File: institutional-profile.php\n *\n * Admin मा थपिएको financial d... = ipOpenDoc;\n    window.ipCloseDoc = ipCloseDoc;\n}());\n&lt;/script&gt;\n\n&lt;?php require_once 'includes/footer.php'; ?&gt;\n"
+
+tests/test_php_feature_regression.py:144: AssertionError</failure></testcase></testsuite></testsuites>

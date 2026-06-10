@@ -1,0 +1,9 @@
+.env
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials
+*.bak-dedup
+*.bak
