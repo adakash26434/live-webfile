@@ -225,18 +225,17 @@ def test_btn_neutralizer_block_removed() -> None:
 
 
 def test_mobile_drawer_stacking_fix_present() -> None:
-    """Public mobile menu drawer (#mainNavV2) stacking-context fix must be present."""
+    """Public mobile nav must use JS teleportation to escape stacking context — NOT z-index hack."""
     content = (ROOT / "includes/header.php").read_text(encoding="utf-8")
-    assert "body.header-v2.mobile-nav-open .pfl-header-wrapper" in content, (
-        "Missing stacking-context fix for mobile drawer."
+    # New approach: JS teleports nav outside .pfl-header-wrapper
+    assert "teleportNav" in content, (
+        "Missing JS teleportation fix for mobile drawer stacking context."
     )
-    m = re.search(
-        r'body\.header-v2\.mobile-nav-open\s+\.pfl-header-wrapper\s*\{[^}]*z-index:\s*(\d+)',
-        content,
+    assert "wrapper.contains(nav)" in content, (
+        "teleportNav must check wrapper.contains(nav) before moving nav."
     )
-    assert m is not None, "Stacking fix block must set explicit z-index"
-    assert int(m.group(1)) > 2147483000, (
-        f"Wrapper z-index ({m.group(1)}) must be > backdrop z-index (2147483000)"
+    assert "navArea.appendChild(nav)" in content, (
+        "teleportNav must restore nav to .pfl-nav-area on desktop resize."
     )
 
 

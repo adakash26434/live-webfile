@@ -1424,15 +1424,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
         }
         body.header-v2.mobile-nav-open { overflow: hidden !important; }
 
-        /* ── CRITICAL FIX: sticky .pfl-header-wrapper (z-index:1000) creates its own
-           stacking context, trapping #mainNavV2 (drawer) inside it. The backdrop sits
-           outside the wrapper at z-index 2147483000 → backdrop ends up on top of the
-           drawer and dims it. When mobile nav opens, lift the wrapper above backdrop
-           so the drawer becomes visible at full contrast. ── */
-        body.header-v2.mobile-nav-open .pfl-header-wrapper {
-            z-index: 2147483002 !important;
-            isolation: isolate;
-        }
+        /* Nav drawer is teleported outside wrapper via JS — no stacking context fix needed */
     }
     </style>
     <script>
@@ -1445,6 +1437,27 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
             if (!toggle || !nav || toggle.dataset.emgMobileBound === '1') return;
             toggle.dataset.emgMobileBound = '1';
             toggle.dataset.v96Bound = '1';
+            /* ── TELEPORT: Move nav drawer outside .pfl-header-wrapper to escape its
+               stacking context (z-index:1000). At body level, nav z:2147483001 is
+               correctly above backdrop z:2147483000. On desktop resize, restore nav
+               to .pfl-nav-area so desktop CSS selectors still work. ── */
+            var wrapper = document.querySelector('.pfl-header-wrapper');
+            var navArea = wrapper ? wrapper.querySelector('.pfl-nav-area') : null;
+            function teleportNav(isMobile) {
+                if (!nav || !wrapper) return;
+                if (isMobile && wrapper.contains(nav)) {
+                    var bdrop = document.getElementById('pflMobileBackdrop');
+                    if (bdrop && bdrop.parentNode === wrapper.parentNode) {
+                        wrapper.parentNode.insertBefore(nav, bdrop);
+                    } else {
+                        wrapper.parentNode.insertBefore(nav, wrapper.nextSibling);
+                    }
+                } else if (!isMobile && navArea && !navArea.contains(nav)) {
+                    navArea.appendChild(nav);
+                }
+            }
+            teleportNav(window.innerWidth < 992);
+            window.addEventListener('resize', function(){ teleportNav(window.innerWidth < 992); }, { passive: true });
             var savedY = 0;
             nav.querySelectorAll('.has-dropdown, .has-sub').forEach(function(li){
                 var link = li.querySelector(':scope > a');

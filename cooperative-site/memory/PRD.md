@@ -108,6 +108,12 @@ User later asked to start, selected a specific issue category, and prioritized f
     11. **CSS audit utility** — `scripts/css-audit.py` created for future deduplication sprints.
     Full audit report: `docs/REFACTOR_AUDIT_2026-06-12.md`
 
+- 2026-06-13: **PUBLIC MOBILE NAV — STACKING CONTEXT FIX (TELEPORTATION APPROACH)**
+    - **Root cause**: `#mainNavV2` nav drawer was inside `.pfl-header-wrapper` (z:1000), which creates a CSS stacking context. The backdrop `#pflMobileBackdrop` (z:2147483000) at body level was rendered ABOVE the entire wrapper, making the drawer invisible/dimmed. Previous z-index workaround (lifting wrapper to z:2147483002) was fragile.
+    - **Definitive fix**: JS teleportation — when mobile (<992px), `bindPflMobileMenu()` moves `#mainNavV2` to be a direct sibling of wrapper (inserted before `#pflMobileBackdrop`). At body level, nav z:2147483001 correctly appears ABOVE backdrop z:2147483000. On resize to desktop (≥992px), nav is restored to `.pfl-nav-area` so desktop CSS selectors still work.
+    - **CSS improvements**: Removed `will-change:transform` + `contain:layout paint` from nav (was adding unnecessary complexity); fixed `body.header-v2.mobile-nav-open` scroll-lock to not override JS scroll-position restore (removed `inset:0 !important`, kept only `position:fixed` + `right/bottom/left:0`).
+    - **Regression test updated**: `test_mobile_drawer_stacking_fix_present` now validates teleportation code instead of old wrapper z-index hack. 33 passed, 3 skipped.
+
 ## Current Known Environment State
 - Database credentials are not configured in this workspace, so public/member pages may show the setup screen and admin bootstrap logs non-fatal DB-not-configured messages. This is expected until real DB config is present.
 - This fork is a legacy/custom PHP project. Supervisor React/FastAPI services are not applicable here and may show FATAL because `/app/frontend` and `/app/backend` do not exist.

@@ -21381,7 +21381,10 @@ body.auth-page,
 
     body.header-v2.mobile-nav-open {
         position: fixed !important;
-        inset: 0 !important;
+        /* top is set by JS (body.style.top = '-scrollY') for iOS scroll restore */
+        right: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
         width: 100% !important;
     }
 
@@ -21436,8 +21439,6 @@ body.auth-page,
         z-index: 2147483001 !important;
         box-shadow: 18px 0 36px rgba(2, 6, 23, .34) !important;
         isolation: isolate !important;
-        will-change: transform !important;
-        contain: layout paint !important;
         pointer-events: auto !important;
     }
 
