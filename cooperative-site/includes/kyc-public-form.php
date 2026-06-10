@@ -35,7 +35,7 @@ if (!function_exists('verifyPublicFormKycByMemberId')) {
         }
 
         try {
-            $sql = "SELECT * FROM kyc_applications
+            $sql = "SELECT id, member_id, full_name, full_name_en, dob_bs, dob_ad, gender, marital_status, nationality, mobile, email, permanent_address, temporary_address, citizenship_no, citizenship_issued_date, citizenship_issued_place, father_name, mother_name, grandfather_name, spouse_name, occupation, organization_name, monthly_income, account_type, branch, photo, citizenship_front, citizenship_back, signature, status, remarks, created_at, updated_at FROM kyc_applications
                     WHERE UPPER(TRIM(CAST(`{$col}` AS CHAR))) = ?
                       AND (status IS NULL OR status != 'rejected')
                     ORDER BY (status = 'approved') DESC, id DESC
@@ -89,7 +89,7 @@ if (!function_exists('loadKycRowForLoggedMemberPublic')) {
             $st->execute([$mid]);
             $kid = (int)($st->fetchColumn() ?: 0);
             if ($kid > 0) {
-                $k = $db->prepare('SELECT * FROM kyc_applications WHERE id = ? AND (status IS NULL OR status != ?) LIMIT 1');
+                $k = $db->prepare('SELECT id, member_id, full_name, full_name_en, dob_bs, dob_ad, gender, marital_status, nationality, mobile, email, permanent_address, temporary_address, citizenship_no, citizenship_issued_date, citizenship_issued_place, father_name, mother_name, grandfather_name, spouse_name, occupation, organization_name, monthly_income, account_type, branch, photo, citizenship_front, citizenship_back, signature, status, remarks, created_at, updated_at FROM kyc_applications WHERE id = ? AND (status IS NULL OR status != ?) LIMIT 1');
                 $k->execute([$kid, 'rejected']);
                 $row = $k->fetch(PDO::FETCH_ASSOC);
                 if ($row) return $row;

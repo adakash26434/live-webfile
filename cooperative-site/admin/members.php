@@ -89,7 +89,7 @@ if ($viewId) {
     $viewMember = $st->fetch(PDO::FETCH_ASSOC);
     if ($viewMember) {
         $viewApps   = getMemberApplications($viewMember['email'] ?? '', $viewMember['phone'] ?? '', 30);
-        $nst = $db->prepare("SELECT * FROM member_notifications WHERE member_id=? ORDER BY created_at DESC LIMIT 20");
+        $nst = $db->prepare("SELECT id, member_id, title, message, type, link, is_read, created_at FROM member_notifications WHERE member_id=? ORDER BY created_at DESC LIMIT 20");
         $nst->execute([$viewId]);
         $viewNotifs = $nst->fetchAll(PDO::FETCH_ASSOC);
 

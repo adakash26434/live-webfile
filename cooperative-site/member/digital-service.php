@@ -24,12 +24,12 @@ $kycRow = null;
 try {
     $kycLinkId = (int)($mem['kyc_application_id'] ?? 0);
     if ($kycLinkId > 0) {
-        $ks = $db->prepare("SELECT * FROM kyc_applications WHERE id=? LIMIT 1");
+        $ks = $db->prepare("SELECT id, member_id, full_name, full_name_en, dob_bs, dob_ad, gender, marital_status, nationality, mobile, email, permanent_address, temporary_address, citizenship_no, citizenship_issued_date, citizenship_issued_place, father_name, mother_name, grandfather_name, spouse_name, occupation, organization_name, monthly_income, account_type, branch, photo, citizenship_front, citizenship_back, signature, status, remarks, created_at, updated_at FROM kyc_applications WHERE id=? LIMIT 1");
         $ks->execute([$kycLinkId]);
         $kycRow = $ks->fetch(PDO::FETCH_ASSOC) ?: null;
     }
     if (!$kycRow) {
-        $ks2 = $db->prepare("SELECT * FROM kyc_applications WHERE member_id=? ORDER BY id DESC LIMIT 1");
+        $ks2 = $db->prepare("SELECT id, member_id, full_name, full_name_en, dob_bs, dob_ad, gender, marital_status, nationality, mobile, email, permanent_address, temporary_address, citizenship_no, citizenship_issued_date, citizenship_issued_place, father_name, mother_name, grandfather_name, spouse_name, occupation, organization_name, monthly_income, account_type, branch, photo, citizenship_front, citizenship_back, signature, status, remarks, created_at, updated_at FROM kyc_applications WHERE member_id=? ORDER BY id DESC LIMIT 1");
         $ks2->execute([$memberId]);
         $kycRow = $ks2->fetch(PDO::FETCH_ASSOC) ?: null;
     }

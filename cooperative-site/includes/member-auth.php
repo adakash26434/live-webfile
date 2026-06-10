@@ -1149,7 +1149,7 @@ function generateAndStoreOTP($memberId, $channel, $sentTo, $purpose = 'password_
 function verifyOTP($memberId, $otpCode, $purpose = 'password_reset') {
     $db   = getDB();
     $stmt = $db->prepare(
-        "SELECT * FROM member_otp_tokens
+        "SELECT id, member_id, otp_code, purpose, channel, sent_to, is_used, attempts, expires_at, created_at FROM member_otp_tokens
          WHERE member_id=? AND purpose=? AND is_used=0 AND expires_at > NOW()
          ORDER BY id DESC LIMIT 1"
     );

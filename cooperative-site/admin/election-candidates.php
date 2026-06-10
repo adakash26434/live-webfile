@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             /* post master select गरिएको भए — auto-fill */
             if ($postId) {
-                $pst = $db->prepare('SELECT * FROM election_posts WHERE id=?');
+                $pst = $db->prepare('SELECT id, designation_id, title_np, title_en, committee_type_id, default_seats, default_max_votes, display_order, is_active, created_at FROM election_posts WHERE id=?');
                 $pst->execute([$postId]);
                 if ($pm = $pst->fetch(PDO::FETCH_ASSOC)) {
                     if ($titleNp === '') $titleNp = (string)$pm['title_np'];
@@ -130,29 +130,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 /* Edit pre-load */
 $editPos = null;
 if (($epid = (int)($_GET['edit_pos'] ?? 0)) > 0) {
-    $st = $db->prepare('SELECT * FROM election_positions WHERE id=? AND cycle_id=?');
+    $st = $db->prepare('SELECT id, cycle_id, title_np, title_en, seats, max_votes_per_voter, committee_type_id, display_order, is_active, created_at FROM election_positions WHERE id=? AND cycle_id=?');
     $st->execute([$epid, $cycleId]);
     $editPos = $st->fetch(PDO::FETCH_ASSOC) ?: null;
 }
 $editCand = null;
 if (($ecid = (int)($_GET['edit_cand'] ?? 0)) > 0) {
-    $st = $db->prepare('SELECT * FROM election_candidates WHERE id=? AND cycle_id=?');
+    $st = $db->prepare('SELECT id, cycle_id, position_id, name, name_en, photo, bio_np, bio_en, phone, email, address, symbol_no, display_order, is_active, created_at FROM election_candidates WHERE id=? AND cycle_id=?');
     $st->execute([$ecid, $cycleId]);
     $editCand = $st->fetch(PDO::FETCH_ASSOC) ?: null;
 }
 
-$positions = $db->prepare('SELECT * FROM election_positions WHERE cycle_id=? ORDER BY display_order, id');
+$positions = $db->prepare('SELECT id, cycle_id, title_np, title_en, seats, max_votes_per_voter, committee_type_id, display_order, is_active, created_at FROM election_positions WHERE cycle_id=? ORDER BY display_order, id');
 $positions->execute([$cycleId]);
 $positions = $positions->fetchAll(PDO::FETCH_ASSOC) ?: [];
 $posMap = [];
 foreach ($positions as $p) $posMap[(int)$p['id']] = $p;
 
-$cands = $db->prepare('SELECT * FROM election_candidates WHERE cycle_id=? ORDER BY position_id, display_order, id');
+$cands = $db->prepare('SELECT id, cycle_id, position_id, name, name_en, photo, bio_np, bio_en, phone, email, address, symbol_no, display_order, is_active, created_at FROM election_candidates WHERE cycle_id=? ORDER BY position_id, display_order, id');
 $cands->execute([$cycleId]);
 $cands = $cands->fetchAll(PDO::FETCH_ASSOC) ?: [];
 
 $committeeTypes = $db->query('SELECT id, name_np FROM committee_types WHERE is_active=1 ORDER BY display_order, id')->fetchAll(PDO::FETCH_ASSOC) ?: [];
-$postsMaster = $db->query('SELECT * FROM election_posts WHERE is_active=1 ORDER BY display_order, id')->fetchAll(PDO::FETCH_ASSOC) ?: [];
+$postsMaster = $db->query('SELECT id, designation_id, title_np, title_en, committee_type_id, default_seats, default_max_votes, display_order, is_active, created_at FROM election_posts WHERE is_active=1 ORDER BY display_order, id')->fetchAll(PDO::FETCH_ASSOC) ?: [];
 $panel = (string)($_GET['panel'] ?? 'positions'); // positions|candidates
 if (!in_array($panel, ['positions', 'candidates'], true)) $panel = 'positions';
 if ($editCand) $panel = 'candidates';

@@ -135,7 +135,7 @@ $_bellNotifs = [];
 if ($_memId) {
     try {
         $_db = getDB();
-        $_st = $_db->prepare("SELECT * FROM member_notifications WHERE member_id=? ORDER BY created_at DESC LIMIT 5");
+        $_st = $_db->prepare("SELECT id, member_id, title, message, type, link, is_read, created_at FROM member_notifications WHERE member_id=? ORDER BY created_at DESC LIMIT 5");
         $_st->execute([$_memId]);
         $_bellNotifs = $_st->fetchAll(PDO::FETCH_ASSOC);
     } catch (\Throwable $e) { $_bellNotifs = []; }

@@ -13,7 +13,7 @@ $csrf = $_SESSION['csrf_token'];
 
 $app = null;
 try {
-    $st = $pdo->prepare("SELECT * FROM kyc_applications WHERE id=?");
+    $st = $pdo->prepare("SELECT id, member_id, full_name, full_name_en, dob_bs, dob_ad, gender, marital_status, nationality, mobile, email, permanent_address, temporary_address, citizenship_no, citizenship_issued_date, citizenship_issued_place, father_name, mother_name, grandfather_name, spouse_name, occupation, organization_name, monthly_income, account_type, branch, photo, citizenship_front, citizenship_back, signature, status, remarks, created_at, updated_at FROM kyc_applications WHERE id=?");
     $st->execute([$id]);
     $app = $st->fetch(PDO::FETCH_ASSOC);
 } catch (\Throwable $e) {}

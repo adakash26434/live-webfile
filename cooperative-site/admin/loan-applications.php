@@ -163,7 +163,7 @@ $offset = ($page - 1) * $limit;
 try {
     $lcnt = $db->prepare("SELECT COUNT(*) FROM loan_applications WHERE $where"); $lcnt->execute($lparams); $total = $lcnt->fetchColumn();
     $totalPages = ceil($total / $limit);
-    $lstmt = $db->prepare("SELECT * FROM loan_applications WHERE $where ORDER BY created_at DESC LIMIT ? OFFSET ?");
+    $lstmt = $db->prepare("SELECT id, full_name, member_id, mobile, email, address, citizenship_no, loan_type, loan_amount, loan_purpose, loan_tenure, repayment_method, occupation, organization_name, monthly_income, other_income, collateral_type, collateral_description, collateral_value, guarantor_name, guarantor_relation, guarantor_phone, guarantor_address, branch, documents, status, remarks, created_at, updated_at FROM loan_applications WHERE $where ORDER BY created_at DESC LIMIT ? OFFSET ?");
     $lstmt->execute(array_merge($lparams, [$limit, $offset])); $applications = $lstmt->fetchAll();
     $totalAmount = $db->query("SELECT SUM(loan_amount) FROM loan_applications WHERE status='pending'")->fetchColumn() ?: 0;
 } catch (\Throwable $e) { $applications = []; $total = 0; $totalPages = 0; $totalAmount = 0; }
@@ -190,7 +190,7 @@ try {
 /* ─── Single view ─── */
 $viewApp = null;
 if (isset($_GET['view'])) {
-    $s = $db->prepare("SELECT * FROM loan_applications WHERE id=?");
+    $s = $db->prepare("SELECT id, full_name, member_id, mobile, email, address, citizenship_no, loan_type, loan_amount, loan_purpose, loan_tenure, repayment_method, occupation, organization_name, monthly_income, other_income, collateral_type, collateral_description, collateral_value, guarantor_name, guarantor_relation, guarantor_phone, guarantor_address, branch, documents, status, remarks, created_at, updated_at FROM loan_applications WHERE id=?");
     $s->execute([(int)$_GET['view']]);
     $viewApp = $s->fetch();
     if (!$viewApp) { setFlash('error', $__t('आवेदन फेला परेन।', 'Application not found.')); redirect('loan-applications.php'); }

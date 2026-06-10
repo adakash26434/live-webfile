@@ -124,7 +124,7 @@ $id = (int)($_GET['id'] ?? 0);
 
 <?php if ($action === 'view' && $id > 0): ?>
 <?php
-$stmt = $db->prepare("SELECT * FROM digital_service_requests WHERE id = ?");
+$stmt = $db->prepare("SELECT id, tracking_id, requester_name, member_id, phone, email, service_type, service_type_np, account_number, statement_from, statement_to, biller_name, bill_reference, recharge_number, recharge_amount, service_amount, request_details, attachment, preferred_contact, status, admin_remarks, admin_attachment, reviewed_by, reviewed_at, created_at, updated_at FROM digital_service_requests WHERE id = ?");
 $stmt->execute([$id]);
 $request = $stmt->fetch();
 if (!$request) {
@@ -302,7 +302,7 @@ $requests = [];
 $statusCounts = [];
 $totalRequests = 0;
 try {
-    $stmt = $db->prepare("SELECT * FROM digital_service_requests WHERE $whereClause ORDER BY created_at DESC");
+    $stmt = $db->prepare("SELECT id, tracking_id, requester_name, member_id, phone, email, service_type, service_type_np, account_number, statement_from, statement_to, biller_name, bill_reference, recharge_number, recharge_amount, service_amount, request_details, attachment, preferred_contact, status, admin_remarks, admin_attachment, reviewed_by, reviewed_at, created_at, updated_at FROM digital_service_requests WHERE $whereClause ORDER BY created_at DESC");
     $stmt->execute($params);
     $requests = $stmt->fetchAll();
     $countStmt = $db->query("SELECT status, COUNT(*) as count FROM digital_service_requests GROUP BY status");

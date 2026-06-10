@@ -17,7 +17,7 @@ if (!in_array($status, ['all', 'pending', 'approved', 'rejected'], true)) {
     $status = 'all';
 }
 $where = ($status === 'all') ? '' : 'WHERE status = ' . $pdo->quote($status);
-$rows = $pdo->query("SELECT * FROM kyc_applications {$where} ORDER BY created_at DESC LIMIT 200")->fetchAll(PDO::FETCH_ASSOC);
+$rows = $pdo->query("SELECT id, member_id, full_name, full_name_en, dob_bs, dob_ad, gender, marital_status, nationality, mobile, email, permanent_address, temporary_address, citizenship_no, citizenship_issued_date, citizenship_issued_place, father_name, mother_name, grandfather_name, spouse_name, occupation, organization_name, monthly_income, account_type, branch, photo, citizenship_front, citizenship_back, signature, status, remarks, created_at, updated_at FROM kyc_applications {$where} ORDER BY created_at DESC LIMIT 200")->fetchAll(PDO::FETCH_ASSOC);
 
 $counts = $pdo->query("SELECT
     COUNT(*) total,

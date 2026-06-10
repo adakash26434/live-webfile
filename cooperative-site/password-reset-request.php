@@ -163,7 +163,7 @@ if (!$step) $step = intval($_SESSION['pr_step'] ?? 1);
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?php echo htmlspecialchars($_t('पासवर्ड रिसेट', 'Password Reset')); ?> — <?php echo htmlspecialchars($siteName); ?></title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <?php memberHeadAssets(); ?>
 <style>
 body{background:linear-gradient(135deg,var(--bg-muted,#e8f5e9),var(--bg-soft,#f0fdf4) 60%,#e3f2fd);min-height:100vh;font-family:var(--font-primary,'Mukta','Noto Sans Devanagari','Segoe UI',sans-serif);color:var(--text-primary,#1a2e1f);}

@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $editPost = null;
 if (($epid = (int)($_GET['edit'] ?? 0)) > 0) {
-    $st = $db->prepare('SELECT * FROM election_posts WHERE id=?');
+    $st = $db->prepare('SELECT id, designation_id, title_np, title_en, committee_type_id, default_seats, default_max_votes, display_order, is_active, created_at FROM election_posts WHERE id=?');
     $st->execute([$epid]);
     $editPost = $st->fetch(PDO::FETCH_ASSOC) ?: null;
 }

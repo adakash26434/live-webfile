@@ -54,7 +54,7 @@ $threads = $db->query("
 $messages = [];
 $activeEmp = null;
 if ($conv > 0) {
-    $st = $db->prepare("SELECT * FROM hrm_employees WHERE id=?");
+    $st = $db->prepare("SELECT id, employee_code, admin_user_id, full_name_np, full_name_en, photo, gender, dob_bs, dob_ad, blood_group, marital_status, nationality, religion, ethnicity, citizenship_no, citizenship_issued_district, citizenship_issued_date_bs, pan_no, nid_no, passport_no, driving_license_no, mobile, alt_mobile, email, perm_province, perm_district, perm_municipality, perm_ward, perm_tole, temp_province, temp_district, temp_municipality, temp_ward, temp_tole, designation, department_id, branch_id, employment_type, grade, level, reporting_to, join_date_bs, join_date_ad, confirm_date_bs, confirm_date_ad, probation_months, status, exit_date_ad, exit_reason, remarks, created_by, updated_by, created_at, updated_at FROM hrm_employees WHERE id=?");
     $st->execute([$conv]);
     $activeEmp = $st->fetch(PDO::FETCH_ASSOC);
     $st = $db->prepare("SELECT id, sender_admin_id, sender_employee_id, receiver_employee_id, subject, body, is_read, read_at, created_at FROM hrm_internal_messages

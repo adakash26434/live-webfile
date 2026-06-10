@@ -417,3 +417,128 @@ def test_no_dead_flash_calls_in_admin_pages() -> None:
             f"admin/{page} still has a dead getFlash() call. "
             "admin-header.php already handles flash messages — remove the duplicate."
         )
+
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  PHASE 3 — P0/P1 Tasks: SELECT *, Forms/Modals, Icon Audit, core/ cleanup
+# ─────────────────────────────────────────────────────────────────────────────
+
+def test_core_dir_removed() -> None:
+    """core/helpers.php and core/init.php must be archived — not in core/ directory."""
+    assert not (ROOT / "core" / "helpers.php").exists(), \
+        "core/helpers.php must be archived to archive_old_v1/core/ — it was dead code."
+    assert not (ROOT / "core" / "init.php").exists(), \
+        "core/init.php must be archived to archive_old_v1/core/ — it was dead code."
+    # Archived copies should exist
+    assert (ROOT / "archive_old_v1" / "core" / "helpers.php").exists(), \
+        "Archived copy of core/helpers.php must exist in archive_old_v1/core/"
+
+
+def test_no_select_star_in_key_admin_files() -> None:
+    """Key admin files must not have SELECT * queries (use explicit columns)."""
+    import re as _re
+    key_files = [
+        "admin/kyc-applications.php",
+        "admin/loan-applications.php",
+        "admin/account-applications.php",
+        "admin/digital-service-requests.php",
+        "admin/election-candidates.php",
+        "admin/designations.php",
+        "admin/partner-facilities.php",
+        "admin/members/edit.php",
+        "admin/members/view.php",
+    ]
+    # Pattern: SELECT * FROM <table> — but NOT SELECT COUNT(*) or SELECT 1,* etc.
+    bare_select_star = _re.compile(r'SELECT\s+\*\s+FROM\s+\w', _re.IGNORECASE)
+    for rel in key_files:
+        path = ROOT / rel
+        if not path.exists():
+            continue
+        content = path.read_text(encoding="utf-8")
+        # Remove SQL comments
+        no_comments = _re.sub(r'/\*.*?\*/', '', content, flags=_re.DOTALL)
+        no_comments = _re.sub(r'--[^\n]*', '', no_comments)
+        matches = bare_select_star.findall(no_comments)
+        assert not matches, (
+            f"{rel} still contains SELECT * FROM — use explicit column list.\n"
+            f"Found: {matches}"
+        )
+
+
+def test_no_select_star_in_key_member_files() -> None:
+    """Key member files must not have SELECT * for known tables."""
+    import re as _re
+    key_files = [
+        "member/account-apply.php",
+        "member/loan-apply.php",
+        "member/kyc-print.php",
+        "member/notifications.php",
+        "member/election-vote.php",
+    ]
+    for rel in key_files:
+        path = ROOT / rel
+        if not path.exists():
+            continue
+        content = path.read_text(encoding="utf-8")
+        no_comments = _re.sub(r'/\*.*?\*/', '', content, flags=_re.DOTALL)
+        assert 'SELECT *' not in no_comments, \
+            f"{rel} still contains SELECT * — use explicit column list instead."
+
+
+def test_modal_component_exists() -> None:
+    """modal.php and modal-close.php components must exist."""
+    comp_dir = ROOT / "includes/components"
+    assert (comp_dir / "modal.php").is_file(), "modal.php component is missing"
+    assert (comp_dir / "modal-close.php").is_file(), "modal-close.php component is missing"
+
+
+def test_form_field_component_exists() -> None:
+    """form-field.php component must exist with all required variables."""
+    content = (ROOT / "includes/components/form-field.php").read_text(encoding="utf-8")
+    for var in ("$fieldLabel", "$fieldName", "$fieldType", "$fieldValue",
+                "$fieldRequired", "$fieldOptions", "$fieldColMd"):
+        assert var in content, f"form-field.php is missing variable {var}"
+
+
+def test_confirm_modal_js_exists() -> None:
+    """confirm-modal.js must exist and implement coopConfirm."""
+    path = ROOT / "assets/js/confirm-modal.js"
+    assert path.is_file(), "assets/js/confirm-modal.js is missing"
+    content = path.read_text(encoding="utf-8")
+    assert "coopConfirm" in content, "confirm-modal.js must define window.coopConfirm"
+    assert "data-confirm" in content, "confirm-modal.js must handle data-confirm attribute"
+    assert "bootstrap.Modal" in content, "confirm-modal.js must use Bootstrap modal"
+
+
+def test_confirm_modal_loaded_in_admin_footer() -> None:
+    """admin-footer.php must load confirm-modal.js."""
+    content = (ROOT / "admin/includes/admin-footer.php").read_text(encoding="utf-8")
+    assert "confirm-modal.js" in content, \
+        "admin-footer.php must load confirm-modal.js for global confirm dialogs"
+
+
+def test_fa_version_consistency() -> None:
+    """All Font Awesome CDN links must use version 6.5.1."""
+    import re as _re
+    inconsistent = []
+    for p in ROOT.rglob("*.php"):
+        if "archive_old_v1" in str(p) or ".git" in str(p):
+            continue
+        content = p.read_text(encoding="utf-8", errors="ignore")
+        for m in _re.finditer(r'font-awesome/6\.(\d+\.\d+)/css/all\.min\.css', content):
+            if m.group(1) != "5.1":
+                inconsistent.append(f"{p.relative_to(ROOT)}: {m.group(0)}")
+    # Allow 6.5.1 only
+    bad = [x for x in inconsistent if "6.5.1" not in x]
+    assert not bad, "Inconsistent FA versions found:\n" + "\n".join(bad)
+
+
+def test_registry_documents_new_p0_components() -> None:
+    """_registry.php must document modal, form-field, and confirm-modal."""
+    content = (ROOT / "includes/components/_registry.php").read_text(encoding="utf-8")
+    assert "modal.php" in content,         "_registry.php must document modal.php"
+    assert "modal-close.php" in content,   "_registry.php must document modal-close.php"
+    assert "form-field.php" in content,    "_registry.php must document form-field.php"
+    assert "confirm-modal.js" in content,  "_registry.php must document confirm-modal.js"
+    assert "coopConfirm" in content,       "_registry.php must show coopConfirm() usage"

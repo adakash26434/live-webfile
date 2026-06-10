@@ -714,7 +714,7 @@ if (defined('BOOTSTRAP_MODE') && BOOTSTRAP_MODE):
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DB Setup — Bootstrap Mode</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>body{background:#f4f6f8;}.bootstrap-banner{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;padding:12px 20px;text-align:center;font-weight:600;}</style>
 </head>
 <body>

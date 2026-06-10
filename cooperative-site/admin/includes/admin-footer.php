@@ -570,5 +570,8 @@
         });
     })();
     </script>
+
+    <!-- Global Confirm Modal (replaces native confirm() — use data-confirm="msg" on forms/links) -->
+    <script src="<?php echo SITE_URL; ?>assets/js/confirm-modal.js?v=1.0" defer></script>
 </body>
 </html>

@@ -54,12 +54,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $editRow = null;
 if (($eid = (int)($_GET['edit'] ?? 0)) > 0) {
-    $st = $db->prepare('SELECT * FROM designations WHERE id=?');
+    $st = $db->prepare('SELECT id, title_np, title_en, category, display_order, is_active, created_at, updated_at FROM designations WHERE id=?');
     $st->execute([$eid]);
     $editRow = $st->fetch(PDO::FETCH_ASSOC) ?: null;
 }
 
-$rows = $db->query('SELECT * FROM designations ORDER BY category, display_order, id')->fetchAll(PDO::FETCH_ASSOC) ?: [];
+$rows = $db->query('SELECT id, title_np, title_en, category, display_order, is_active, created_at, updated_at FROM designations ORDER BY category, display_order, id')->fetchAll(PDO::FETCH_ASSOC) ?: [];
 $grouped = [];
 foreach ($rows as $r) $grouped[$r['category']][] = $r;
 $panel = (string)($_GET['panel'] ?? 'list');

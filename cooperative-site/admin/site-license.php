@@ -77,7 +77,7 @@ $pendingCount = site_license_renewal_pending_count($db);
 $pendingRow = null;
 if ($pendingCount > 0) {
     try {
-        $pendingRow = $db->query("SELECT * FROM site_license_renewal_notices WHERE status = 'pending' ORDER BY id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC) ?: null;
+        $pendingRow = $db->query("SELECT id, status, gateway, txn_reference, amount_reported, note, submitted_by_admin_id, submitted_by_username, created_at FROM site_license_renewal_notices WHERE status = 'pending' ORDER BY id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC) ?: null;
     } catch (Throwable $e) {
         $pendingRow = null;
     }

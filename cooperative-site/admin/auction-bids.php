@@ -54,7 +54,7 @@ if ($bidStatusFilter !== '' && !in_array($bidStatusFilter, ['pending', 'accepted
 $bidSearch = mb_substr(trim((string)($_GET['bid_search'] ?? '')), 0, 200, 'UTF-8');
 try {
     if ($auction_id) {
-        $stmt = $db->prepare("SELECT * FROM auction_notices WHERE id = ?");
+        $stmt = $db->prepare("SELECT id, tracking_number, title, title_en, description, description_en, property_type, location, google_map_link, google_map_embed, area_bigha, area_ropani, area_aana, area_paisa, area, minimum_price, auction_date, auction_time, contact_person, contact_phone, image, images, document, status, is_active, created_at, updated_at FROM auction_notices WHERE id = ?");
         $stmt->execute([$auction_id]);
         $auction = $stmt->fetch();
     }

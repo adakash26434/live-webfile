@@ -116,7 +116,7 @@ if (!function_exists('fetchRequestStatusHistory')) {
         }
         ensureRequestStatusHistoryTable($db);
         $limit = max(1, min(200, $limit));
-        $st = $db->prepare("SELECT * FROM request_status_history
+        $st = $db->prepare("SELECT id, module, request_id, old_status, new_status, admin_comment, notify_sent, actor_admin_id, actor_name, created_at FROM request_status_history
             WHERE module = ? AND request_id = ?
             ORDER BY id DESC
             LIMIT {$limit}");

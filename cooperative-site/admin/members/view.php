@@ -11,13 +11,13 @@ if (!$id) { header('Location: index.php'); exit; }
 $member = null;
 $notifs = [];
 try {
-    $st = $pdo->prepare("SELECT * FROM members WHERE id=?");
+    $st = $pdo->prepare("SELECT id, name, email, phone, sadasyata_number, password_hash, google_id, facebook_id, avatar_url, member_card_no, address, dob, gender, approval_status, approved_at, approved_by, rejection_reason, id_card_generated, id_card_generated_at, is_verified, is_active, created_at, last_login FROM members WHERE id=?");
     $st->execute([$id]);
     $member = $st->fetch(PDO::FETCH_ASSOC);
     if (!$member) { header('Location: index.php'); exit; }
 
     // Notifications
-    $ns = $pdo->prepare("SELECT * FROM member_notifications WHERE member_id=? ORDER BY created_at DESC LIMIT 30");
+    $ns = $pdo->prepare("SELECT id, member_id, title, message, type, link, is_read, created_at FROM member_notifications WHERE member_id=? ORDER BY created_at DESC LIMIT 30");
     $ns->execute([$id]);
     $notifs = $ns->fetchAll(PDO::FETCH_ASSOC);
 } catch (\Throwable $e) {

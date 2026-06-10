@@ -28,7 +28,7 @@ try {
     $dbBlocked = getDB();
     ensureSiteLicenseRenewalNoticesTable($dbBlocked);
     if (site_license_renewal_pending_count($dbBlocked) > 0) {
-        $blockedPendingRow = $dbBlocked->query("SELECT * FROM site_license_renewal_notices WHERE status = 'pending' ORDER BY id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC) ?: null;
+        $blockedPendingRow = $dbBlocked->query("SELECT id, status, gateway, txn_reference, amount_reported, note, submitted_by_admin_id, submitted_by_username, created_at FROM site_license_renewal_notices WHERE status = 'pending' ORDER BY id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC) ?: null;
     }
 } catch (Throwable $e) {
     $dbBlocked = null;
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (string) ($_POST['action'] ?? '') =
 try {
     if ($dbBlocked !== null) {
         if (site_license_renewal_pending_count($dbBlocked) > 0) {
-            $blockedPendingRow = $dbBlocked->query("SELECT * FROM site_license_renewal_notices WHERE status = 'pending' ORDER BY id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC) ?: null;
+            $blockedPendingRow = $dbBlocked->query("SELECT id, status, gateway, txn_reference, amount_reported, note, submitted_by_admin_id, submitted_by_username, created_at FROM site_license_renewal_notices WHERE status = 'pending' ORDER BY id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC) ?: null;
         } else {
             $blockedPendingRow = null;
         }
@@ -106,7 +106,7 @@ $showPayForm = ($blockedPendingRow === null && !$blockedRenewalSent);
     <meta name="robots" content="noindex,nofollow">
     <title>म्याद सकियो — Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">

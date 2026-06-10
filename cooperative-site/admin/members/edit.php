@@ -14,7 +14,7 @@ $csrf = $_SESSION['csrf_token'];
 $errors = [];
 $member = null;
 try {
-    $st = $pdo->prepare("SELECT * FROM members WHERE id=?");
+    $st = $pdo->prepare("SELECT id, name, email, phone, sadasyata_number, password_hash, google_id, facebook_id, avatar_url, member_card_no, address, dob, gender, approval_status, approved_at, approved_by, rejection_reason, id_card_generated, id_card_generated_at, is_verified, is_active, created_at, last_login FROM members WHERE id=?");
     $st->execute([$id]);
     $member = $st->fetch(PDO::FETCH_ASSOC);
 } catch (\Throwable $e) {}

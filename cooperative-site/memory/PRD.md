@@ -84,7 +84,17 @@ User later asked to start, selected a specific issue category, and prioritized f
     6. **Regression tests fixed & extended** — ROOT path now auto-detects `/app/cooperative-site/` or `/app/`; PHP-dependent tests skip gracefully if PHP CLI unavailable; 2 new tests added (dark mode JS, no N+1 SHOW COLUMNS). 13 passed, 3 skipped.
     7. **Security audit** — Full audit passed: 0 SQL injection, 0 XSS, 0 eval, CSRF on all admin POSTs, bcrypt passwords, PDO everywhere, proper file upload validation, security headers.
     8. **CSS audit documented** — 125 top-level duplicate selectors found in app-public.css. Documented with CSS audit tool script in `docs/REFACTOR_AUDIT_2026-06-12.md`.
-- 2026-06-12 (continued): **Second audit pass — performance, security, responsive, UI consistency**
+- 2026-06-12 (continued): **P0 + P1 COMPLETION — SELECT *, Forms/Modals, Icons, core/ cleanup**
+    1. **core/ dead code archived**: `core/helpers.php` + `core/init.php` → `archive_old_v1/core/` (zero active references confirmed). `core/` directory removed.
+    2. **68 SELECT * → explicit columns**: New `scripts/select-star-v2.py` script. All known tables mapped (members, kyc_applications, loan_applications, account_applications, digital_service_requests, auction_notices, election_positions, election_candidates, election_posts, designations, partner_facilities, site_license_renewal_notices, hrm_employees, member_welfare_claims, member_notifications, member_transactions, request_status_history, member_otp_tokens). Only 2 intentional SELECT * remain (backup export + dynamic table tracker).
+    3. **Forms/Modals shared component system**:
+       - `includes/components/modal.php` + `modal-close.php` — Bootstrap 5 modal wrapper (reusable across all admin pages)
+       - `includes/components/form-field.php` — Standardized form input row (text/email/tel/number/date/textarea/select/checkbox/hidden)
+       - `assets/js/confirm-modal.js` — Global JS confirm dialog (replaces browser native `confirm()`). Auto-wires via `data-confirm="message"` attribute on forms/links. Injected globally via `admin-footer.php`.
+    4. **Font Awesome version standardized**: All CDN links now uniformly `6.5.1` (was mixed 6.4.0/6.5.0/6.5.1 across 10 files).
+    5. **Icon audit**: 100% FontAwesome; 0 Lucide references. Single library confirmed.
+    6. **_registry.php** updated with all new components + usage examples.
+    7. **Regression suite**: 33 passed, 3 skipped (was 24 passed). 9 new tests added.
     1. **getSetting() bulk preload** — Was doing 37+ separate DB queries per page for settings. Now does 1 `SELECT setting_key, setting_value FROM site_settings` to warm the static cache; all subsequent calls are memory hits. Zero backward compatibility change.
     2. **CSP promoted to enforce mode** — Content-Security-Policy-Report-Only → Content-Security-Policy. Added all missing CDN origins: code.jquery.com, unpkg.com, cdn.jsdelivr.net, cdnjs.cloudflare.com.
     3. **Dead legacy mysqli connection removed** — `new mysqli(DB_HOST, DB_USER, ...)` was being called on every page load even though zero PHP files use `$conn` or any mysqli_* functions. Removed connection creation; null shim retained.
@@ -105,26 +115,29 @@ User later asked to start, selected a specific issue category, and prioritized f
 ## Prioritized Backlog
 ### P0 (Must do before launch)
 - Configure/test against the real database environment to validate admin/member features end-to-end.
+- ~~**Forms/Modals shared component system**~~: DONE 2026-06-12 (modal.php, modal-close.php, form-field.php, confirm-modal.js)
+- ~~**core/ dead code cleanup**~~: DONE 2026-06-12 (archived to archive_old_v1/core/)
 
 ### P1 (High Priority)
 - **CSS Deduplication sprint**: 92 duplicate selectors still in app-admin.css. `css-audit.py` script available. (~1 day effort)
+- ~~**SELECT * reductions**~~: DONE 2026-06-12 (68 queries replaced; only 2 intentional SELECT * remain)
+- ~~**Icon library audit**~~: DONE 2026-06-12 (100% FontAwesome 6.5.1; 0 Lucide; all versions standardized)
 - ~~**Content-Security-Policy**~~: Already enforced as of 2026-06-12.
 - ~~**Rate Limiting**~~: Already implemented in member login and admin login (`checkLoginAttempts()`, `checkRateLimit()`).
 
 ### P2 (Medium Priority)
-- **SELECT * reduction**: Specify only needed columns in 130 admin `SELECT *` queries.
-- **CSS variable coverage**: Migrate 177 inline `#hex` colors in PHP files to CSS vars.
-- **Merge core/ directory**: `core/helpers.php` + `core/init.php` were created as a planned refactoring but NEVER integrated. Currently dead code. See warning header added in `core/helpers.php`.
+- **CSS variable coverage**: Migrate remaining inline `#hex` colors in PHP files to CSS vars.
 
 ### P3 (Low Priority / Future)
-- Icon migration: FA → Lucide (4,159 references — dedicated sprint only, risk: very high).
+- ~~Icon migration: FA → Lucide~~: Audit found 4,153 FA usages — standardization would be a dedicated sprint only. Risk: very high. Recommendation: stay with FA 6.5.1.
 - CSS chunking: Split app-public.css per page for lazy loading.
 - Redis/APCu caching for `getSetting()` calls.
 
 ## Next Tasks
 - With DB configured, test admin institutional profile add/edit and public profile rendering end-to-end.
 - Validate dark mode toggle on live site (localStorage persistence across page navigations).
-- Review admin/member pages that still use older direct includes and gradually standardize them.
+- CSS Deduplication sprint: run `scripts/css-audit.py` to get full duplicate selector report.
+- Gradually migrate `onsubmit="return confirm(...)"` forms to `data-confirm="..."` attribute for better UX.
 
 ## Verification Log
 - 2026-06-12 (Agent-2 session): **SHARED COMPONENT SYSTEM + SECURITY HARDENING**

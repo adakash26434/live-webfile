@@ -158,7 +158,7 @@ if (isset($_GET['export']) && $_GET['export'] === 'csv') {
       $countSt->execute($filterParams);
       [$totalCount, $totalCredit, $totalDebit] = $countSt->fetch(\PDO::FETCH_NUM);
 
-      $st = $db->prepare("SELECT * FROM member_transactions WHERE member_id=? $whereFilter ORDER BY created_at DESC LIMIT ? OFFSET ?");
+      $st = $db->prepare("SELECT id, member_id, transaction_type, amount, description, remarks, reference_no, created_at FROM member_transactions WHERE member_id=? $whereFilter ORDER BY created_at DESC LIMIT ? OFFSET ?");
       $st->execute(array_merge($filterParams, [$perPage, $offset]));
       $transactions = $st->fetchAll(\PDO::FETCH_ASSOC);
   } catch (\Exception $e) {

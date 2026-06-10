@@ -157,7 +157,7 @@ if ($action === 'edit' || $action === 'add') {
     $auction = null;
     if ($action === 'edit' && $id > 0) {
         try {
-            $s = $db->prepare("SELECT * FROM auction_notices WHERE id = ?");
+            $s = $db->prepare("SELECT id, tracking_number, title, title_en, description, description_en, property_type, location, google_map_link, google_map_embed, area_bigha, area_ropani, area_aana, area_paisa, area, minimum_price, auction_date, auction_time, contact_person, contact_phone, image, images, document, status, is_active, created_at, updated_at FROM auction_notices WHERE id = ?");
             $s->execute([$id]);
             $auction = $s->fetch();
         } catch (Throwable $e) { error_log("[auctions.php] " . $e->getMessage()); }
@@ -480,7 +480,7 @@ if ($search !== '') {
 $auctions = [];
 $counts   = ['total'=>0,'upcoming'=>0,'ongoing'=>0,'completed'=>0,'cancelled'=>0];
 try {
-    $stmt = $db->prepare("SELECT * FROM auction_notices WHERE $where ORDER BY auction_date DESC, created_at DESC");
+    $stmt = $db->prepare("SELECT id, tracking_number, title, title_en, description, description_en, property_type, location, google_map_link, google_map_embed, area_bigha, area_ropani, area_aana, area_paisa, area, minimum_price, auction_date, auction_time, contact_person, contact_phone, image, images, document, status, is_active, created_at, updated_at FROM auction_notices WHERE $where ORDER BY auction_date DESC, created_at DESC");
     $stmt->execute($params);
     $auctions = $stmt->fetchAll();
     $cntStmt  = $db->query("SELECT status, COUNT(*) as c FROM auction_notices GROUP BY status");

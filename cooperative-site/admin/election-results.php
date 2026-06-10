@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $endDate   = trim((string)($_POST['end_date'] ?? '')) ?: date('Y-m-d', strtotime('+4 years'));
 
             /* प्रत्येक पदको winners (seats बराबर) committee_members मा थप */
-            $positions = $db->prepare('SELECT * FROM election_positions WHERE cycle_id=? AND is_active=1 AND committee_type_id IS NOT NULL ORDER BY display_order, id');
+            $positions = $db->prepare('SELECT id, cycle_id, title_np, title_en, seats, max_votes_per_voter, committee_type_id, display_order, is_active, created_at FROM election_positions WHERE cycle_id=? AND is_active=1 AND committee_type_id IS NOT NULL ORDER BY display_order, id');
             $positions->execute([$cycleId]);
             $positions = $positions->fetchAll(PDO::FETCH_ASSOC) ?: [];
 

@@ -160,14 +160,14 @@ if ($search !== '') {
 try {
     $cntS = $db->prepare("SELECT COUNT(*) FROM account_applications WHERE $where"); $cntS->execute($params); $totalCount = (int)$cntS->fetchColumn();
     $totalPages = max(1, ceil($totalCount / $limit));
-    $stmt = $db->prepare("SELECT * FROM account_applications WHERE $where ORDER BY created_at DESC LIMIT ? OFFSET ?");
+    $stmt = $db->prepare("SELECT id, account_type, full_name, full_name_en, dob_bs, dob_ad, gender, marital_status, mobile, email, permanent_address, temporary_address, citizenship_no, citizenship_issued_date, citizenship_issued_place, father_name, mother_name, occupation, monthly_income, initial_deposit, nominee_name, nominee_relation, nominee_phone, branch, photo, citizenship_front, citizenship_back, signature, status, remarks, created_at, updated_at FROM account_applications WHERE $where ORDER BY created_at DESC LIMIT ? OFFSET ?");
     $stmt->execute(array_merge($params, [$limit, $offset])); $applications = $stmt->fetchAll();
 } catch (Exception $e) { $applications = []; $totalCount = 0; $totalPages = 1; }
 
 /* ─── Single view ─── */
 $viewApp = null;
 if (isset($_GET['view'])) {
-    $s = $db->prepare("SELECT * FROM account_applications WHERE id=?");
+    $s = $db->prepare("SELECT id, account_type, full_name, full_name_en, dob_bs, dob_ad, gender, marital_status, mobile, email, permanent_address, temporary_address, citizenship_no, citizenship_issued_date, citizenship_issued_place, father_name, mother_name, occupation, monthly_income, initial_deposit, nominee_name, nominee_relation, nominee_phone, branch, photo, citizenship_front, citizenship_back, signature, status, remarks, created_at, updated_at FROM account_applications WHERE id=?");
     $s->execute([(int)$_GET['view']]);
     $viewApp = $s->fetch();
     if (!$viewApp) { setFlash('error', $__t('आवेदन फेला परेन।', 'Application not found.')); redirect('account-applications.php'); }

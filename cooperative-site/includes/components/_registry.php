@@ -24,9 +24,13 @@
  *  empty-state.php         "No records" empty state with optional CTA
  *  form-section.php        Form card section opener (+ form-section-close.php)
  *  form-section-close.php  Closes form-section.php
+ *  form-field.php          Standardized Bootstrap form input row (all input types)
+ *  modal.php               Reusable Bootstrap 5 modal header+body opener
+ *  modal-close.php         Closes modal.php with optional footer buttons
  *  breadcrumb.php          Navigation trail
  *  pagination.php          Bootstrap sliding-window page navigation
  *  status-badge.php        Defines statusBadge() function for colored status chips
+ *  confirm-modal.js        Global JS confirm dialog (auto-wires data-confirm attr)
  *
  * QUICK EXAMPLES
  * ──────────────
@@ -101,6 +105,37 @@
  *   include __DIR__ . '/status-badge.php';  // load once, defines statusBadge()
  *   echo statusBadge('pending');   // प्रतीक्षारत chip
  *   echo statusBadge('approved');  // स्वीकृत chip
+ *
+ * — Modal —
+ *   <?php
+ *   $modalId          = 'deleteModal';
+ *   $modalTitle       = 'रेकर्ड मेटाउनुहोस्';
+ *   $modalIcon        = 'fa-trash';
+ *   $modalHeaderClass = 'bg-danger text-white';
+ *   include __DIR__ . '/modal.php';
+ *   ?>
+ *   <p>के तपाईं यो रेकर्ड मेटाउन निश्चित हुनुहुन्छ?</p>
+ *   <?php
+ *   $modalFooter = '<button class="btn btn-secondary" data-bs-dismiss="modal">रद्द</button>
+ *                   <button class="btn btn-danger">मेटाउनुहोस्</button>';
+ *   include __DIR__ . '/modal-close.php';
+ *   ?>
+ *
+ * — Form Field —
+ *   $fieldLabel    = 'पूरा नाम';
+ *   $fieldName     = 'full_name';
+ *   $fieldType     = 'text';         // text|email|tel|number|date|textarea|select|checkbox
+ *   $fieldValue    = $row['full_name'] ?? '';
+ *   $fieldRequired = true;
+ *   $fieldColMd    = 6;             // Bootstrap column (default 12)
+ *   include __DIR__ . '/form-field.php';
+ *
+ * — Confirm Modal (JS) —
+ *   // Loaded globally via admin-footer.php
+ *   // Add data-confirm="message" attribute to any form/link:
+ *   <form method="POST" data-confirm="के तपाईं मेटाउन निश्चित हुनुहुन्छ?">
+ *   // Or call programmatically:
+ *   window.coopConfirm('सुनिश्चित हुनुहोस्?', callback, { variant: 'danger' });
  *
  * ════════════════════════════════════════════════════════════
  */

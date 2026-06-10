@@ -85,7 +85,7 @@ $unread = 0;
 $notifs = [];
 try {
     $unread  = getMemberUnreadCount($memberId);
-    $notifSt = $db->prepare("SELECT * FROM member_notifications WHERE member_id=? ORDER BY created_at DESC LIMIT 5");
+    $notifSt = $db->prepare("SELECT id, member_id, title, message, type, link, is_read, created_at FROM member_notifications WHERE member_id=? ORDER BY created_at DESC LIMIT 5");
     $notifSt->execute([$memberId]);
     $notifs  = $notifSt->fetchAll(PDO::FETCH_ASSOC) ?: [];
 } catch (Throwable $e) { $unread = 0; $notifs = []; }

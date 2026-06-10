@@ -62,7 +62,7 @@ switch ($type) {
 
 /* ════════════════════════════ KYC ════════════════════════════ */
 case 'kyc':
-    $st = $db->prepare("SELECT * FROM kyc_applications WHERE id=?");
+    $st = $db->prepare("SELECT id, member_id, full_name, full_name_en, dob_bs, dob_ad, gender, marital_status, nationality, mobile, email, permanent_address, temporary_address, citizenship_no, citizenship_issued_date, citizenship_issued_place, father_name, mother_name, grandfather_name, spouse_name, occupation, organization_name, monthly_income, account_type, branch, photo, citizenship_front, citizenship_back, signature, status, remarks, created_at, updated_at FROM kyc_applications WHERE id=?");
     $st->execute([$id]);  $data = $st->fetch();
     if (!$data) goto NOT_FOUND;
     $formTitle   = 'केवाइसी (KYC) आवेदन फारम';
@@ -105,7 +105,7 @@ case 'kyc':
 
 /* ════════════════════════════ LOAN ════════════════════════════ */
 case 'loan':
-    $st = $db->prepare("SELECT * FROM loan_applications WHERE id=?");
+    $st = $db->prepare("SELECT id, full_name, member_id, mobile, email, address, citizenship_no, loan_type, loan_amount, loan_purpose, loan_tenure, repayment_method, occupation, organization_name, monthly_income, other_income, collateral_type, collateral_description, collateral_value, guarantor_name, guarantor_relation, guarantor_phone, guarantor_address, branch, documents, status, remarks, created_at, updated_at FROM loan_applications WHERE id=?");
     $st->execute([$id]);  $data = $st->fetch();
     if (!$data) goto NOT_FOUND;
     $formTitle   = 'ऋण आवेदन फारम';
@@ -211,7 +211,7 @@ case 'welfare':
 
 /* ════════════════════════════ DIGITAL ════════════════════════════ */
 case 'digital':
-    $st = $db->prepare("SELECT * FROM digital_service_requests WHERE id=?");
+    $st = $db->prepare("SELECT id, tracking_id, requester_name, member_id, phone, email, service_type, service_type_np, account_number, statement_from, statement_to, biller_name, bill_reference, recharge_number, recharge_amount, service_amount, request_details, attachment, preferred_contact, status, admin_remarks, admin_attachment, reviewed_by, reviewed_at, created_at, updated_at FROM digital_service_requests WHERE id=?");
     $st->execute([$id]);  $data = $st->fetch();
     if (!$data) goto NOT_FOUND;
     $svcMap      = ['statement'=>'बैंक स्टेटमेन्ट','atm_card'=>'ATM कार्ड','cheque_book'=>'चेकबुक','mobile_banking'=>'मोबाइल बैंकिङ','internet_banking'=>'इन्टरनेट बैंकिङ','fund_transfer'=>'फण्ड ट्रान्सफर','bill_payment'=>'बिल भुक्तानी','recharge'=>'रिचार्ज','other'=>'अन्य सेवा'];
@@ -250,7 +250,7 @@ case 'digital':
 
 /* ════════════════════════════ ACCOUNT ════════════════════════════ */
 case 'account':
-    $st = $db->prepare("SELECT * FROM account_applications WHERE id=?");
+    $st = $db->prepare("SELECT id, account_type, full_name, full_name_en, dob_bs, dob_ad, gender, marital_status, mobile, email, permanent_address, temporary_address, citizenship_no, citizenship_issued_date, citizenship_issued_place, father_name, mother_name, occupation, monthly_income, initial_deposit, nominee_name, nominee_relation, nominee_phone, branch, photo, citizenship_front, citizenship_back, signature, status, remarks, created_at, updated_at FROM account_applications WHERE id=?");
     $st->execute([$id]);  $data = $st->fetch();
     if (!$data) goto NOT_FOUND;
     $accMap      = ['saving'=>'बचत','current'=>'चल्ती','fixed'=>'मुद्दती','recurring'=>'आवधिक','child'=>'बाल बचत'];
@@ -329,7 +329,7 @@ $checklist = $checklists[$type];
 <title><?php echo pf_e($formTitle); ?> — <?php echo pf_e($trackId); ?></title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 /* ═══ RESET & BASE ═══ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

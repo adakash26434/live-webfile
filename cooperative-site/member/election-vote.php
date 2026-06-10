@@ -188,7 +188,7 @@ if ($cycle) {
     $ps->execute([$cycleId]);
     $positions = $ps->fetchAll(PDO::FETCH_ASSOC) ?: [];
     if (!empty($positions)) {
-        $cs2 = $db->prepare('SELECT * FROM election_candidates WHERE cycle_id=? AND is_active=1 ORDER BY position_id, display_order, id');
+        $cs2 = $db->prepare('SELECT id, cycle_id, position_id, name, name_en, photo, bio_np, bio_en, phone, email, address, symbol_no, display_order, is_active, created_at FROM election_candidates WHERE cycle_id=? AND is_active=1 ORDER BY position_id, display_order, id');
         $cs2->execute([$cycleId]);
         foreach ($cs2->fetchAll(PDO::FETCH_ASSOC) ?: [] as $c) $candByPos[(int)$c['position_id']][] = $c;
 

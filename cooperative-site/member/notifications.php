@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mark_all'])) {
 }
 
 $unread = getMemberUnreadCount($memberId);
-$notifSt = $db->prepare("SELECT * FROM member_notifications WHERE member_id=? ORDER BY created_at DESC LIMIT 100");
+$notifSt = $db->prepare("SELECT id, member_id, title, message, type, link, is_read, created_at FROM member_notifications WHERE member_id=? ORDER BY created_at DESC LIMIT 100");
 $notifSt->execute([$memberId]);
 $notifs = $notifSt->fetchAll(PDO::FETCH_ASSOC);
 

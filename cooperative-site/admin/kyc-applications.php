@@ -406,7 +406,7 @@ $offset = ($page - 1) * $limit;
 try {
     $cntStmt2 = $db->prepare("SELECT COUNT(*) FROM kyc_applications WHERE $where"); $cntStmt2->execute($params2); $total = $cntStmt2->fetchColumn();
     $totalPages    = ceil($total / $limit);
-    $stmt2 = $db->prepare("SELECT * FROM kyc_applications WHERE $where ORDER BY created_at DESC LIMIT ? OFFSET ?");
+    $stmt2 = $db->prepare("SELECT id, member_id, full_name, full_name_en, dob_bs, dob_ad, gender, marital_status, nationality, mobile, email, permanent_address, temporary_address, citizenship_no, citizenship_issued_date, citizenship_issued_place, father_name, mother_name, grandfather_name, spouse_name, occupation, organization_name, monthly_income, account_type, branch, photo, citizenship_front, citizenship_back, signature, status, remarks, created_at, updated_at FROM kyc_applications WHERE $where ORDER BY created_at DESC LIMIT ? OFFSET ?");
     $stmt2->execute(array_merge($params2, [$limit, $offset])); $applications = $stmt2->fetchAll();
 } catch (Exception $e) { $applications = []; $total = 0; $totalPages = 0; }
 
@@ -434,7 +434,7 @@ try {
 /* ─── Single view ─── */
 $viewApp = null;
 if (isset($_GET['view'])) {
-    $s = $db->prepare("SELECT * FROM kyc_applications WHERE id=?");
+    $s = $db->prepare("SELECT id, member_id, full_name, full_name_en, dob_bs, dob_ad, gender, marital_status, nationality, mobile, email, permanent_address, temporary_address, citizenship_no, citizenship_issued_date, citizenship_issued_place, father_name, mother_name, grandfather_name, spouse_name, occupation, organization_name, monthly_income, account_type, branch, photo, citizenship_front, citizenship_back, signature, status, remarks, created_at, updated_at FROM kyc_applications WHERE id=?");
     $s->execute([(int)$_GET['view']]);
     $viewApp = $s->fetch();
     if (!$viewApp) { setFlash('error', 'आवेदन फेला परेन।'); redirect('kyc-applications.php'); }

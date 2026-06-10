@@ -314,7 +314,7 @@ if ($logoPath) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?php echo htmlspecialchars($_t('सदस्य लगिन', 'Member Login')); ?> — <?php echo htmlspecialchars($siteName); ?></title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <?php if (function_exists('coopThemeHeadAssets')) { coopThemeHeadAssets('auth'); } ?>
 <style>
 *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
